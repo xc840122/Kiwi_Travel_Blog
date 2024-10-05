@@ -1,0 +1,6 @@
+@OXL_Assessment2_HostAddress = http://localhost:5038
+
+GET {{OXL_Assessment2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
