@@ -11,4 +11,21 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration/" />
+    <Folder Include="Constants/" />
+    <Folder Include="Controllers/" />
+    <Folder Include="Data/" />
+    <Folder Include="Data/Configurations/" />
+    <Folder Include="Data/Entities/" />
+    <Folder Include="Dtos/" />
+    <Folder Include="Enums/" />
+    <Folder Include="Interfaces/" />
+    <Folder Include="Interfaces/IRepositories/" />
+    <Folder Include="Interfaces/IServices/" />
+    <Folder Include="Repositories/" />
+    <Folder Include="Services/" />
+    <Folder Include="Utilities/" />
+  </ItemGroup>
+
 </Project>
