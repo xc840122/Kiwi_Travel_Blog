@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using OXL_Assessment2.Data;
 using OXL_Assessment2.Data.Entities;
+using OXL_Assessment2.Interface;
+using OXL_Assessment2.Interface.IServices;
+using OXL_Assessment2.Src.Repositories;
+using OXL_Assessment2.Src.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,11 @@ builder.Services.AddSwaggerGen();
 // database configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// controller, service, repository
+builder.Services.AddControllers();
+// category
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
@@ -43,6 +52,8 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+// map the controllers
+app.MapControllers();
 app.Run();
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
