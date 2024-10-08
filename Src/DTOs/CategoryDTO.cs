@@ -1,3 +1,12 @@
+/// <summary>
+/// DTO of category
+/// </summary>
+/// <remarks>
+/// used for internal transmission
+/// </remarks>
+/// <author>
+/// Chi Xu (Peter) -- 08/10/2024
+/// </author>
 using System;
 
 namespace OXL_Assessment2.DTOs;
