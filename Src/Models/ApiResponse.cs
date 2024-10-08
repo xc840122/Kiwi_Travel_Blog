@@ -9,4 +9,4 @@
 /// </author>
 namespace OXL_Assessment2.Src.Models;
 
-public record ApiResponse(string RequestID, int Code, string Message, Object Data);
+public record ApiResponse(string RequestID, string Code, string Message, Object Data);
