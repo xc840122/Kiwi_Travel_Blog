@@ -43,7 +43,6 @@ namespace OXL_Assessment2.Src.Controllers
         public IActionResult GetAllCategories()
         {
             var categories = _categoryService.GetAllCategories();
-            System.Console.WriteLine("controller reach===================");
             return FormatResponse(Guid.NewGuid().ToString(), 200,
             "Get all categories successfully", categories);
         }
