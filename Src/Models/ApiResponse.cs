@@ -1,3 +1,6 @@
+using OXL_Assessment2.Src.Constants;
+
+
 /// <summary>
 /// Unified format of response
 /// </summary>
@@ -9,4 +12,4 @@
 /// </author>
 namespace OXL_Assessment2.Src.Models;
 
-public record ApiResponse(string RequestID, string Code, string Message, Object Data);
+public record ApiResponse(string RequestID, ServiceCode Code, string Message, Object? Data);
