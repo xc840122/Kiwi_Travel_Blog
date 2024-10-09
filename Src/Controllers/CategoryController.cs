@@ -18,7 +18,7 @@ using OXL_Assessment2.Src.Models;
 
 namespace OXL_Assessment2.Src.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : AbstractBaseController
     {
@@ -30,7 +30,7 @@ namespace OXL_Assessment2.Src.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public IActionResult GetAllCategories()
         {
             var categories = _categoryService.GetAllCategories();
