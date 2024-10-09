@@ -34,8 +34,8 @@ namespace OXL_Assessment2.Src.Controllers
             var categories = _categoryService.GetAllCategories();
             // log the request information
             _logger.LogInformation("========GetAllCategories called========");
-            return new ApiResponse(Guid.NewGuid().ToString(), 200,
-            "Get all categories successfully", categories);
+            return new ApiResponse(Guid.NewGuid().ToString(), "200",
+                "Get all categories successfully", categories);
         }
     }
 }
