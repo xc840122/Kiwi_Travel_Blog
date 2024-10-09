@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using OXL_Assessment2.DTOs;
 using OXL_Assessment2.Interface;
+using OXL_Assessment2.Src.Constants;
 using OXL_Assessment2.Src.Models;
 
 namespace OXL_Assessment2.Src.Controllers
@@ -34,8 +35,18 @@ namespace OXL_Assessment2.Src.Controllers
             var categories = _categoryService.GetAllCategories();
             // log the request information
             _logger.LogInformation("========GetAllCategories called========");
-            return new ApiResponse(Guid.NewGuid().ToString(), "200",
-                "Get all categories successfully", categories);
+            if (categories != null)
+            {
+                return Ok(new ApiResponse(Guid.NewGuid().ToString(),
+                ServiceCode.GetAllCategoriesSuccessfully,
+                MessageConstants.OperationSuccessful, categories));
+            }
+            else
+            {
+                return NotFound(new ApiResponse(Guid.NewGuid().ToString(),
+                ServiceCode.NoCategoriesFound,
+                MessageConstants.OperationSuccessful, null));
+            }
         }
     }
 }
