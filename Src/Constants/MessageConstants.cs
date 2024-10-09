@@ -15,4 +15,5 @@ public class MessageConstants
 {
   public const string GetCategoriesSuccessfully = "Get categories successfully";
   public const string NotFoundData = "Not found data";
+  public const string RegisterSuccessfully = "Register Successfully";
 }

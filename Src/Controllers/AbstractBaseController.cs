@@ -23,9 +23,9 @@ namespace OXL_Assessment2.Src.Controllers
         }
 
         // Stadard method to generate response in controllers
-        protected ApiResponse<T> CreateResponse<T>(ServiceCode code, string message, T data)
+        protected ApiResponseModel<T> CreateResponse<T>(ServiceCode code, string message, T data)
         {
-            return new ApiResponse<T>(GetRequestId(), code, message, data);
+            return new ApiResponseModel<T>(GetRequestId(), code, message, data);
         }
     }
 }

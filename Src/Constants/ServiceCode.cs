@@ -11,7 +11,9 @@ namespace OXL_Assessment2.Src.Constants;
 
 public enum ServiceCode
 {
-  // 01xx category relavant
-  GetAllCategoriesSuccessfully = 100,
-  NoCategoriesFound = 101
+  // 1xxx
+  RegisterSuccessfully = 100001,
+  // 2xxx category relavant
+  GetAllCategoriesSuccessfully = 200001,
+  NoCategoriesFound = 200002,
 }

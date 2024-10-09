@@ -9,7 +9,6 @@
 /// </author>
 using System;
 using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Data.Configurations;
 using OXL_Assessment2.Data.Entities;
 
 namespace OXL_Assessment2.Data;
