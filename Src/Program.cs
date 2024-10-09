@@ -7,6 +7,9 @@ using OXL_Assessment2.Src.Services;
 using NLog;
 using NLog.Web;
 using OXL_Assessment2.Src.Middlewares;
+using OXL_Assessment2.Src.Data.DbContext;
+using OXL_Assessment2.Src.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -28,6 +31,28 @@ try
     // database configuration
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    // identity db configuration
+    builder.Services.AddDbContext<UserIdentityDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
+
+    // Add Identity services
+    builder.Services.AddIdentity<NZTUser, NZTRole>()
+        .AddEntityFrameworkStores<UserIdentityDbContext>()
+        .AddDefaultTokenProviders();
+
+    // protect password, encryption
+    builder.Services.AddDataProtection();
+    // set the password policies
+    builder.Services.AddIdentityCore<NZTUser>(options =>
+    {
+        options.Password.RequireDigit = false; //Disables the requirement for at least one numeric digit (0-9) in passwords.
+        options.Password.RequireLowercase = false; //Disables the requirement for at least one lowercase letter (a-z) in passwords.
+        options.Password.RequireNonAlphanumeric = false; //Disables the requirement for non-alphanumeric characters (e.g., @, #, $, etc.) in passwords.
+        options.Password.RequireUppercase = false; //Disables the requirement for at least one uppercase letter (A-Z) in passwords.
+        options.Password.RequiredLength = 6; //Sets the minimum length for passwords to 6 characters.
+        options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider; //Specifies the token provider to be used for generating and validating password reset tokens. In this case, it uses the default email token provider, which generates tokens sent via email.
+        options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider; //Specifies the token provider to be used for generating and validating email confirmation tokens, again using the default email provider.
+    });
 
     // controller, service, repository
     builder.Services.AddControllers();
