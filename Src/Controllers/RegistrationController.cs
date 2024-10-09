@@ -27,7 +27,7 @@ namespace OXL_Assessment2.Src.Controllers
         }
 
         // normal user registration
-        [HttpGet("register")]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterModel registerModel)
         {
             //API receives data (e.g., JSON) from a client, it binds that data to a model. 
