@@ -39,12 +39,12 @@ namespace OXL_Assessment2.Src.Controllers
             if (categories != null)
             {
                 return Ok(CreateResponse<List<CategoryDTO>>(ServiceCode.GetAllCategoriesSuccessfully,
-                MessageConstants.OperationSuccessful, categories));
+                MessageConstants.GetCategoriesSuccessfully, categories));
             }
             else
             {
                 return NotFound(CreateResponse<string>(ServiceCode.NoCategoriesFound,
-                MessageConstants.OperationSuccessful, ""));
+                MessageConstants.NotFoundData, ""));
             }
         }
     }
