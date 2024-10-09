@@ -11,4 +11,4 @@ using OXL_Assessment2.Src.Constants;
 
 namespace OXL_Assessment2.Src.Models;
 
-public record ApiResponse<T>(string RequestID, ServiceCode Code, string Message, T Data);
+public record ApiResponseModel<T>(string RequestID, ServiceCode Code, string Message, T Data);
