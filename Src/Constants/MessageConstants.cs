@@ -13,6 +13,6 @@ namespace OXL_Assessment2.Src.Constants;
 
 public class MessageConstants
 {
-  public const string OperationSuccessful = "Operation successful";
+  public const string GetCategoriesSuccessfully = "Get categories successfully";
   public const string NotFoundData = "Not found data";
 }
