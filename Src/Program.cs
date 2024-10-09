@@ -36,15 +36,15 @@ try
 
     var app = builder.Build();
 
-    // Add middlewares
-    app.UseMiddleware<RequestIdMiddleware>(); //register middleware
-
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    // Add request id middleware, after Swagger, before controller, otherwise run twice middleware
+    app.UseMiddleware<RequestIdMiddleware>();
 
     app.UseHttpsRedirection();
     app.MapControllers();
