@@ -6,6 +6,7 @@ using OXL_Assessment2.Src.Repositories;
 using OXL_Assessment2.Src.Services;
 using NLog;
 using NLog.Web;
+using OXL_Assessment2.Src.Middlewares;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -23,14 +24,15 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
     // database configuration
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
     // controller, service, repository
     builder.Services.AddControllers();
-    // category
-    builder.Services.AddScoped<ICategoryService, CategoryService>();
-    builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+    builder.Services.AddScoped<ICategoryService, CategoryService>(); //category service
+    builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
 
     var app = builder.Build();
 
@@ -41,10 +43,11 @@ try
         app.UseSwaggerUI();
     }
 
+    // Add request id middleware, after Swagger, before controller, otherwise run twice middleware
+    app.UseMiddleware<RequestIdMiddleware>();
+
     app.UseHttpsRedirection();
-
     app.MapControllers();
-
     app.Run();
 }
 catch (Exception exception)

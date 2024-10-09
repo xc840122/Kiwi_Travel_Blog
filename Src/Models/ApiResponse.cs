@@ -1,6 +1,3 @@
-using OXL_Assessment2.Src.Constants;
-
-
 /// <summary>
 /// Unified format of response
 /// </summary>
@@ -10,6 +7,8 @@ using OXL_Assessment2.Src.Constants;
 /// <author>
 /// Chi Xu (Peter) -- 08/10/2024
 /// </author>
+using OXL_Assessment2.Src.Constants;
+
 namespace OXL_Assessment2.Src.Models;
 
-public record ApiResponse(string RequestID, ServiceCode Code, string Message, Object? Data);
+public record ApiResponse<T>(string RequestID, ServiceCode Code, string Message, T Data);
