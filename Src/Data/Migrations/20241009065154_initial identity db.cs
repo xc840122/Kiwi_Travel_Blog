@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OXL_Assessment2.Src.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialidentitydb : Migration
+    public partial class InitialIdentityDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

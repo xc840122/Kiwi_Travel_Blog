@@ -12,8 +12,8 @@ using OXL_Assessment2.Src.Data.DbContext;
 namespace OXL_Assessment2.Src.Data.Migrations
 {
     [DbContext(typeof(UserIdentityDbContext))]
-    [Migration("20241009065154_initial identity db")]
-    partial class initialidentitydb
+    [Migration("20241009065154_Initial Identity Db")]
+    partial class InitialIdentityDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
