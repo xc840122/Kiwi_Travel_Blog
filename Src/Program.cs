@@ -11,6 +11,9 @@ using OXL_Assessment2.Src.Data.DbContext;
 using OXL_Assessment2.Src.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using OXL_Assessment2.Src.Attributes;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -29,17 +32,40 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    // database configuration
+    // Database configuration
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    // identity db configuration
+    // Identity db configuration
     builder.Services.AddDbContext<UserIdentityDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
 
-    // Add Identity services
+    // Add Identity and JWT services
     builder.Services.AddIdentity<NZTUser, NZTRole>()
         .AddEntityFrameworkStores<UserIdentityDbContext>()
         .AddDefaultTokenProviders();
+
+    var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+    var key = Encoding.UTF8.GetBytes(jwtSettings["Key"] ?? ""); //JWT cryptographic algorithms generally work with byte arrays.
+
+    builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidAudience = jwtSettings["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+    });
+
 
     // protect password, encryption
     builder.Services.AddDataProtection();
@@ -76,8 +102,9 @@ try
 
     // Add request id middleware, after Swagger, before controller, otherwise run twice middleware
     app.UseMiddleware<RequestIdMiddleware>();
-
     app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
     app.MapControllers();
     app.Run();
 }
