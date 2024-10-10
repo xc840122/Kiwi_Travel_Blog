@@ -16,4 +16,7 @@ public enum ServiceCode
   // 2xxx category relavant
   GetAllCategoriesSuccessfully = 200001,
   NoCategoriesFound = 200002,
+  // 3xxx 
+  UserNotExist = 300002,
+  PasswordNotCorrect = 300003,
 }
