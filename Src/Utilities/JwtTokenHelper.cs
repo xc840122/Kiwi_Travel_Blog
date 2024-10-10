@@ -55,7 +55,7 @@ public class JwtTokenHelper
               issuer: jwtSettings["Chi"],
               audience: jwtSettings["EndUser"],
               claims: claims,
-              expires: DateTime.Now.AddMinutes(expiredMins), //expired duration
+              expires: DateTime.UtcNow.AddMinutes(expiredMins), //expired duration
               signingCredentials: credential);
 
       // create token string
