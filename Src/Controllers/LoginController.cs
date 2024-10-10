@@ -14,6 +14,7 @@ using OXL_Assessment2.Src.Attributes;
 using OXL_Assessment2.Src.Constants;
 using OXL_Assessment2.Src.Data.Entities;
 using OXL_Assessment2.Src.Models;
+using OXL_Assessment2.Src.Utilities;
 
 namespace OXL_Assessment2.Src.Controllers
 {
@@ -22,10 +23,12 @@ namespace OXL_Assessment2.Src.Controllers
     public class LoginController : AbstractBaseController
     {
         private readonly UserManager<NZTUser> _userManager;
+        private readonly JwtTokenHelper _jwtTokenHelper;
 
-        public LoginController(UserManager<NZTUser> userManager)
+        public LoginController(UserManager<NZTUser> userManager, JwtTokenHelper jwtTokenHelper)
         {
             this._userManager = userManager;
+            this._jwtTokenHelper = jwtTokenHelper;
         }
 
         /// <summary>
@@ -49,8 +52,9 @@ namespace OXL_Assessment2.Src.Controllers
             bool isPasswordCorrect = await _userManager.CheckPasswordAsync(user, loginModel.Password);
             if (isPasswordCorrect)
             {
-                // todo generate JWT token
-                return Ok();
+                var token = _jwtTokenHelper.GenerateJwtToken(loginModel);
+                return Ok(CreateResponse<string>(ServiceCode.LoginSuccessful,
+                MessageConstants.LoginSuccessful, token));
             }
             else return Unauthorized(CreateResponse(ServiceCode.PasswordNotCorrect,
             MessageConstants.PasswordNotCorrect));

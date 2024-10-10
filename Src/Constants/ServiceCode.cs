@@ -11,13 +11,14 @@ namespace OXL_Assessment2.Src.Constants;
 
 public enum ServiceCode
 {
-  // 1xxx
+  // 1xxx, registration relavant
   RegistrationSuccessful = 100001,
   RegistrationFailed = 100002,
   // 2xxx category relavant
   GettingAllCategoriesSuccessful = 200001,
   NoCategoriesFound = 200002,
-  // 3xxx 
+  // 3xxx login relavant
+  LoginSuccessful = 300001,
   UserNotExist = 300002,
   PasswordNotCorrect = 300003,
 }

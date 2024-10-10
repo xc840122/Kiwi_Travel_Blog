@@ -19,4 +19,6 @@ public class MessageConstants
   public const string RegistrationFailed = "Registration failed";
   public const string UserNotExist = "User not existed";
   public const string PasswordNotCorrect = "Password not correct";
+  public const string NotConfigureKey = "Not configure key";
+  public const string LoginSuccessful = "Login successful";
 }
