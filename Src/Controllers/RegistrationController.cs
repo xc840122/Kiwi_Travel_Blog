@@ -49,10 +49,11 @@ namespace OXL_Assessment2.Src.Controllers
             // response
             if (result.Succeeded)
             {
-                return Ok(CreateResponse<string>(ServiceCode.RegisterSuccessfully,
-                MessageConstants.RegisterSuccessfully, endUser.UserName));
+                return Ok(CreateResponse<string>(ServiceCode.RegistrationSuccessful,
+                MessageConstants.RegistrationSuccessful, endUser.UserName));
             }
-            return BadRequest(result.Errors);
+            return BadRequest(CreateResponse<IEnumerable<IdentityError>>(ServiceCode.RegistrationFailed,
+            MessageConstants.RegistrationFailed, result.Errors));
         }
     }
 }

@@ -36,13 +36,13 @@ namespace OXL_Assessment2.Src.Controllers
             _logger.LogInformation("========GetAllCategories called========");
             if (categories != null)
             {
-                return Ok(CreateResponse<List<CategoryDTO>>(ServiceCode.GetAllCategoriesSuccessfully,
-                MessageConstants.GetCategoriesSuccessfully, categories));
+                return Ok(CreateResponse<List<CategoryDTO>>(ServiceCode.GettingAllCategoriesSuccessful,
+                MessageConstants.GettingAllCategoriesSuccessful, categories));
             }
             else
             {
-                return NotFound(CreateResponse<string>(ServiceCode.NoCategoriesFound,
-                MessageConstants.NotFoundData, ""));
+                return NotFound(CreateResponse(ServiceCode.NoCategoriesFound,
+                MessageConstants.NotFoundData));
             }
         }
     }

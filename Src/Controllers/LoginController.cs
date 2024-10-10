@@ -42,8 +42,8 @@ namespace OXL_Assessment2.Src.Controllers
             // check if user exists
             if (user == null)
             {
-                return NotFound(CreateResponse<string>(ServiceCode.UserNotExist,
-                MessageConstants.UserNotExist, ""));
+                return NotFound(CreateResponse(ServiceCode.UserNotExist,
+                MessageConstants.UserNotExist));
             }
             // check the password by UserManager
             bool isPasswordCorrect = await _userManager.CheckPasswordAsync(user, loginModel.Password);
@@ -52,8 +52,8 @@ namespace OXL_Assessment2.Src.Controllers
                 // todo generate JWT token
                 return Ok();
             }
-            else return Unauthorized(CreateResponse<string>(ServiceCode.PasswordNotCorrect,
-            MessageConstants.PasswordNotCorrect, ""));
+            else return Unauthorized(CreateResponse(ServiceCode.PasswordNotCorrect,
+            MessageConstants.PasswordNotCorrect));
         }
     }
 }
