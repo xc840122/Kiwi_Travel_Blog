@@ -15,10 +15,11 @@ namespace OXL_Assessment2.Src.Utilities;
 public class JwtTokenHelper
 {
   private readonly IConfiguration _configuration;
-
-  public JwtTokenHelper(IConfiguration configuration)
+  private readonly ILogger<JwtTokenHelper> _logger;
+  public JwtTokenHelper(IConfiguration configuration, ILogger<JwtTokenHelper> logger)
   {
     this._configuration = configuration;
+    this._logger = logger;
   }
 
   /// <summary>
@@ -28,30 +29,44 @@ public class JwtTokenHelper
   /// <returns></returns>
   public string GenerateJwtToken(LoginModel loginModel)
   {
-    var jwtSettings = _configuration.GetSection("JwtSettings"); // get configuration of JWT from configuration file
-    var keyValue = jwtSettings["Key"]; //get the value of "Key" from configuration(appsetting.json)
-    if (string.IsNullOrEmpty(keyValue))
+    try
     {
-      throw new ArgumentNullException(MessageConstants.NotConfigureKey);
-    }
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue)); // generate key
-    var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); // generate credential with encryption algorithm
+      _logger.LogInformation("Generating JWT token for user: {UserName}", loginModel.UserName);
+      // prepare value for token generation
+      var jwtSettings = _configuration.GetSection("JwtSettings"); // get configuration of JWT from configuration file
+      var keyValue = jwtSettings["Key"]; //get the value of "Key" from configuration(appsetting.json)
+      if (string.IsNullOrEmpty(keyValue))
+      {
+        _logger.LogError("JWT Key is not configured.");
+        throw new ArgumentNullException(MessageConstants.NotConfigureKey);
+      }
+      var expiredMins = Convert.ToInt64(jwtSettings["ExpiredMins"]); //configured expired mins, 5mins if null
+      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue)); // generate key
+      var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); // generate credential with encryption algorithm
 
-    // create claims 
-    var claims = new[]{
+      // create claims 
+      var claims = new[]{
       new Claim(JwtRegisteredClaimNames.Sub, loginModel.UserName),
       new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) //improve security, and support tracking or revocation mechanisms. It’s a good way to provide token uniqueness and guard against potential misuse.
     };
 
-    // instantiate token, set token
-    var token = new JwtSecurityToken(
-            issuer: jwtSettings["Chi"],
-            audience: jwtSettings["EndUser"],
-            claims: claims,
-            expires: DateTime.Now.AddDays(1), //expired duration
-            signingCredentials: credential);
+      // Initializes a new instance of the System.IdentityModel.Tokens.Jwt.JwtSecurityToken
+      var token = new JwtSecurityToken(
+              issuer: jwtSettings["Chi"],
+              audience: jwtSettings["EndUser"],
+              claims: claims,
+              expires: DateTime.Now.AddMinutes(expiredMins), //expired duration
+              signingCredentials: credential);
 
-    // return token
-    return new JwtSecurityTokenHandler().WriteToken(token);
+      // create token string
+      var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+      _logger.LogInformation("JWT token generated successfully for user: {UserName}", loginModel.UserName);
+      return tokenString;
+    }
+    catch (Exception ex)
+    {
+      _logger.LogError(ex, "Error generating JWT token for user: {UserName}", loginModel.UserName);
+      throw; // rethrow the exception after logging
+    }
   }
 }
