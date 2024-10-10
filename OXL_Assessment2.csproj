@@ -24,6 +24,5 @@
 
   <ItemGroup>
     <Folder Include="Src/Filters/" />
-    <Folder Include="Src/Utilities/" />
   </ItemGroup>
 </Project>

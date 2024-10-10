@@ -25,14 +25,14 @@ namespace OXL_Assessment2.Src.Controllers
         /// <summary>
         /// Create response with data
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TData"></typeparam>
         /// <param name="code"></param>
         /// <param name="message"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        protected ApiResponseModel<T> CreateResponse<T>(ServiceCode code, string message, T data)
+        protected ApiResponseModel<TData> CreateResponse<TData>(ServiceCode code, string message, TData data)
         {
-            return new ApiResponseModel<T>(GetRequestId(), code, message, data);
+            return new ApiResponseModel<TData>(GetRequestId(), code, message, data);
         }
 
         /// <summary>

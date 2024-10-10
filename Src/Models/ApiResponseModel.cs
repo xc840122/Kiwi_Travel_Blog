@@ -18,7 +18,7 @@ namespace OXL_Assessment2.Src.Models;
 /// <param name="Code"></param>
 /// <param name="Message"></param>
 /// <param name="Data"></param>
-public record ApiResponseModel<TData>(string RequestID, ServiceCode Code, string Message, TData Data) where TData : class;
+public record ApiResponseModel<TData>(string RequestID, ServiceCode Code, string Message, TData Data);
 /// <summary>
 /// for response without data
 /// </summary>
