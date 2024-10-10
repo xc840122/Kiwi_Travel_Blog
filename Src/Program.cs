@@ -10,6 +10,7 @@ using OXL_Assessment2.Src.Middlewares;
 using OXL_Assessment2.Src.Data.DbContext;
 using OXL_Assessment2.Src.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using OXL_Assessment2.Src.Attributes;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -54,9 +55,14 @@ try
         options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider; //Specifies the token provider to be used for generating and validating email confirmation tokens, again using the default email provider.
     });
 
-    // controller, service, repository
-    builder.Services.AddControllers();
+    // Add controller with options (filters...etc.)
+    builder.Services.AddControllers(options =>
+        {
+            options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
+        });
+    // Add services
     builder.Services.AddScoped<ICategoryService, CategoryService>(); //category service
+    // Add repositories
     builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
 
     var app = builder.Build();
