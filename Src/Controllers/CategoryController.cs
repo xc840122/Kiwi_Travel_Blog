@@ -7,14 +7,11 @@
 /// <author>
 /// Chi Xu (Peter) -- 07/10/2024
 /// </author>
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using OXL_Assessment2.Data.Entities;
 using OXL_Assessment2.DTOs;
 using OXL_Assessment2.Interface;
+using OXL_Assessment2.Src.Attributes;
 using OXL_Assessment2.Src.Constants;
-using OXL_Assessment2.Src.Models;
 
 namespace OXL_Assessment2.Src.Controllers
 {
@@ -30,6 +27,7 @@ namespace OXL_Assessment2.Src.Controllers
             _categoryService = categoryService;
         }
 
+        [ModelStateVerification]
         [HttpGet("all")]
         public IActionResult GetAllCategories()
         {
