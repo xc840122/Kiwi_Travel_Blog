@@ -14,6 +14,7 @@ using OXL_Assessment2.Src.Attributes;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using OXL_Assessment2.Src.Utilities;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -90,6 +91,8 @@ try
     builder.Services.AddScoped<ICategoryService, CategoryService>(); //category service
     // Add repositories
     builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
+    // Add Jwt helper
+    builder.Services.AddScoped<JwtTokenHelper>();
 
     var app = builder.Build();
 
