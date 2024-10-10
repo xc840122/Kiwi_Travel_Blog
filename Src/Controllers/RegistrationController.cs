@@ -7,9 +7,9 @@
 /// <author>
 /// Chi Xu (Peter) -- 09/10/2024
 /// </author>
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OXL_Assessment2.Src.Attributes;
 using OXL_Assessment2.Src.Constants;
 using OXL_Assessment2.Src.Data.Entities;
 using OXL_Assessment2.Src.Models;
@@ -27,16 +27,17 @@ namespace OXL_Assessment2.Src.Controllers
         }
 
         // normal user registration
+        [ModelStateVerification]
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterModel registerModel)
         {
             //API receives data (e.g., JSON) from a client, it binds that data to a model. 
             //Checking ModelState.IsValid ensures that the incoming data meets all validation 
             //rules defined in the model (e.g., data types, required fields).
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            // }
             // create EndUser
             var endUser = new NZTUser
             {
