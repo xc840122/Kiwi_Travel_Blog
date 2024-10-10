@@ -22,10 +22,28 @@ namespace OXL_Assessment2.Src.Controllers
             return HttpContext.Items["RequestID"]?.ToString() ?? Guid.NewGuid().ToString();
         }
 
-        // Stadard method to generate response in controllers
+        /// <summary>
+        /// Create response with data
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         protected ApiResponseModel<T> CreateResponse<T>(ServiceCode code, string message, T data)
         {
             return new ApiResponseModel<T>(GetRequestId(), code, message, data);
+        }
+
+        /// <summary>
+        /// Create response without data
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        protected ApiResponseModel CreateResponse(ServiceCode code, string message)
+        {
+            return new ApiResponseModel(GetRequestId(), code, message);
         }
     }
 }

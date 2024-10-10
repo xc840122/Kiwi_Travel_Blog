@@ -13,7 +13,10 @@ namespace OXL_Assessment2.Src.Constants;
 
 public class MessageConstants
 {
-  public const string GetCategoriesSuccessfully = "Get categories successfully";
+  public const string GettingAllCategoriesSuccessful = "Getting all categories successful";
   public const string NotFoundData = "Not found data";
-  public const string RegisterSuccessfully = "Register Successfully";
+  public const string RegistrationSuccessful = "Registration Successful";
+  public const string RegistrationFailed = "Registration failed";
+  public const string UserNotExist = "User not existed";
+  public const string PasswordNotCorrect = "Password not correct";
 }
