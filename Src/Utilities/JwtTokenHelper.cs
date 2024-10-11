@@ -53,13 +53,12 @@ public class JwtTokenHelper
         Issuer = jwtSettings["Issuer"],
         Audience = jwtSettings["Audience"],
         Subject = new ClaimsIdentity(claims),
-        Expires = DateTime.UtcNow.AddMinutes(expiredMins), //expired duration
+        Expires = DateTime.UtcNow.AddMinutes(expiredMins),
         SigningCredentials = credential
       };
 
       // create token string
-      var tokenHandler = new JsonWebTokenHandler();
-      var token = tokenHandler.CreateToken(tokenDescriptor);
+      var token = new JsonWebTokenHandler().CreateToken(tokenDescriptor);
       _logger.LogInformation("JWT token generated successfully for user: {UserName}", loginModel.UserName);
       return token;
     }
