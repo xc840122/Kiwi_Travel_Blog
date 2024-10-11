@@ -15,6 +15,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using OXL_Assessment2.Src.Utilities;
+using Microsoft.OpenApi.Models;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -47,8 +48,8 @@ try
 
     // get key value from appsetting.json
     var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-    var keyValue = jwtSettings["Key"];
-    if (string.IsNullOrEmpty(keyValue))
+    var key = jwtSettings["Key"];
+    if (string.IsNullOrEmpty(key))
     {
         throw new ArgumentNullException("JWT Key is not configured properly.");
     }
@@ -60,6 +61,7 @@ try
     })
     .AddJwtBearer(options =>
     {
+        // options.IncludeErrorDetails = true; //for debugging
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -69,7 +71,7 @@ try
             ValidateIssuerSigningKey = true,
             ValidIssuer = jwtSettings["Issuer"],
             ValidAudience = jwtSettings["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue)) // //JWT cryptographic algorithms generally work with byte arrays.
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)) // //JWT cryptographic algorithms generally work with byte arrays.
         };
         // options.TokenValidationParameters.ValidateLifetime = false;  // For testing only
     });
@@ -112,7 +114,7 @@ try
     // app.UseMiddleware<RequestLoggingMiddleware>();
     app.UseMiddleware<RequestIdMiddleware>(); //// Add request id middleware, after Swagger, before controller, otherwise run twice middleware
     app.UseHttpsRedirection();
-    app.UseAuthentication(); //verify the JWT, must be set before HttpsRedirection
+    app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
     app.Run();
