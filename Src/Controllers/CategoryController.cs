@@ -7,7 +7,10 @@
 /// <author>
 /// Chi Xu (Peter) -- 07/10/2024
 /// </author>
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using OXL_Assessment2.DTOs;
 using OXL_Assessment2.Interface;
 using OXL_Assessment2.Src.Attributes;
@@ -15,6 +18,7 @@ using OXL_Assessment2.Src.Constants;
 
 namespace OXL_Assessment2.Src.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : AbstractBaseController
