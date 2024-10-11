@@ -52,8 +52,8 @@ public class JwtTokenHelper
 
       // Initializes a new instance of the System.IdentityModel.Tokens.Jwt.JwtSecurityToken
       var token = new JwtSecurityToken(
-              issuer: jwtSettings["Chi"],
-              audience: jwtSettings["EndUser"],
+              issuer: jwtSettings["Issuer"],
+              audience: jwtSettings["Audience"],
               claims: claims,
               expires: DateTime.UtcNow.AddMinutes(expiredMins), //expired duration
               signingCredentials: credential);
