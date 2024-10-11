@@ -46,7 +46,13 @@ try
         .AddDefaultTokenProviders();
 
     var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-    var key = Encoding.UTF8.GetBytes(jwtSettings["Key"] ?? ""); //JWT cryptographic algorithms generally work with byte arrays.
+    // get key value from appsetting.json
+    var jwtKey = jwtSettings["Key"];
+    if (string.IsNullOrEmpty(jwtKey))
+    {
+        throw new ArgumentNullException("JWT Key is not configured properly.");
+    }
+    var key = Encoding.UTF8.GetBytes(jwtKey); //JWT cryptographic algorithms generally work with byte arrays.
 
     builder.Services.AddAuthentication(options =>
     {
@@ -65,6 +71,7 @@ try
             ValidAudience = jwtSettings["Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(key)
         };
+        // options.TokenValidationParameters.ValidateLifetime = false;  // For testing only
     });
 
 
@@ -103,11 +110,10 @@ try
         app.UseSwaggerUI();
     }
 
-    // Add request id middleware, after Swagger, before controller, otherwise run twice middleware
-    app.UseMiddleware<RequestIdMiddleware>();
-    app.UseHttpsRedirection();
-    app.UseAuthentication();
+    app.UseMiddleware<RequestIdMiddleware>(); //// Add request id middleware, after Swagger, before controller, otherwise run twice middleware
+    app.UseAuthentication(); //verify the JWT, must be set before HttpsRedirection
     app.UseAuthorization();
+    app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();
 }
