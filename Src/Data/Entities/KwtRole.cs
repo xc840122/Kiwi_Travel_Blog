@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 /// </author>
 namespace OXL_Assessment2.Src.Data.Entities;
 
-public class NZTRole : IdentityRole<long>
+public class KwtRole : IdentityRole<long>
 {
 
 }
