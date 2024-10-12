@@ -10,6 +10,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using OXL_Assessment2.Data.Entities;
+using OXL_Assessment2.Src.Data.Entities;
 
 namespace OXL_Assessment2.Data;
 
@@ -17,6 +18,9 @@ public class AppDbContext : DbContext
 {
   public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
   public DbSet<Category> Categories { get; set; }
+  public DbSet<Article> Articles { get; set; }
+  public DbSet<Comment> Comments { get; set; }
+  public DbSet<Image> Images { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

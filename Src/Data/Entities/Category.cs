@@ -15,8 +15,8 @@ namespace OXL_Assessment2.Data.Entities;
 public class Category : BaseEntity
 {
   public long Id { get; set; }
-  public string? Name { get; set; }
-  public string? Description { get; set; }
+  public required string Name { get; set; }
+  public required string Description { get; set; }
   public int Position { get; set; }
   public List<Article>? Articles { get; set; }
 }
