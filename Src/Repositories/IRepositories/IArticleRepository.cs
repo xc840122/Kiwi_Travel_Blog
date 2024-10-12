@@ -12,5 +12,5 @@ public interface IArticleRepository
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns></returns>
-  public List<Article> GetArticlesByCategory(long CategoryId);
+  public Task<List<Article>> GetArticlesByCategoryId(long CategoryId);
 }
