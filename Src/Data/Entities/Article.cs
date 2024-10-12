@@ -12,7 +12,7 @@ public class Article : BaseEntity
   public long Id { get; set; }
   public string? Name { get; set; }
   public string? Text { get; set; }
-  public NZTUser? Author { get; set; }
+  public string? Author { get; set; }
   public long LikeNums { get; set; } //for future expansion
   public long FavoriteNums { get; set; } //for future expansion
   public string? Location { get; set; }  //for future expansion
