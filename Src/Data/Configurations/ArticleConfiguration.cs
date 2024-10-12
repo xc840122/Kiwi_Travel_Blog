@@ -20,7 +20,6 @@ public class ArticleConfiguration : IEntityTypeConfiguration<Article>
     builder.ToTable("T_Articles");
     builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
     builder.Property(e => e.Text).HasMaxLength(5000).IsRequired();
-    builder.Property(e => e.CategoryId).IsRequired();
     builder.HasMany<Image>(a => a.Images).WithOne(i => i.Article).IsRequired();
     builder.HasMany<Comment>(a => a.Comments).WithOne(c => c.Article).IsRequired();
   }
