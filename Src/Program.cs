@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using OXL_Assessment2.Src.Utilities;
 using Microsoft.OpenApi.Models;
+using OXL_Assessment2.Src.Services.IServices;
+using OXL_Assessment2.Src.Repositories.IRepositories;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -98,8 +100,10 @@ try
         });
     // Add services
     builder.Services.AddScoped<ICategoryService, CategoryService>(); //category service
+    builder.Services.AddScoped<IArticleService, ArticleService>(); //article service
     // Add repositories
     builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
+    builder.Services.AddScoped<IArticleRepository, ArticleRepository>(); //article repository
     // Add Jwt helper
     builder.Services.AddScoped<JwtTokenHelper>();
 
