@@ -20,8 +20,8 @@ namespace OXL_Assessment2.Src.Controllers
     [ApiController]
     public class RegistrationController : AbstractBaseController
     {
-        private readonly UserManager<NZTUser> _userManager;
-        public RegistrationController(UserManager<NZTUser> userManager)
+        private readonly UserManager<KwtUser> _userManager;
+        public RegistrationController(UserManager<KwtUser> userManager)
         {
             this._userManager = userManager;
         }
@@ -39,7 +39,7 @@ namespace OXL_Assessment2.Src.Controllers
             //     return BadRequest(ModelState);
             // }
             // create EndUser
-            var endUser = new NZTUser
+            var endUser = new KwtUser
             {
                 UserName = registerModel.UserName,
                 Email = registerModel.Email,

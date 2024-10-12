@@ -22,10 +22,10 @@ namespace OXL_Assessment2.Src.Controllers
     [ApiController]
     public class LoginController : AbstractBaseController
     {
-        private readonly UserManager<NZTUser> _userManager;
+        private readonly UserManager<KwtUser> _userManager;
         private readonly JwtTokenHelper _jwtTokenHelper;
 
-        public LoginController(UserManager<NZTUser> userManager, JwtTokenHelper jwtTokenHelper)
+        public LoginController(UserManager<KwtUser> userManager, JwtTokenHelper jwtTokenHelper)
         {
             this._userManager = userManager;
             this._jwtTokenHelper = jwtTokenHelper;

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace OXL_Assessment2.Src.Data.Migrations
+namespace OXL_Assessment2.Src.Data.Migrations.Identity
 {
     /// <inheritdoc />
     public partial class InitialIdentityDb : Migration

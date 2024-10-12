@@ -23,6 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src/Filters/" />
+    <Folder Include="Src/Data/Migrations/" />
   </ItemGroup>
 </Project>

@@ -9,10 +9,10 @@ using OXL_Assessment2.Src.Data.DbContext;
 
 #nullable disable
 
-namespace OXL_Assessment2.Src.Data.Migrations
+namespace OXL_Assessment2.Src.Data.Migrations.Identity
 {
     [DbContext(typeof(UserIdentityDbContext))]
-    [Migration("20241009065154_Initial Identity Db")]
+    [Migration("20241012080805_InitialIdentityDb")]
     partial class InitialIdentityDb
     {
         /// <inheritdoc />
@@ -128,7 +128,7 @@ namespace OXL_Assessment2.Src.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.NZTRole", b =>
+            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.KwtRole", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -158,7 +158,7 @@ namespace OXL_Assessment2.Src.Data.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.NZTUser", b =>
+            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.KwtUser", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,7 +228,7 @@ namespace OXL_Assessment2.Src.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.NZTRole", null)
+                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -237,7 +237,7 @@ namespace OXL_Assessment2.Src.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.NZTUser", null)
+                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -246,7 +246,7 @@ namespace OXL_Assessment2.Src.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.NZTUser", null)
+                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -255,13 +255,13 @@ namespace OXL_Assessment2.Src.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.NZTRole", null)
+                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.NZTUser", null)
+                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -270,7 +270,7 @@ namespace OXL_Assessment2.Src.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.NZTUser", null)
+                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,3 +1,5 @@
+using System;
+using Microsoft.AspNetCore.Identity;
 /// <summary>
 /// role entity
 /// </summary>
@@ -7,12 +9,9 @@
 /// <author>
 /// Chi Xu (Peter) -- 09/10/2024
 /// </author>
-using System;
-using Microsoft.AspNetCore.Identity;
-
 namespace OXL_Assessment2.Src.Data.Entities;
 
-public class NZTRole : IdentityRole<long>
+public class KwtRole : IdentityRole<long>
 {
 
 }
