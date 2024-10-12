@@ -30,8 +30,9 @@ public class CategoryService : ICategoryService
     // transfer to categoryDtos (mannual way)
     var categoryDTOs = categories.Select(e => new CategoryDto
     {
-      Id = (long)e.Id,
+      Id = e.Id,
       Name = e.Name,
+      Position = e.Position
     }).ToList();
     return categoryDTOs;
   }
