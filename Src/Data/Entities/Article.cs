@@ -10,13 +10,13 @@ namespace OXL_Assessment2.Src.Data.Entities;
 public class Article : BaseEntity
 {
   public long Id { get; set; }
-  public string? Name { get; set; }
-  public string? Text { get; set; }
-  public string? Author { get; set; }
+  public required string Name { get; set; }
+  public required string Text { get; set; }
+  public required string Author { get; set; }
   public long LikeNums { get; set; } //for future expansion
   public long FavoriteNums { get; set; } //for future expansion
   public string? Location { get; set; }  //for future expansion
-  public Category? Category { get; set; }
-  public List<Image>? Images { get; set; }
+  public required Category Category { get; set; }
+  public required List<Image> Images { get; set; }
   public List<Comment>? Comments { get; set; }
 }
