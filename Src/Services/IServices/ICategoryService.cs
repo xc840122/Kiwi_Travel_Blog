@@ -8,12 +8,11 @@
 /// Chi Xu (Peter) -- 07/10/2024
 /// </author>
 using System;
-using Microsoft.AspNetCore.Mvc;
-using OXL_Assessment2.DTOs;
+using OXL_Assessment2.Src.Dtos;
 
 namespace OXL_Assessment2.Interface;
 
 public interface ICategoryService
 {
-  public List<CategoryDTO> GetAllCategories();
+  public List<CategoryDto> GetAllCategories();
 }
