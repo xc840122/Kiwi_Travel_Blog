@@ -14,7 +14,7 @@ using OXL_Assessment2.Src.Data.Entities;
 
 namespace OXL_Assessment2.Src.Data.DbContext;
 
-public class UserIdentityDbContext : IdentityDbContext<NZTUser, NZTRole, long>
+public class UserIdentityDbContext : IdentityDbContext<KwtUser, KwtRole, long>
 {
   public UserIdentityDbContext(DbContextOptions<UserIdentityDbContext> options) : base(options)
   {

@@ -42,7 +42,7 @@ try
             options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
 
     // Add Identity and JWT services
-    builder.Services.AddIdentity<NZTUser, NZTRole>()
+    builder.Services.AddIdentity<KwtUser, KwtRole>()
         .AddEntityFrameworkStores<UserIdentityDbContext>()
         .AddDefaultTokenProviders();
 
@@ -80,7 +80,7 @@ try
     // protect password, encryption
     builder.Services.AddDataProtection();
     // set the password policies
-    builder.Services.AddIdentityCore<NZTUser>(options =>
+    builder.Services.AddIdentityCore<KwtUser>(options =>
     {
         options.Password.RequireDigit = false; //Disables the requirement for at least one numeric digit (0-9) in passwords.
         options.Password.RequireLowercase = false; //Disables the requirement for at least one lowercase letter (a-z) in passwords.
