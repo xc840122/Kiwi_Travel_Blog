@@ -1,3 +1,9 @@
+using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using OXL_Assessment2.Data.Entities;
+
+namespace OXL_Assessment2.Data.Configurations;
 /// <summary>
 /// Configuration of category table
 /// </summary>
@@ -7,13 +13,6 @@
 /// <author>
 /// Chi Xu (Peter) -- 06/10/2024
 /// </author>
-using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OXL_Assessment2.Data.Entities;
-
-namespace OXL_Assessment2.Data.Configurations;
-
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
   public void Configure(EntityTypeBuilder<Category> builder)

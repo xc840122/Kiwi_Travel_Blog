@@ -1,19 +1,10 @@
-/// <summary>
-/// DTO of category
-/// </summary>
-/// <remarks>
-/// used for internal transmission
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 08/10/2024
-/// </author>
 using System;
 
-namespace OXL_Assessment2.DTOs;
+namespace OXL_Assessment2.Src.Dtos;
 
-public class CategoryDTO
+public class CategoryDto
 {
   public long Id { get; set; }
   public string? Name { get; set; }
-  public string? Description { get; set; }
+  public int Position { get; set; }
 }

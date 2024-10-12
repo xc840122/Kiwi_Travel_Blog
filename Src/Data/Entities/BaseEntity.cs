@@ -1,3 +1,6 @@
+using System;
+
+namespace OXL_Assessment2.Data.Entities;
 /// <summary>
 /// base engity with createtime and updatetime
 /// </summary>
@@ -7,10 +10,6 @@
 /// <author>
 /// Chi Xu (Peter) -- 06/10/2024
 /// </author>
-using System;
-
-namespace OXL_Assessment2.Data.Entities;
-
 public class BaseEntity
 {
   public DateTime CreateTime { get; set; }
