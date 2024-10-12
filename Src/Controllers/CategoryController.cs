@@ -11,10 +11,10 @@ using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using OXL_Assessment2.DTOs;
 using OXL_Assessment2.Interface;
 using OXL_Assessment2.Src.Attributes;
 using OXL_Assessment2.Src.Constants;
+using OXL_Assessment2.Src.Dtos;
 
 namespace OXL_Assessment2.Src.Controllers
 {
@@ -40,7 +40,7 @@ namespace OXL_Assessment2.Src.Controllers
             _logger.LogInformation("========GetAllCategories called========");
             if (categories != null)
             {
-                return Ok(CreateResponse<List<CategoryDTO>>(ServiceCode.GettingAllCategoriesSuccessful,
+                return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettingAllCategoriesSuccessful,
                 MessageConstants.GettingAllCategoriesSuccessful, categories));
             }
             else
