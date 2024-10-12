@@ -9,7 +9,7 @@ public class Comment : BaseEntity
 {
   public long Id { get; set; }
   public string? Review { get; set; }
-  public NZTUser? Reviewer { get; set; }
+  public string? Reviewer { get; set; }
   public Article? Article { get; set; }
   public string? LikeNum { get; set; }
   public string? Location { get; set; }
