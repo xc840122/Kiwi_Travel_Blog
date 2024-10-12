@@ -136,7 +136,7 @@ namespace OXL_Assessment2.Data.Migrations
 
                     b.HasIndex("ReviewerId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comment", (string)null);
                 });
 
             modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Image", b =>
@@ -157,7 +157,7 @@ namespace OXL_Assessment2.Data.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Image", (string)null);
                 });
 
             modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.NZTUser", b =>
@@ -212,7 +212,7 @@ namespace OXL_Assessment2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NZTUser");
+                    b.ToTable("NZTUser", (string)null);
                 });
 
             modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Article", b =>
