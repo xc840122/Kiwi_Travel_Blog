@@ -16,7 +16,6 @@ public class Article : BaseEntity
   public long LikeNums { get; set; } //for future expansion
   public long FavoriteNums { get; set; } //for future expansion
   public string? Location { get; set; }  //for future expansion
-  public string? CategoryId { get; set; }
   public Category? Category { get; set; }
   public List<Image>? Images { get; set; }
   public List<Comment>? Comments { get; set; }
