@@ -16,13 +16,29 @@ public class ArticleService : IArticleService
     _articleRepository = articleRepository;
     _logger = logger;
   }
+
+  // get username
+
+
   /// <summary>
   /// service method: get articles by category id
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
-  public Task<List<ArticleDto>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<List<ArticleDto>> GetArticlesByCategoryId(long CategoryId)
   {
+    // articles from repository
+    var aritcles = await _articleRepository.GetArticlesByCategoryId(CategoryId);
+    // get user info
+
+    // map to ArticleDto
+    var articleDtos = aritcles.Select(a => new
+    {
+      Id = a.Id,
+      Name = a.Name,
+      CoverImage = a.CoverImage,
+      LikeNums = a.LikeNums
+    });
     throw new NotImplementedException();
   }
 }
