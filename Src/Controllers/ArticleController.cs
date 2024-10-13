@@ -23,8 +23,8 @@ namespace OXL_Assessment2.Src.Controllers
 
         public ArticleController(IArticleService articleService, ILogger<ArticleController> logger)
         {
-            this._articleService = articleService;
-            this._logger = logger;
+            _articleService = articleService;
+            _logger = logger;
         }
         /// <summary>
         /// api to get articles by categoryId
@@ -38,7 +38,7 @@ namespace OXL_Assessment2.Src.Controllers
             try
             {
                 var articleDtos = await _articleService.GetArticlesByCategoryId(CategoryId);
-                if (articleDtos != null)
+                if (articleDtos.Count > 0)
                 {
                     return Ok(CreateResponse<List<ArticleDto>>(ServiceCode.GettingArticleSuccessful,
                     MessageConstants.GettingArticlesSuccessful, articleDtos));

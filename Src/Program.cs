@@ -117,7 +117,7 @@ try
     }
     // app.UseMiddleware<RequestLoggingMiddleware>();
     app.UseMiddleware<RequestIdMiddleware>(); // Add request id middleware, after Swagger, before controller, otherwise run twice middleware
-    app.UseMiddleware<UserInfoMiddleware>(); // Fetch user info from request, add to items
+    // app.UseMiddleware<UserInfoMiddleware>(); // Fetch user info from request, add to items
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
