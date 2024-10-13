@@ -21,4 +21,5 @@ public class MessageConstants
   public const string PasswordNotCorrect = "Password not correct";
   public const string NotConfigureKey = "Not configure key";
   public const string LoginSuccessful = "Login successful";
+  public const string GettingArticlesSuccessful = "Getting articles successful";
 }
