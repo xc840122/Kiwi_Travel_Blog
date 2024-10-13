@@ -44,7 +44,7 @@ public class JwtTokenHelper
 
       // create claims 
       var claims = new[]{
-      new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, loginModel.UserName),
+      new Claim(ClaimTypes.Name, loginModel.UserName),
       new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) //improve security, and support tracking or revocation mechanisms. It’s a good way to provide token uniqueness and guard against potential misuse.
     };
       // Initializes a new instance of the System.IdentityModel.Tokens.Jwt.JwtSecurityToken
