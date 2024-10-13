@@ -21,4 +21,7 @@ public enum ServiceCode
   LoginSuccessful = 300001,
   UserNotExist = 300002,
   PasswordNotCorrect = 300003,
+  // 4xxx article relavant
+  GettingArticleSuccessful = 400001,
+  NoArticlesFound = 400002,
 }

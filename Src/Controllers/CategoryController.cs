@@ -45,7 +45,7 @@ namespace OXL_Assessment2.Src.Controllers
             }
             else
             {
-                _logger.LogError("Categories are not found");
+                _logger.LogWarning("Categories are not found");
                 return NotFound(CreateResponse(ServiceCode.NoCategoriesFound,
                 MessageConstants.NotFoundData));
             }
