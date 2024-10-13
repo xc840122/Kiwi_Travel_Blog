@@ -16,29 +16,35 @@ public class ArticleService : IArticleService
     _articleRepository = articleRepository;
     _logger = logger;
   }
-
-  // get username
-
-
   /// <summary>
-  /// service method: get articles by category id
+  /// service method,convert List<Article> to List<ArticleDto>
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
   public async Task<List<ArticleDto>> GetArticlesByCategoryId(long CategoryId)
   {
-    // articles from repository
-    var aritcles = await _articleRepository.GetArticlesByCategoryId(CategoryId);
-    // get user info
-
-    // map to ArticleDto
-    var articleDtos = aritcles.Select(a => new
+    try
     {
-      Id = a.Id,
-      Name = a.Name,
-      CoverImage = a.CoverImage,
-      LikeNums = a.LikeNums
-    });
-    throw new NotImplementedException();
+      // articles from repository
+      var aritcles = await _articleRepository.GetArticlesByCategoryId(CategoryId);
+
+      // map to ArticleDto
+      var articleDtos = aritcles.Select(a => new ArticleDto
+      {
+        Id = a.Id,
+        Name = a.Name,
+        CoverImage = a.CoverImage,
+        Author = a.Author,
+        LikeNums = a.LikeNums
+      }).ToList();
+
+      return articleDtos;
+    }
+    catch (Exception ex)
+    {
+      // Log the exception
+      _logger.LogError(ex, "Error retrieving articles for category ID {CategoryId}", CategoryId);
+      throw;
+    }
   }
 }
