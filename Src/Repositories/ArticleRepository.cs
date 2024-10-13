@@ -12,9 +12,9 @@ namespace OXL_Assessment2.Src.Repositories;
 public class ArticleRepository : IArticleRepository
 {
   private readonly AppDbContext _context;
-  private readonly Logger<ArticleRepository> _logger;
+  private readonly ILogger<ArticleRepository> _logger;
 
-  public ArticleRepository(AppDbContext context, Logger<ArticleRepository> logger)
+  public ArticleRepository(AppDbContext context, ILogger<ArticleRepository> logger)
   {
     _context = context;
     _logger = logger;
