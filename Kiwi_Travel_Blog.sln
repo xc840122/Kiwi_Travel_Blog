@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OXL_Assessment2", "OXL_Assessment2.csproj", "{768B16D6-0C26-4AF1-A6DE-7A47D0BF2FA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kiwi_Travel_Blog", "Kiwi_Travel_Blog.csproj", "{768B16D6-0C26-4AF1-A6DE-7A47D0BF2FA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
