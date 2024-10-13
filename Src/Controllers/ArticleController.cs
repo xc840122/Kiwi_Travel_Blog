@@ -9,6 +9,10 @@ using OXL_Assessment2.Src.Services.IServices;
 
 namespace OXL_Assessment2.Src.Controllers
 {
+    /// <summary>
+    /// article controller
+    /// </summary>
+
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +26,11 @@ namespace OXL_Assessment2.Src.Controllers
             this._articleService = articleService;
             this._logger = logger;
         }
-
+        /// <summary>
+        /// api to get articles by categoryId
+        /// </summary>
+        /// <param name="CategoryId"></param>
+        /// <returns>list of article dto</returns>
         [ModelStateVerification]
         [HttpGet("{CategoryId}")]
         public async Task<IActionResult> GetArticlesByCategoryId(long CategoryId)
