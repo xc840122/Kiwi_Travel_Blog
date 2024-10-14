@@ -1,35 +1,33 @@
-/// <summary>
-/// category repository
-/// </summary>
-/// <remarks>
-/// operate category data from database
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 07/10/2024
-/// </author>
 using System;
 using Kiwi_Travel_Blog.Data;
 using Kiwi_Travel_Blog.Data.Entities;
 using Kiwi_Travel_Blog.Interface.IServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kiwi_Travel_Blog.Src.Repositories;
-
-public class CategoryRepository : ICategoryRepository
+/// <summary>
+/// repositories of category
+/// </summary>
+public class UserCategoryRepository : IUserCategoryRepository
 {
   private readonly AppDbContext _context;
-  private readonly ILogger<CategoryRepository> _logger;  // Inject ILogger for logging
+  private readonly ILogger<UserCategoryRepository> _logger;  // Inject ILogger for logging
 
-  public CategoryRepository(AppDbContext context, ILogger<CategoryRepository> logger)
+  public UserCategoryRepository(AppDbContext context, ILogger<UserCategoryRepository> logger)
   {
     _context = context;
     _logger = logger;
   }
-  public List<Category> GetAllCategories()
+  /// <summary>
+  /// Get all categories from database
+  /// </summary>
+  /// <returns></returns>
+  public async Task<List<Category>> GetAllCategories()
   {
     try
     {
       _logger.LogInformation("Attempting to retrieve all categories from the database.");
-      var categories = _context.Categories.ToList();
+      var categories = await _context.Categories.ToListAsync();
 
       _logger.LogInformation("Successfully retrieved {Count} categories.", categories.Count);
       return categories;

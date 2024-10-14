@@ -1,11 +1,11 @@
 using System;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace Kiwi_Travel_Blog.Src.Repositories.IRepositories;
+namespace Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 /// <summary>
 /// Repository interface of article
 /// </summary>
-public interface IArticleRepository
+public interface IUserArticleRepository
 {
   /// <summary>
   /// medhod to get articles by category id

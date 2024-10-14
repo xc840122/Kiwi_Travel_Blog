@@ -1,7 +1,9 @@
 using System;
 using Kiwi_Travel_Blog.Interface.IServices;
 using Kiwi_Travel_Blog.Src.Repositories;
-using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Src.Repositories.AdminImpl;
+using Kiwi_Travel_Blog.Src.Repositories.IAdminRepositories;
+using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
 /// <summary>
@@ -16,8 +18,9 @@ public static class RepositoryConfigurationExtension
   /// <returns></returns>
   public static IServiceCollection InjectRepositoryServices(this IServiceCollection services)
   {
-    services.AddScoped<ICategoryRepository, CategoryRepository>();
-    services.AddScoped<IArticleRepository, ArticleRepository>();
+    services.AddScoped<IUserCategoryRepository, UserCategoryRepository>();
+    services.AddScoped<IUserArticleRepository, UserArticleRepository>();
+    services.AddScoped<IAdminCategoryRepository, AdminCategoryRepository>();
 
     return services;
   }

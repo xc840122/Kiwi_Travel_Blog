@@ -1,14 +1,14 @@
 using System;
 using Kiwi_Travel_Blog.Src.Dtos;
 
-namespace Kiwi_Travel_Blog.Src.Services.IServices;
+namespace Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 /// <summary>
-/// interface of article service
+/// interface of article business
 /// </summary>
-public interface IArticleService
+public interface IUserArticleBusiness
 {
   /// <summary>
-  /// get articles by category id service
+  /// get articles by category id business
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns></returns>
