@@ -19,10 +19,10 @@ public class UserCategoryBusiness : IUserCategoryBusiness
   /// user API to get all categories
   /// </summary>
   /// <returns></returns>
-  public List<CategoryDto> GetAllCategories()
+  public async Task<List<CategoryDto>> GetAllCategories()
   {
     // get categories from repository layer
-    List<Category> categories = _categoryRepository.GetAllCategories();
+    List<Category> categories = await _categoryRepository.GetAllCategories();
     // transfer to categoryDtos (mannual way)
     var categoryDTOs = categories.Select(e => new CategoryDto
     {

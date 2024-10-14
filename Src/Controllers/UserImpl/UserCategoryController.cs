@@ -25,9 +25,9 @@ public class UserCategoryController : AbstractBaseController
 
     [ModelStateVerification]
     [HttpGet("all")]
-    public IActionResult GetAllCategories()
+    public async Task<IActionResult> GetAllCategories()
     {
-        var categories = _categoryBusiness.GetAllCategories();
+        var categories = await _categoryBusiness.GetAllCategories();
         // log the request information
         _logger.LogInformation("========GetAllCategories called========");
         if (categories != null)

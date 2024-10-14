@@ -2,6 +2,7 @@ using System;
 using Kiwi_Travel_Blog.Data;
 using Kiwi_Travel_Blog.Data.Entities;
 using Kiwi_Travel_Blog.Interface.IServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kiwi_Travel_Blog.Src.Repositories;
 /// <summary>
@@ -21,12 +22,12 @@ public class UserCategoryRepository : IUserCategoryRepository
   /// Get all categories from database
   /// </summary>
   /// <returns></returns>
-  public List<Category> GetAllCategories()
+  public async Task<List<Category>> GetAllCategories()
   {
     try
     {
       _logger.LogInformation("Attempting to retrieve all categories from the database.");
-      var categories = _context.Categories.ToList();
+      var categories = await _context.Categories.ToListAsync();
 
       _logger.LogInformation("Successfully retrieved {Count} categories.", categories.Count);
       return categories;

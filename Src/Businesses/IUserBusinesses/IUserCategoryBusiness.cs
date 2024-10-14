@@ -11,5 +11,5 @@ public interface IUserCategoryBusiness
   /// get all categories
   /// </summary>
   /// <returns></returns>
-  public List<CategoryDto> GetAllCategories();
+  public Task<List<CategoryDto>> GetAllCategories();
 }
