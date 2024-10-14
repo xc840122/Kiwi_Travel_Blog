@@ -7,14 +7,14 @@ namespace Kiwi_Travel_Blog.Src.Configuration;
 /// <summary>
 /// extension to inject business related logic
 /// </summary>
-public class BusinessConfigurationExtension
+public static class BusinessConfigurationExtension
 {
   /// <summary>
   /// extension method to inject business related logic
   /// </summary>
   /// <param name="services"></param>
   /// <returns></returns>
-  public IServiceCollection InjectBusinessExtension(IServiceCollection services)
+  public static IServiceCollection InjectBusinessExtension(this IServiceCollection services)
   {
     // Add services
     services.AddScoped<ICategoryService, CategoryService>(); //category service

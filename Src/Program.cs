@@ -18,6 +18,7 @@ using Kiwi_Travel_Blog.Src.Utilities;
 using Microsoft.OpenApi.Models;
 using Kiwi_Travel_Blog.Src.Services.IServices;
 using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Src.Configuration;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -37,11 +38,13 @@ try
     builder.Services.AddSwaggerGen();
 
     // Database configuration
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    // Identity db configuration
-    builder.Services.AddDbContext<UserIdentityDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
+    DatabaseConfigurationExtension.InjectDatabaseServices(builder.Services, builder.Configuration);
+    // Business configuration
+    BusinessConfigurationExtension.InjectBusinessExtension(builder.Services);
+    // Repository configuration
+    RepositoryConfigurationExtension.InjectRepositoryServices(builder.Services);
+    // Utility configuration
+    UtilityConfigurationExtension.InjectUtilityExtension(builder.Services);
 
     // Add Identity and JWT services
     builder.Services.AddIdentity<KwtUser, KwtRole>()
