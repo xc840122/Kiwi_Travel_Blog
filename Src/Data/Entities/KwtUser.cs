@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 /// <author>
 /// Chi Xu (Peter) -- 09/10/2024
 /// </author>
-namespace OXL_Assessment2.Src.Data.Entities;
+namespace Kiwi_Travel_Blog.Src.Data.Entities;
 
 public class KwtUser : IdentityUser<long>
 {

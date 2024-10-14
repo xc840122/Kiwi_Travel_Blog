@@ -1,11 +1,11 @@
 using System;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Src.Repositories.IRepositories;
+namespace Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 /// <summary>
 /// Repository interface of article
 /// </summary>
-public interface IArticleRepository
+public interface IUserArticleRepository
 {
   /// <summary>
   /// medhod to get articles by category id

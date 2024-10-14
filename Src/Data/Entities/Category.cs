@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Data.Entities;
+namespace Kiwi_Travel_Blog.Data.Entities;
 /// <summary>
 /// The Category class represents a category of contents in the system.
 /// </summary>
@@ -17,6 +17,7 @@ public class Category : BaseEntity
   public long Id { get; set; }
   public required string Name { get; set; }
   public required string Description { get; set; }
-  public int Position { get; set; }
+  public long UpperCategoryId { get; set; }
+  public int Position { get; set; } = 0;
   public List<Article>? Articles { get; set; }
 }

@@ -1,6 +1,6 @@
-@OXL_Assessment2_HostAddress = http://localhost:5082
+@Kiwi_Travel_Blog_HostAddress = http://localhost:5082
 
-GET {{OXL_Assessment2_HostAddress}}/weatherforecast/
+GET {{Kiwi_Travel_Blog_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

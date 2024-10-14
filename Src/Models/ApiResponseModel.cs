@@ -7,9 +7,9 @@
 /// <author>
 /// Chi Xu (Peter) -- 08/10/2024
 /// </author>
-using OXL_Assessment2.Src.Constants;
+using Kiwi_Travel_Blog.Src.Constants;
 
-namespace OXL_Assessment2.Src.Models;
+namespace Kiwi_Travel_Blog.Src.Models;
 /// <summary>
 /// for response with data
 /// </summary>

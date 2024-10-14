@@ -1,6 +1,6 @@
 using System;
 
-namespace OXL_Assessment2.Src.Data.Entities;
+namespace Kiwi_Travel_Blog.Src.Data.Entities;
 
 public class Image
 {

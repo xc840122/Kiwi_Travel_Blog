@@ -1,7 +1,7 @@
 using System;
-using OXL_Assessment2.Data.Entities;
+using Kiwi_Travel_Blog.Data.Entities;
 
-namespace OXL_Assessment2.Src.Data.Entities;
+namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
 /// comments from other user, for future expansion
 /// </summary>
