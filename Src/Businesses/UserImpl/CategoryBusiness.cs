@@ -1,12 +1,3 @@
-/// <summary>
-/// category service
-/// </summary>
-/// <remarks>
-/// service logic of category
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 07/10/2024
-/// </author>
 using System;
 using Kiwi_Travel_Blog.Data.Entities;
 using Kiwi_Travel_Blog.Interface;
@@ -14,15 +5,20 @@ using Kiwi_Travel_Blog.Interface.IServices;
 using Kiwi_Travel_Blog.Src.Dtos;
 
 namespace Kiwi_Travel_Blog.Src.Services;
-
-public class CategoryService : ICategoryService
+/// <summary>
+/// user business logic of category
+/// </summary>
+public class CategoryBusiness : ICategoryBusiness
 {
   private readonly ICategoryRepository _categoryRepository;
-
-  public CategoryService(ICategoryRepository categoryRepository)
+  public CategoryBusiness(ICategoryRepository categoryRepository)
   {
     _categoryRepository = categoryRepository;
   }
+  /// <summary>
+  /// user API to get all categories
+  /// </summary>
+  /// <returns></returns>
   public List<CategoryDto> GetAllCategories()
   {
     // get categories from repository layer
