@@ -1,23 +1,23 @@
 using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Data;
-using OXL_Assessment2.Interface;
-using OXL_Assessment2.Interface.IServices;
-using OXL_Assessment2.Src.Repositories;
-using OXL_Assessment2.Src.Services;
+using Kiwi_Travel_Blog.Data;
+using Kiwi_Travel_Blog.Interface;
+using Kiwi_Travel_Blog.Interface.IServices;
+using Kiwi_Travel_Blog.Src.Repositories;
+using Kiwi_Travel_Blog.Src.Services;
 using NLog;
 using NLog.Web;
-using OXL_Assessment2.Src.Middlewares;
-using OXL_Assessment2.Src.Data.DbContext;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Middlewares;
+using Kiwi_Travel_Blog.Src.Data.DbContext;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 using Microsoft.AspNetCore.Identity;
-using OXL_Assessment2.Src.Attributes;
+using Kiwi_Travel_Blog.Src.Attributes;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using OXL_Assessment2.Src.Utilities;
+using Kiwi_Travel_Blog.Src.Utilities;
 using Microsoft.OpenApi.Models;
-using OXL_Assessment2.Src.Services.IServices;
-using OXL_Assessment2.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Src.Services.IServices;
+using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -98,9 +98,7 @@ try
         {
             options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
         });
-    // Add services
-    builder.Services.AddScoped<ICategoryService, CategoryService>(); //category service
-    builder.Services.AddScoped<IArticleService, ArticleService>(); //article service
+
     // Add repositories
     builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
     builder.Services.AddScoped<IArticleRepository, ArticleRepository>(); //article repository

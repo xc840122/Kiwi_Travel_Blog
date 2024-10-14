@@ -1,6 +1,6 @@
 using System;
 
-namespace OXL_Assessment2.Src.Dtos;
+namespace Kiwi_Travel_Blog.Src.Dtos;
 
 public class CategoryDto
 {

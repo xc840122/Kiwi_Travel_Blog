@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Data.Entities;
+namespace Kiwi_Travel_Blog.Data.Entities;
 /// <summary>
 /// The Category class represents a category of contents in the system.
 /// </summary>

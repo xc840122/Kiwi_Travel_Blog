@@ -1,7 +1,7 @@
 using System;
-using OXL_Assessment2.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Dtos;
 
-namespace OXL_Assessment2.Src.Services.IServices;
+namespace Kiwi_Travel_Blog.Src.Services.IServices;
 /// <summary>
 /// interface of article service
 /// </summary>

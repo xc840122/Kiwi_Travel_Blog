@@ -8,12 +8,12 @@
 /// Chi Xu (Peter) -- 07/10/2024
 /// </author>
 using System;
-using OXL_Assessment2.Data.Entities;
-using OXL_Assessment2.Interface;
-using OXL_Assessment2.Interface.IServices;
-using OXL_Assessment2.Src.Dtos;
+using Kiwi_Travel_Blog.Data.Entities;
+using Kiwi_Travel_Blog.Interface;
+using Kiwi_Travel_Blog.Interface.IServices;
+using Kiwi_Travel_Blog.Src.Dtos;
 
-namespace OXL_Assessment2.Src.Services;
+namespace Kiwi_Travel_Blog.Src.Services;
 
 public class CategoryService : ICategoryService
 {

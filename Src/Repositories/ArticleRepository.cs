@@ -1,11 +1,11 @@
 using System;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Data;
-using OXL_Assessment2.Src.Data.Entities;
-using OXL_Assessment2.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Data;
+using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
 
-namespace OXL_Assessment2.Src.Repositories;
+namespace Kiwi_Travel_Blog.Src.Repositories;
 /// <summary>
 /// Repository of Article
 /// </summary>

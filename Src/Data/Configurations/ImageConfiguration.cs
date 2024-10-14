@@ -1,9 +1,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Src.Data.Configurations;
+namespace Kiwi_Travel_Blog.Src.Data.Configurations;
 
 public class ImageConfiguration : IEntityTypeConfiguration<Image>
 {

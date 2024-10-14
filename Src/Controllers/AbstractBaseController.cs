@@ -9,10 +9,10 @@
 /// </author>
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OXL_Assessment2.Src.Constants;
-using OXL_Assessment2.Src.Models;
+using Kiwi_Travel_Blog.Src.Constants;
+using Kiwi_Travel_Blog.Src.Models;
 
-namespace OXL_Assessment2.Src.Controllers
+namespace Kiwi_Travel_Blog.Src.Controllers
 {
     public abstract class AbstractBaseController : ControllerBase
     {

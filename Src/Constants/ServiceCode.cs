@@ -7,7 +7,7 @@
 /// <author>
 /// Chi Xu (Peter) -- 09/10/2024
 /// </author>
-namespace OXL_Assessment2.Src.Constants;
+namespace Kiwi_Travel_Blog.Src.Constants;
 
 public enum ServiceCode
 {

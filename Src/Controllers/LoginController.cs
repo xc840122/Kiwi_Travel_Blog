@@ -10,13 +10,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OXL_Assessment2.Src.Attributes;
-using OXL_Assessment2.Src.Constants;
-using OXL_Assessment2.Src.Data.Entities;
-using OXL_Assessment2.Src.Models;
-using OXL_Assessment2.Src.Utilities;
+using Kiwi_Travel_Blog.Src.Attributes;
+using Kiwi_Travel_Blog.Src.Constants;
+using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Models;
+using Kiwi_Travel_Blog.Src.Utilities;
 
-namespace OXL_Assessment2.Src.Controllers
+namespace Kiwi_Travel_Blog.Src.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

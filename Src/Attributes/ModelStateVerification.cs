@@ -11,7 +11,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace OXL_Assessment2.Src.Attributes;
+namespace Kiwi_Travel_Blog.Src.Attributes;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class ModelStateVerificationAttribute : ActionFilterAttribute
