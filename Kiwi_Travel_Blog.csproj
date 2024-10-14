@@ -27,6 +27,5 @@
     <Folder Include="Src/Businesses/IAdminBusinesses/" />
     <Folder Include="Src/Controllers/AdminImpl/" />
     <Folder Include="Src/Data/Migrations/" />
-    <Folder Include="Src/Repositories/AdminImpl/" />
   </ItemGroup>
 </Project>
