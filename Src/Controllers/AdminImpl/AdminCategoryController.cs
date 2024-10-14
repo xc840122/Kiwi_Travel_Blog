@@ -31,7 +31,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
                     return BadRequest(CreateResponse(ServiceCode.NullCategory, MessageConstants.NullCategory));
                 }
 
-                // TODO:Add logic to check duplicated ID (code for business, repository)
+                // TODO:Add logic to check duplicated name (code for business, repository)
 
                 // Add category
                 _logger.LogInformation($"Add category for name {categoryDto.Name}");
