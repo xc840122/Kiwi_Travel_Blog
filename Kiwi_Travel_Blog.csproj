@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src/Controllers/AdminImpl/" />
     <Folder Include="Src/Data/Migrations/" />
   </ItemGroup>
 </Project>

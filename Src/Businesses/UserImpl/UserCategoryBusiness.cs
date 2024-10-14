@@ -26,9 +26,10 @@ public class UserCategoryBusiness : IUserCategoryBusiness
     // transfer to categoryDtos (mannual way)
     var categoryDTOs = categories.Select(e => new CategoryDto
     {
-      Id = e.Id,
       Name = e.Name,
-      Position = e.Position
+      Description = e.Description,
+      Position = e.Position,
+      UpperCategoryId = e.UpperCategoryId
     }).ToList();
     return categoryDTOs;
   }

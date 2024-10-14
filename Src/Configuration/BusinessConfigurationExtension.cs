@@ -1,5 +1,7 @@
 using System;
 using Kiwi_Travel_Blog.Interface;
+using Kiwi_Travel_Blog.Src.Businesses.AdminImpl;
+using Kiwi_Travel_Blog.Src.Businesses.IAdminBusinesses;
 using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 using Kiwi_Travel_Blog.Src.Services;
 using Kiwi_Travel_Blog.Src.Services.IServices;
@@ -20,6 +22,7 @@ public static class BusinessConfigurationExtension
     // Add services
     services.AddScoped<IUserCategoryBusiness, UserCategoryBusiness>(); //category service
     services.AddScoped<IUserArticleBusiness, UserArticleBusiness>(); //article service
+    services.AddScoped<IAdminCategoryBusiness, AdminCategoryBusiness>();
 
     return services;
   }

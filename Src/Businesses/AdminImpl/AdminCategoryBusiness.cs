@@ -6,7 +6,9 @@ using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Src.Repositories.IAdminRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.AdminImpl;
-
+/// <summary>
+/// Admin business logic
+/// </summary>
 public class AdminCategoryBusiness : IAdminCategoryBusiness
 {
   private readonly IAdminCategoryRepository _categoryRepository;
@@ -16,6 +18,11 @@ public class AdminCategoryBusiness : IAdminCategoryBusiness
     _categoryRepository = categoryRepository;
     _logger = logger;
   }
+  /// <summary>
+  /// Add category
+  /// </summary>
+  /// <param name="categoryDto"></param>
+  /// <returns></returns>
   public async Task AddCategory(CategoryDto categoryDto)
   {
     try
@@ -26,7 +33,6 @@ public class AdminCategoryBusiness : IAdminCategoryBusiness
       }
       var category = new Category
       {
-        Id = categoryDto.Id,
         Name = categoryDto.Name,
         Description = categoryDto.Description,
         Position = categoryDto.Position,
@@ -39,7 +45,7 @@ public class AdminCategoryBusiness : IAdminCategoryBusiness
     }
     catch (Exception ex)
     {
-      _logger.LogError(ex, $"An error occurred while adding category for ID {categoryDto.Id}");
+      _logger.LogError(ex, $"An error occurred while adding category for name {categoryDto.Name}");
     }
   }
 }
