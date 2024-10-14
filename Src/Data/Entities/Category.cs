@@ -17,7 +17,7 @@ public class Category : BaseEntity
   public long Id { get; set; }
   public required string Name { get; set; }
   public required string Description { get; set; }
-  public long UpperCategoryId { get; set; }
-  public int Position { get; set; }
+  public string UpperCategoryId { get; set; } = "00";
+  public int Position { get; set; } = 0;
   public List<Article>? Articles { get; set; }
 }

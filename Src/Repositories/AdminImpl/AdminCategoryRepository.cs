@@ -28,7 +28,7 @@ public class AdminCategoryRepository : IAdminCategoryRepository
     {
       if (category == null)
       {
-        throw new ArgumentNullException("Category cannot be null");
+        throw new ArgumentNullException(nameof(category), "Category cannot be null");
       }
 
       await _context.Categories.AddAsync(category); // Add the category to the DbSet
