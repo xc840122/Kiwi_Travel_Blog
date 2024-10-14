@@ -10,9 +10,9 @@
 using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Src.Data.DbContext;
+namespace Kiwi_Travel_Blog.Src.Data.DbContext;
 
 public class UserIdentityDbContext : IdentityDbContext<KwtUser, KwtRole, long>
 {

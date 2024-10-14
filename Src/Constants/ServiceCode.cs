@@ -1,27 +1,27 @@
+namespace Kiwi_Travel_Blog.Src.Constants;
 /// <summary>
-/// code list of http response
+/// service code of user
 /// </summary>
-/// <remarks>
-/// each code maps service operation
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 09/10/2024
-/// </author>
-namespace OXL_Assessment2.Src.Constants;
-
 public enum ServiceCode
 {
+  // first digit means role(1:user,2:admin), second digit means service type
+  // Code for user
   // 1xxx, registration relavant
-  RegistrationSuccessful = 100001,
-  RegistrationFailed = 100002,
-  // 2xxx category relavant
-  GettingAllCategoriesSuccessful = 200001,
-  NoCategoriesFound = 200002,
-  // 3xxx login relavant
-  LoginSuccessful = 300001,
-  UserNotExist = 300002,
-  PasswordNotCorrect = 300003,
+  RegistrationSuccessful = 11001,
+  RegistrationFailed = 11002,
+  // 2xxx login relavant
+  LoginSuccessful = 12001,
+  UserNotExist = 12002,
+  PasswordNotCorrect = 12003,
+  // 3xxx category relavant
+  GettingAllCategoriesSuccessful = 13001,
+  NoCategoriesFound = 13002,
   // 4xxx article relavant
-  GettingArticleSuccessful = 400001,
-  NoArticlesFound = 400002,
+  GettingArticleSuccessful = 14001,
+  NoArticlesFound = 14002,
+
+  // Code for admin
+  // 3xxx category relavant
+  AddCategorySuccessfully = 23001,
+  NullCategory = 23002,
 }

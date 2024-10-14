@@ -1,23 +1,7 @@
-using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Data;
-using OXL_Assessment2.Interface;
-using OXL_Assessment2.Interface.IServices;
-using OXL_Assessment2.Src.Repositories;
-using OXL_Assessment2.Src.Services;
 using NLog;
 using NLog.Web;
-using OXL_Assessment2.Src.Middlewares;
-using OXL_Assessment2.Src.Data.DbContext;
-using OXL_Assessment2.Src.Data.Entities;
-using Microsoft.AspNetCore.Identity;
-using OXL_Assessment2.Src.Attributes;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using OXL_Assessment2.Src.Utilities;
-using Microsoft.OpenApi.Models;
-using OXL_Assessment2.Src.Services.IServices;
-using OXL_Assessment2.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Src.Middlewares;
+using Kiwi_Travel_Blog.Src.Configuration;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -30,82 +14,25 @@ try
     // NLog: Setup NLog for Dependency injection
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
-
     // Add services to the container.
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
     // Database configuration
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    // Identity db configuration
-    builder.Services.AddDbContext<UserIdentityDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
-
-    // Add Identity and JWT services
-    builder.Services.AddIdentity<KwtUser, KwtRole>()
-        .AddEntityFrameworkStores<UserIdentityDbContext>()
-        .AddDefaultTokenProviders();
-
-    // get key value from appsetting.json
-    var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-    var key = jwtSettings["Key"];
-    if (string.IsNullOrEmpty(key))
-    {
-        throw new ArgumentNullException("JWT Key is not configured properly.");
-    }
-
-    builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(options =>
-    {
-        // options.IncludeErrorDetails = true; //for debugging
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            RequireExpirationTime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtSettings["Issuer"],
-            ValidAudience = jwtSettings["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)) // //JWT cryptographic algorithms generally work with byte arrays.
-        };
-        // options.TokenValidationParameters.ValidateLifetime = false;  // For testing only
-    });
-
-
-    // protect password, encryption
-    builder.Services.AddDataProtection();
-    // set the password policies
-    builder.Services.AddIdentityCore<KwtUser>(options =>
-    {
-        options.Password.RequireDigit = false; //Disables the requirement for at least one numeric digit (0-9) in passwords.
-        options.Password.RequireLowercase = false; //Disables the requirement for at least one lowercase letter (a-z) in passwords.
-        options.Password.RequireNonAlphanumeric = false; //Disables the requirement for non-alphanumeric characters (e.g., @, #, $, etc.) in passwords.
-        options.Password.RequireUppercase = false; //Disables the requirement for at least one uppercase letter (A-Z) in passwords.
-        options.Password.RequiredLength = 6; //Sets the minimum length for passwords to 6 characters.
-        options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider; //Specifies the token provider to be used for generating and validating password reset tokens. In this case, it uses the default email token provider, which generates tokens sent via email.
-        options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider; //Specifies the token provider to be used for generating and validating email confirmation tokens, again using the default email provider.
-    });
-
-    // Add controller with options (filters...etc.)
-    builder.Services.AddControllers(options =>
-        {
-            options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
-        });
-    // Add services
-    builder.Services.AddScoped<ICategoryService, CategoryService>(); //category service
-    builder.Services.AddScoped<IArticleService, ArticleService>(); //article service
-    // Add repositories
-    builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
-    builder.Services.AddScoped<IArticleRepository, ArticleRepository>(); //article repository
-    // Add Jwt helper
-    builder.Services.AddScoped<JwtTokenHelper>();
+    DatabaseConfigurationExtension.InjectDatabaseServices(builder.Services, builder.Configuration);
+    // Controller configuration
+    ControllerConfigurationExtension.InjectControllerServices(builder.Services);
+    // Business configuration
+    BusinessConfigurationExtension.InjectBusinessServices(builder.Services);
+    // Repository configuration
+    RepositoryConfigurationExtension.InjectRepositoryServices(builder.Services);
+    // Utility configuration
+    UtilityConfigurationExtension.InjectUtilityServices(builder.Services);
+    // Authentication configuration
+    AuthenticationConfigurationExtension.InjectAuthenticationServices(builder.Services, builder.Configuration);
+    // Identity configuration
+    IdentityConfigurationExtension.InjectIdentityServices(builder.Services);
 
     var app = builder.Build();
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace OXL_Assessment2.Data.Entities;
+namespace Kiwi_Travel_Blog.Data.Entities;
 /// <summary>
 /// base engity with createtime and updatetime
 /// </summary>

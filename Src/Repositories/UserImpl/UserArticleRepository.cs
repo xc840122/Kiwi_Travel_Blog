@@ -1,20 +1,19 @@
 using System;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Data;
-using OXL_Assessment2.Src.Data.Entities;
-using OXL_Assessment2.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Data;
+using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
-namespace OXL_Assessment2.Src.Repositories;
+namespace Kiwi_Travel_Blog.Src.Repositories;
 /// <summary>
 /// Repository of Article
 /// </summary>
-public class ArticleRepository : IArticleRepository
+public class UserArticleRepository : IUserArticleRepository
 {
   private readonly AppDbContext _context;
-  private readonly ILogger<ArticleRepository> _logger;
+  private readonly ILogger<UserArticleRepository> _logger;
 
-  public ArticleRepository(AppDbContext context, ILogger<ArticleRepository> logger)
+  public UserArticleRepository(AppDbContext context, ILogger<UserArticleRepository> logger)
   {
     _context = context;
     _logger = logger;

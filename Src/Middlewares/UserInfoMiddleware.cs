@@ -1,7 +1,7 @@
 using System;
 using System.Security.Claims;
 
-namespace OXL_Assessment2.Src.Middlewares;
+namespace Kiwi_Travel_Blog.Src.Middlewares;
 /// <summary>
 /// Fetch user information from JWT in http request
 /// </summary>

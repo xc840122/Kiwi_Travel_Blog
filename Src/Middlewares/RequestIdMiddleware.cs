@@ -10,7 +10,7 @@
 /// </author>
 using System;
 
-namespace OXL_Assessment2.Src.Middlewares;
+namespace Kiwi_Travel_Blog.Src.Middlewares;
 
 public class RequestIdMiddleware
 {
