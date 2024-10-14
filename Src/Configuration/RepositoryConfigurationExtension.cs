@@ -5,17 +5,20 @@ using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
 /// <summary>
-/// Configuration of Repository DI
+/// extension class to inject repository related services
 /// </summary>
-public class RepositoryConfiguration : IAppConfigurationInterface
+public static class RepositoryConfigurationExtension
 {
   /// <summary>
-  /// Configuration of Repository DI
+  /// extension method to inject db related services
   /// </summary>
   /// <param name="services"></param>
-  public void ConfigureApp(IServiceCollection services)
+  /// <returns></returns>
+  public static IServiceCollection InjectRepositoryServices(this IServiceCollection services)
   {
     services.AddScoped<ICategoryRepository, CategoryRepository>();
     services.AddScoped<IArticleRepository, ArticleRepository>();
+
+    return services;
   }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
 /// <summary>
-/// use extension method to inject all db related services
+/// use extension class to inject all db related services
 /// </summary>
 public static class DatabaseConfigurationExtension
 {

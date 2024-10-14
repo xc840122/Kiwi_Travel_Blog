@@ -5,18 +5,21 @@ using Kiwi_Travel_Blog.Src.Services.IServices;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
 /// <summary>
-/// Configuration of Service DI
+/// extension to inject business related logic
 /// </summary>
-public class ServiceConfiguration : IAppConfigurationInterface
+public class BusinessConfigurationExtension
 {
   /// <summary>
-  /// Configuration of Service DI
+  /// extension method to inject business related logic
   /// </summary>
   /// <param name="services"></param>
-  public void ConfigureApp(IServiceCollection services)
+  /// <returns></returns>
+  public IServiceCollection InjectBusinessExtension(IServiceCollection services)
   {
     // Add services
     services.AddScoped<ICategoryService, CategoryService>(); //category service
     services.AddScoped<IArticleService, ArticleService>(); //article service
+
+    return services;
   }
 }
