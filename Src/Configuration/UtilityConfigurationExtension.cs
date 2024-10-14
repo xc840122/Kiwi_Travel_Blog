@@ -3,11 +3,16 @@ using Kiwi_Travel_Blog.Src.Utilities;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
 /// <summary>
-/// 
+/// extension class for utility configuration
 /// </summary>
 public static class UtilityConfigurationExtension
 {
-  public static IServiceCollection InjectUtilityExtension(this IServiceCollection services)
+  /// <summary>
+  /// extensive method to inject JWT services
+  /// </summary>
+  /// <param name="services"></param>
+  /// <returns></returns>
+  public static IServiceCollection InjectUtilityServices(this IServiceCollection services)
   {
     // Add Jwt helper
     services.AddScoped<JwtTokenHelper>();

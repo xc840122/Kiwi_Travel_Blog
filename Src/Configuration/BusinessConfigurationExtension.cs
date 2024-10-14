@@ -14,7 +14,7 @@ public static class BusinessConfigurationExtension
   /// </summary>
   /// <param name="services"></param>
   /// <returns></returns>
-  public static IServiceCollection InjectBusinessExtension(this IServiceCollection services)
+  public static IServiceCollection InjectBusinessServices(this IServiceCollection services)
   {
     // Add services
     services.AddScoped<ICategoryService, CategoryService>(); //category service
