@@ -9,7 +9,7 @@
 /// </author>
 using System;
 
-namespace OXL_Assessment2.Src.Constants;
+namespace Kiwi_Travel_Blog.Src.Constants;
 
 public class MessageConstants
 {

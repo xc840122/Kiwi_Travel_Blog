@@ -8,11 +8,11 @@
 /// Chi Xu (Peter) -- 07/10/2024
 /// </author>
 using System;
-using OXL_Assessment2.Data;
-using OXL_Assessment2.Data.Entities;
-using OXL_Assessment2.Interface.IServices;
+using Kiwi_Travel_Blog.Data;
+using Kiwi_Travel_Blog.Data.Entities;
+using Kiwi_Travel_Blog.Interface.IServices;
 
-namespace OXL_Assessment2.Src.Repositories;
+namespace Kiwi_Travel_Blog.Src.Repositories;
 
 public class CategoryRepository : ICategoryRepository
 {

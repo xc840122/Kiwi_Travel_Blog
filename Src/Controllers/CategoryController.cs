@@ -11,12 +11,12 @@ using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using OXL_Assessment2.Interface;
-using OXL_Assessment2.Src.Attributes;
-using OXL_Assessment2.Src.Constants;
-using OXL_Assessment2.Src.Dtos;
+using Kiwi_Travel_Blog.Interface;
+using Kiwi_Travel_Blog.Src.Attributes;
+using Kiwi_Travel_Blog.Src.Constants;
+using Kiwi_Travel_Blog.Src.Dtos;
 
-namespace OXL_Assessment2.Src.Controllers
+namespace Kiwi_Travel_Blog.Src.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

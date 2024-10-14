@@ -1,6 +1,6 @@
 using System;
 
-namespace OXL_Assessment2.Src.Models;
+namespace Kiwi_Travel_Blog.Src.Models;
 /// <summary>
 /// model of pagination
 /// </summary>

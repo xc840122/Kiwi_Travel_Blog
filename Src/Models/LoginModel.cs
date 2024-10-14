@@ -9,6 +9,6 @@
 /// <author>
 /// Chi Xu (Peter) -- 08/10/2024
 /// </author>
-namespace OXL_Assessment2.Src.Models;
+namespace Kiwi_Travel_Blog.Src.Models;
 
 public record class LoginModel(string UserName, string Password);

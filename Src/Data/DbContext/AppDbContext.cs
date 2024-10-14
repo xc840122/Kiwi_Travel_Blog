@@ -9,10 +9,10 @@
 /// </author>
 using System;
 using Microsoft.EntityFrameworkCore;
-using OXL_Assessment2.Data.Entities;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Data;
+namespace Kiwi_Travel_Blog.Data;
 
 public class AppDbContext : DbContext
 {

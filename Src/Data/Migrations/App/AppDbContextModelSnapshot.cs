@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OXL_Assessment2.Data;
+using Kiwi_Travel_Blog.Data;
 
 #nullable disable
 
-namespace OXL_Assessment2.Src.Data.Migrations.App
+namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OXL_Assessment2.Data.Entities.Category", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Data.Entities.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.ToTable("T_Categories", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Article", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Article", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,7 +99,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.ToTable("T_Articles", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Comment", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Comment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,7 +135,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.ToTable("T_Comments", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Image", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Image", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,9 +156,9 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.ToTable("T_Images", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Article", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Article", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Data.Entities.Category", "Category")
+                    b.HasOne("Kiwi_Travel_Blog.Data.Entities.Category", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -167,9 +167,9 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Comment", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Comment", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.Article", "Article")
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -178,9 +178,9 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.Navigation("Article");
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Image", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Image", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.Article", "Article")
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.Article", "Article")
                         .WithMany("Images")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -189,12 +189,12 @@ namespace OXL_Assessment2.Src.Data.Migrations.App
                     b.Navigation("Article");
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Data.Entities.Category", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Data.Entities.Category", b =>
                 {
                     b.Navigation("Articles");
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.Article", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Article", b =>
                 {
                     b.Navigation("Comments");
 

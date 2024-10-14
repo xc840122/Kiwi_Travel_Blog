@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OXL_Assessment2.Src.Data.DbContext;
+using Kiwi_Travel_Blog.Src.Data.DbContext;
 
 #nullable disable
 
-namespace OXL_Assessment2.Src.Data.Migrations.Identity
+namespace Kiwi_Travel_Blog.Src.Data.Migrations.Identity
 {
     [DbContext(typeof(UserIdentityDbContext))]
     [Migration("20241012080805_InitialIdentityDb")]
@@ -128,7 +128,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.KwtRole", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.KwtRole", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -158,7 +158,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("OXL_Assessment2.Src.Data.Entities.KwtUser", b =>
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.KwtUser", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,7 +228,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtRole", null)
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.KwtRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -237,7 +237,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -246,7 +246,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -255,13 +255,13 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtRole", null)
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.KwtRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -270,7 +270,7 @@ namespace OXL_Assessment2.Src.Data.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
-                    b.HasOne("OXL_Assessment2.Src.Data.Entities.KwtUser", null)
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.KwtUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

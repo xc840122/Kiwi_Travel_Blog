@@ -3,10 +3,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using OXL_Assessment2.Src.Constants;
-using OXL_Assessment2.Src.Models;
+using Kiwi_Travel_Blog.Src.Constants;
+using Kiwi_Travel_Blog.Src.Models;
 
-namespace OXL_Assessment2.Src.Utilities;
+namespace Kiwi_Travel_Blog.Src.Utilities;
 /// <summary>
 /// Utility class to manage JSON web token
 /// </summary>

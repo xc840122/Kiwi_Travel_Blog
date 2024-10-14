@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace OXL_Assessment2.Src.Data.Migrations.App
+namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
 {
     /// <inheritdoc />
     public partial class InitialDb : Migration

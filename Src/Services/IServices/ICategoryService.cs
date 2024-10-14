@@ -8,9 +8,9 @@
 /// Chi Xu (Peter) -- 07/10/2024
 /// </author>
 using System;
-using OXL_Assessment2.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Dtos;
 
-namespace OXL_Assessment2.Interface;
+namespace Kiwi_Travel_Blog.Interface;
 
 public interface ICategoryService
 {

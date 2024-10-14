@@ -1,7 +1,7 @@
 using System;
-using OXL_Assessment2.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace OXL_Assessment2.Src.Dtos;
+namespace Kiwi_Travel_Blog.Src.Dtos;
 
 public class ArticleDto
 {

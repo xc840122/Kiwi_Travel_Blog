@@ -1,8 +1,8 @@
 using System;
-using OXL_Assessment2.Src.Dtos;
-using OXL_Assessment2.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
 
-namespace OXL_Assessment2.Src.Services.IServices;
+namespace Kiwi_Travel_Blog.Src.Services.IServices;
 /// <summary>
 /// service of article
 /// </summary>
