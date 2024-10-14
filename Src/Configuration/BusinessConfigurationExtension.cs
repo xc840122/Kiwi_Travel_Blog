@@ -1,6 +1,5 @@
 using System;
 using Kiwi_Travel_Blog.Interface;
-using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 using Kiwi_Travel_Blog.Src.Services;
 using Kiwi_Travel_Blog.Src.Services.IServices;
 
@@ -18,8 +17,8 @@ public static class BusinessConfigurationExtension
   public static IServiceCollection InjectBusinessServices(this IServiceCollection services)
   {
     // Add services
-    services.AddScoped<ICategoryBusiness, CategoryBusiness>(); //category service
-    services.AddScoped<IArticleBusiness, ArticleBusiness>(); //article service
+    services.AddScoped<ICategoryService, CategoryService>(); //category service
+    services.AddScoped<IArticleService, ArticleService>(); //article service
 
     return services;
   }

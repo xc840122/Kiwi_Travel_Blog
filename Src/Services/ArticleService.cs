@@ -1,24 +1,23 @@
 using System;
-using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Services.IServices;
 /// <summary>
-/// user business logic of article
+/// service of article
 /// </summary>
-public class ArticleBusiness : IArticleBusiness
+public class ArticleService : IArticleService
 {
   private readonly IArticleRepository _articleRepository;
-  private readonly ILogger<ArticleBusiness> _logger;
+  private readonly ILogger<ArticleService> _logger;
 
-  public ArticleBusiness(IArticleRepository articleRepository, ILogger<ArticleBusiness> logger)
+  public ArticleService(IArticleRepository articleRepository, ILogger<ArticleService> logger)
   {
     _articleRepository = articleRepository;
     _logger = logger;
   }
   /// <summary>
-  /// convert List<Article> to List<ArticleDto>
+  /// service method,convert List<Article> to List<ArticleDto>
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
