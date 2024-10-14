@@ -99,9 +99,6 @@ try
             options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
         });
 
-    // Add repositories
-    builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); //category repository
-    builder.Services.AddScoped<IArticleRepository, ArticleRepository>(); //article repository
     // Add Jwt helper
     builder.Services.AddScoped<JwtTokenHelper>();
 
