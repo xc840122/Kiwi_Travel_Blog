@@ -5,9 +5,9 @@ namespace Kiwi_Travel_Blog.Src.Dtos;
 
 public class ArticleDto
 {
-  public long Id { get; set; }
   public required string Name { get; set; }
-  public required string CoverImage { get; set; }
   public required string Author { get; set; }
-  public long LikeNums { get; set; }
+  public required string Text { get; set; }
+  public required string CategoryId { get; set; }
+  public required List<Image> Images { get; set; }
 }
