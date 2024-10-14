@@ -1,18 +1,18 @@
 using System;
 using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 using Kiwi_Travel_Blog.Src.Dtos;
-using Kiwi_Travel_Blog.Src.Repositories.IRepositories;
+using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Services.IServices;
 /// <summary>
 /// user business logic of article
 /// </summary>
-public class ArticleBusiness : IArticleBusiness
+public class UserArticleBusiness : IUserArticleBusiness
 {
-  private readonly IArticleRepository _articleRepository;
-  private readonly ILogger<ArticleBusiness> _logger;
+  private readonly IUserArticleRepository _articleRepository;
+  private readonly ILogger<UserArticleBusiness> _logger;
 
-  public ArticleBusiness(IArticleRepository articleRepository, ILogger<ArticleBusiness> logger)
+  public UserArticleBusiness(IUserArticleRepository articleRepository, ILogger<UserArticleBusiness> logger)
   {
     _articleRepository = articleRepository;
     _logger = logger;

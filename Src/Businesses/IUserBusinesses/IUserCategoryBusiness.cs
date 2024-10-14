@@ -5,7 +5,7 @@ namespace Kiwi_Travel_Blog.Interface;
 /// <summary>
 /// Business logic interface of category
 /// </summary>
-public interface ICategoryBusiness
+public interface IUserCategoryBusiness
 {
   /// <summary>
   /// get all categories

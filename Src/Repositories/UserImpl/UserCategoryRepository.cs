@@ -1,29 +1,26 @@
-/// <summary>
-/// category repository
-/// </summary>
-/// <remarks>
-/// operate category data from database
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 07/10/2024
-/// </author>
 using System;
 using Kiwi_Travel_Blog.Data;
 using Kiwi_Travel_Blog.Data.Entities;
 using Kiwi_Travel_Blog.Interface.IServices;
 
 namespace Kiwi_Travel_Blog.Src.Repositories;
-
-public class CategoryRepository : ICategoryRepository
+/// <summary>
+/// repositories of category
+/// </summary>
+public class UserCategoryRepository : IUserCategoryRepository
 {
   private readonly AppDbContext _context;
-  private readonly ILogger<CategoryRepository> _logger;  // Inject ILogger for logging
+  private readonly ILogger<UserCategoryRepository> _logger;  // Inject ILogger for logging
 
-  public CategoryRepository(AppDbContext context, ILogger<CategoryRepository> logger)
+  public UserCategoryRepository(AppDbContext context, ILogger<UserCategoryRepository> logger)
   {
     _context = context;
     _logger = logger;
   }
+  /// <summary>
+  /// Get all categories from database
+  /// </summary>
+  /// <returns></returns>
   public List<Category> GetAllCategories()
   {
     try

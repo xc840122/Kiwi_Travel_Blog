@@ -8,10 +8,10 @@ namespace Kiwi_Travel_Blog.Src.Services;
 /// <summary>
 /// user business logic of category
 /// </summary>
-public class CategoryBusiness : ICategoryBusiness
+public class UserCategoryBusiness : IUserCategoryBusiness
 {
-  private readonly ICategoryRepository _categoryRepository;
-  public CategoryBusiness(ICategoryRepository categoryRepository)
+  private readonly IUserCategoryRepository _categoryRepository;
+  public UserCategoryBusiness(IUserCategoryRepository categoryRepository)
   {
     _categoryRepository = categoryRepository;
   }

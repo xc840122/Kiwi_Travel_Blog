@@ -18,8 +18,8 @@ public static class BusinessConfigurationExtension
   public static IServiceCollection InjectBusinessServices(this IServiceCollection services)
   {
     // Add services
-    services.AddScoped<ICategoryBusiness, CategoryBusiness>(); //category service
-    services.AddScoped<IArticleBusiness, ArticleBusiness>(); //article service
+    services.AddScoped<IUserCategoryBusiness, UserCategoryBusiness>(); //category service
+    services.AddScoped<IUserArticleBusiness, UserArticleBusiness>(); //article service
 
     return services;
   }

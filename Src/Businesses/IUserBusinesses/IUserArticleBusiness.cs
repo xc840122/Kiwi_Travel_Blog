@@ -5,7 +5,7 @@ namespace Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 /// <summary>
 /// interface of article business
 /// </summary>
-public interface IArticleBusiness
+public interface IUserArticleBusiness
 {
   /// <summary>
   /// get articles by category id business

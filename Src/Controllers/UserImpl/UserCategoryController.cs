@@ -13,11 +13,11 @@ namespace Kiwi_Travel_Blog.Src.Controllers;
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
-public class CategoryController : AbstractBaseController
+public class UserCategoryController : AbstractBaseController
 {
-    private readonly ILogger<CategoryController> _logger;
-    private readonly ICategoryBusiness _categoryBusiness;
-    public CategoryController(ILogger<CategoryController> logger, ICategoryBusiness categoryBusiness)
+    private readonly ILogger<UserCategoryController> _logger;
+    private readonly IUserCategoryBusiness _categoryBusiness;
+    public UserCategoryController(ILogger<UserCategoryController> logger, IUserCategoryBusiness categoryBusiness)
     {
         _logger = logger;
         _categoryBusiness = categoryBusiness;
