@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Src.Controllers;
 
@@ -34,11 +34,11 @@ public class UserArticleController : AbstractBaseController
     {
         try
         {
-            var articleDtos = await _articleBusiness.GetArticlesByCategoryId(CategoryId);
-            if (articleDtos.Count > 0)
+            var articles = await _articleBusiness.GetArticlesByCategoryId(CategoryId);
+            if (articles.Count > 0)
             {
-                return Ok(CreateResponse<List<ArticleDto>>(ServiceCode.GettingArticleSuccessful,
-                MessageConstants.GettingArticlesSuccessful, articleDtos));
+                return Ok(CreateResponse<List<Article>>(ServiceCode.GettingArticleSuccessful,
+                MessageConstants.GettingArticlesSuccessful, articles));
             }
             else
             {
