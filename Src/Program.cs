@@ -99,9 +99,6 @@ try
             options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
         });
 
-    // Add Jwt helper
-    builder.Services.AddScoped<JwtTokenHelper>();
-
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
