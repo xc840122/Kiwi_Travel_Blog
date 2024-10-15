@@ -18,7 +18,7 @@ using Kiwi_Travel_Blog.Src.Utilities;
 
 namespace Kiwi_Travel_Blog.Src.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class LoginController : AbstractBaseController
     {
@@ -38,7 +38,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers
         /// <returns></returns>
         [ModelStateVerification]
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             // try to get user from database by applying UserManager
             var user = await _userManager.FindByNameAsync(loginModel.UserName);
@@ -53,8 +53,8 @@ namespace Kiwi_Travel_Blog.Src.Controllers
             if (isPasswordCorrect)
             {
                 var token = _jwtTokenHelper.GenerateJwtToken(loginModel);
-                return Ok(CreateResponse<string>(ServiceCode.LoginSuccessful,
-                MessageConstants.LoginSuccessful, token));
+                return Ok(CreateResponse<string>(ServiceCode.LoginSuccessfully,
+                MessageConstants.LoginSuccessfully, token));
             }
             else return Unauthorized(CreateResponse(ServiceCode.PasswordNotCorrect,
             MessageConstants.PasswordNotCorrect));

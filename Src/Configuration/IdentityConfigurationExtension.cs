@@ -4,9 +4,16 @@ using Kiwi_Travel_Blog.Src.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
-
+/// <summary>
+/// extension to inject identity related services
+/// </summary>
 public static class IdentityConfigurationExtension
 {
+  /// <summary>
+  /// Inject identity services
+  /// </summary>
+  /// <param name="services"></param>
+  /// <returns></returns>
   public static IServiceCollection InjectIdentityServices(this IServiceCollection services)
   {
     // Add Identity and JWT services

@@ -15,7 +15,11 @@ public class UserInfoMiddleware
     this._next = next;
     this._logger = logger;
   }
-
+  /// <summary>
+  /// verify JWT, set username
+  /// </summary>
+  /// <param name="context"></param>
+  /// <returns></returns>
   public async Task InvokeAsync(HttpContext context)
   {
     try

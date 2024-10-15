@@ -2,6 +2,9 @@ using NLog;
 using NLog.Web;
 using Kiwi_Travel_Blog.Src.Middlewares;
 using Kiwi_Travel_Blog.Src.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -19,6 +22,10 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
+    // Identity configuration
+    IdentityConfigurationExtension.InjectIdentityServices(builder.Services);
+    // Authentication configuration, must follow  Identity services,otherwise, identity is null in middleware
+    AuthenticationConfigurationExtension.InjectAuthenticationServices(builder.Services, builder.Configuration);
     // Database configuration
     DatabaseConfigurationExtension.InjectDatabaseServices(builder.Services, builder.Configuration);
     // Controller configuration
@@ -29,10 +36,6 @@ try
     RepositoryConfigurationExtension.InjectRepositoryServices(builder.Services);
     // Utility configuration
     UtilityConfigurationExtension.InjectUtilityServices(builder.Services);
-    // Authentication configuration
-    AuthenticationConfigurationExtension.InjectAuthenticationServices(builder.Services, builder.Configuration);
-    // Identity configuration
-    IdentityConfigurationExtension.InjectIdentityServices(builder.Services);
 
     var app = builder.Build();
 
@@ -44,9 +47,9 @@ try
     }
     // app.UseMiddleware<RequestLoggingMiddleware>();
     app.UseMiddleware<RequestIdMiddleware>(); // Add request id middleware, after Swagger, before controller, otherwise run twice middleware
-    // app.UseMiddleware<UserInfoMiddleware>(); // Fetch user info from request, add to items
     app.UseHttpsRedirection();
     app.UseAuthentication();
+    app.UseMiddleware<UserInfoMiddleware>(); // Fetch user info from request, add to items
     app.UseAuthorization();
     app.MapControllers();
     app.Run();

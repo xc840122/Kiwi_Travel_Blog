@@ -13,4 +13,6 @@ public interface IUserArticleRepository
   /// <param name="CategoryId"></param>
   /// <returns></returns>
   public Task<List<Article>> GetArticlesByCategoryId(long CategoryId);
+
+  public Task InsertArticle(Article article);
 }

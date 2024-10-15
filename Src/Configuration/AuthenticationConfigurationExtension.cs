@@ -26,8 +26,7 @@ public static class AuthenticationConfigurationExtension
       throw new ArgumentNullException("JWT Key is not configured properly.");
     }
     // token configuration, authentication configuration
-    services
-      .AddAuthentication(options =>
+    services.AddAuthentication(options =>
       {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;

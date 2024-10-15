@@ -16,7 +16,7 @@ using Kiwi_Travel_Blog.Src.Models;
 
 namespace Kiwi_Travel_Blog.Src.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class RegistrationController : AbstractBaseController
     {
