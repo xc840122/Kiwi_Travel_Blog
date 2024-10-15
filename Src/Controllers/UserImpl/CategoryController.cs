@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Interface;
+using Kiwi_Travel_Blog.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Src.Controllers;
 /// <summary>
@@ -35,7 +35,7 @@ public class CategoryController : AbstractBaseController
         _logger.LogInformation("========GetAllCategories called========");
         if (categories != null)
         {
-            return Ok(CreateResponse<IEnumerable<CategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
+            return Ok(CreateResponse<IEnumerable<Category>>(ServiceCode.GettAllCategoriesSuccessfully,
             MessageConstants.GetAllCategoriesSuccessfully, categories));
         }
         else

@@ -11,26 +11,25 @@ namespace Kiwi_Travel_Blog.Src.Services;
 public class UserCategoryBusiness : IUserCategoryBusiness
 {
   private readonly IUserCategoryRepository _categoryRepository;
-  public UserCategoryBusiness(IUserCategoryRepository categoryRepository)
+  private readonly ILogger<UserCategoryBusiness> _logger;
+  public UserCategoryBusiness(IUserCategoryRepository categoryRepository, ILogger<UserCategoryBusiness> logger)
   {
     _categoryRepository = categoryRepository;
+    _logger = logger;
   }
   /// <summary>
   /// user API to get all categories
   /// </summary>
   /// <returns></returns>
-  public async Task<IEnumerable<CategoryDto>> GetAllCategories()
+  public async Task<IEnumerable<Category>> GetAllCategories()
   {
     // get categories from repository layer
     var categories = await _categoryRepository.GetAllCategories();
-    // transfer to categoryDtos (mannual way)
-    var categoryDTOs = categories.Select(e => new CategoryDto
+    if (categories == null)
     {
-      Name = e.Name,
-      Description = e.Description,
-      Position = e.Position,
-      UpperCategoryId = e.UpperCategoryId
-    }).ToList();
-    return categoryDTOs;
+      _logger.LogWarning("Categories cannot be null");
+      throw new NullReferenceException("Categories cannot be null");
+    }
+    return categories;
   }
 }
