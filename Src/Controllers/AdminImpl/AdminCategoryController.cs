@@ -9,12 +9,12 @@ namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
 {
     [Route("api/admin/[controller]")]
     [ApiController]
-    public class CategoriesController : AbstractBaseController
+    public class CategoryController : AbstractBaseController
     {
         private readonly IAdminCategoryBusiness _categoryBusiness;
-        private readonly ILogger<CategoriesController> _logger;
+        private readonly ILogger<CategoryController> _logger;
 
-        public CategoriesController(IAdminCategoryBusiness categoryBusiness, ILogger<CategoriesController> logger)
+        public CategoryController(IAdminCategoryBusiness categoryBusiness, ILogger<CategoryController> logger)
         {
             _categoryBusiness = categoryBusiness;
             _logger = logger;
