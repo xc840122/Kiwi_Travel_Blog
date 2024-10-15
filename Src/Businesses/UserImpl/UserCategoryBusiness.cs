@@ -1,5 +1,5 @@
 using System;
-using Kiwi_Travel_Blog.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 

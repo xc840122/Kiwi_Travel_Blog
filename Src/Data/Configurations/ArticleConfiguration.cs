@@ -2,18 +2,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Kiwi_Travel_Blog.Src.Data.Entities;
-using Kiwi_Travel_Blog.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Src.Data.Configurations;
 /// <summary>
-/// Configuration of category table
+/// Database configuration of Article
 /// </summary>
-/// <remarks>
-/// 
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 06/10/2024
-/// </author>
 public class ArticleConfiguration : IEntityTypeConfiguration<Article>
 {
   public void Configure(EntityTypeBuilder<Article> builder)

@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Kiwi_Travel_Blog.Src.Attributes;
 
 namespace Kiwi_Travel_Blog.Src.Configuration;
@@ -18,6 +20,11 @@ public static class ControllerConfigurationExtension
     services.AddControllers(options =>
         {
           options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
+        })
+        .AddJsonOptions(options =>
+        {
+          options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; // Adjust as necessary
+          options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         });
 
     return services;
