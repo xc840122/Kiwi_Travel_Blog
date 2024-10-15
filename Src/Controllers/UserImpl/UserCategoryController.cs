@@ -32,8 +32,8 @@ public class UserCategoryController : AbstractBaseController
         _logger.LogInformation("========GetAllCategories called========");
         if (categories != null)
         {
-            return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettingAllCategoriesSuccessful,
-            MessageConstants.GettingAllCategoriesSuccessful, categories));
+            return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
+            MessageConstants.GetAllCategoriesSuccessfully, categories));
         }
         else
         {

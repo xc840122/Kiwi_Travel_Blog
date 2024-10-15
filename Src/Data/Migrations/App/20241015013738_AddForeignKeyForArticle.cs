@@ -5,7 +5,7 @@
 namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
 {
     /// <inheritdoc />
-    public partial class addforeignkeyofcategoryidforarticleadjustschemaofarticle : Migration
+    public partial class AddForeignKeyForArticle : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

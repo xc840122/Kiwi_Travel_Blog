@@ -13,7 +13,7 @@ namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20241015013738_add foreign key of category id for article, adjust schema of article")]
-    partial class addforeignkeyofcategoryidforarticleadjustschemaofarticle
+    partial class AddForeignKeyForArticle
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

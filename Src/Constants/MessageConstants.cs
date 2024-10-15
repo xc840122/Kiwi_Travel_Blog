@@ -1,4 +1,5 @@
 using System;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Kiwi_Travel_Blog.Src.Constants;
 /// <summary>
@@ -7,17 +8,25 @@ namespace Kiwi_Travel_Blog.Src.Constants;
 public class MessageConstants
 {
   // Messages for user
-  public const string GettingAllCategoriesSuccessful = "Getting all categories successful";
-  public const string NotFoundData = "Not found data";
+  // Registration
   public const string RegistrationSuccessful = "Registration Successful";
   public const string RegistrationFailed = "Registration failed";
+  // Login
   public const string UserNotExist = "User not existed";
   public const string PasswordNotCorrect = "Password not correct";
-  public const string NotConfigureKey = "Not configure key";
-  public const string LoginSuccessful = "Login successful";
+  public const string LoginSuccessfully = "Login successfully";
+  // Category
+  public const string GetAllCategoriesSuccessfully = "Get all categories successfully";
+  // Article
   public const string GettingArticlesSuccessful = "Getting articles successful";
+  public const string AddArticleSuccessfully = "Add an article successfully";
+  public const string NullArticle = "Null article";
+  // Common
+  public const string NotFoundData = "Not found data";
+  public const string NotConfigureKey = "Not configure key";
 
   // Messages for admin
+  // Category
   public const string AddCategorySuccessfully = "Add Category Successfully";
   public const string NullCategory = "Null Category";
 }

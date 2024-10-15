@@ -53,8 +53,8 @@ namespace Kiwi_Travel_Blog.Src.Controllers
             if (isPasswordCorrect)
             {
                 var token = _jwtTokenHelper.GenerateJwtToken(loginModel);
-                return Ok(CreateResponse<string>(ServiceCode.LoginSuccessful,
-                MessageConstants.LoginSuccessful, token));
+                return Ok(CreateResponse<string>(ServiceCode.LoginSuccessfully,
+                MessageConstants.LoginSuccessfully, token));
             }
             else return Unauthorized(CreateResponse(ServiceCode.PasswordNotCorrect,
             MessageConstants.PasswordNotCorrect));

@@ -37,7 +37,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
                 _logger.LogInformation($"Add category for name {categoryDto.Name}");
                 await _categoryBusiness.AddCategory(categoryDto);
 
-                return Ok(CreateResponse(ServiceCode.AddCategorySuccessfully, MessageConstants.AddCategorySuccessfully));
+                return Ok(CreateResponse(ServiceCode.AddArticleSuccessfully, MessageConstants.AddCategorySuccessfully));
             }
             catch (Exception ex)
             {
