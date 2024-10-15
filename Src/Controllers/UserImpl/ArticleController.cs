@@ -38,6 +38,7 @@ public class ArticleController : AbstractBaseController
             var articles = await _articleBusiness.GetArticlesByCategoryId(categoryId);
             if (articles != null)
             {
+                articles.ForEach(item => System.Console.WriteLine($"{item.Author},{item.CategoryId},{item.CreateTime}"));
                 return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
                 MessageConstants.GettingArticlesSuccessful, articles));
             }
