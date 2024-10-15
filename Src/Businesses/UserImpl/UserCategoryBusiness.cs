@@ -1,10 +1,9 @@
 using System;
 using Kiwi_Travel_Blog.Data.Entities;
-using Kiwi_Travel_Blog.Interface;
-using Kiwi_Travel_Blog.Interface.IServices;
-using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
+using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
-namespace Kiwi_Travel_Blog.Src.Services;
+namespace Kiwi_Travel_Blog.Src.Businesses.UserImpl;
 /// <summary>
 /// user business logic of category
 /// </summary>
@@ -21,7 +20,7 @@ public class UserCategoryBusiness : IUserCategoryBusiness
   /// user API to get all categories
   /// </summary>
   /// <returns></returns>
-  public async Task<IEnumerable<Category>> GetAllCategories()
+  public async Task<List<Category>> GetAllCategories()
   {
     // get categories from repository layer
     var categories = await _categoryRepository.GetAllCategories();

@@ -12,7 +12,7 @@ public interface IUserArticleRepository
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns></returns>
-  public Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId);
+  public Task<List<Article>> GetArticlesByCategoryId(long CategoryId);
 
   public Task InsertArticle(Article article);
 }

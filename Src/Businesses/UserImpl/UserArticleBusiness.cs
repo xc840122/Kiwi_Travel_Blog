@@ -1,10 +1,10 @@
 using System;
-using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
+using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
-namespace Kiwi_Travel_Blog.Src.Services.IServices;
+namespace Kiwi_Travel_Blog.Src.Businesses.UserImpl;
 /// <summary>
 /// user business logic of article
 /// </summary>
@@ -63,7 +63,7 @@ public class UserArticleBusiness : IUserArticleBusiness
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
-  public async Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<List<Article>> GetArticlesByCategoryId(long CategoryId)
   {
     try
     {

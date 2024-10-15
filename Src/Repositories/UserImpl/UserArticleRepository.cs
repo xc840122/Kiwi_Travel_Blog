@@ -4,7 +4,7 @@ using Kiwi_Travel_Blog.Data;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
-namespace Kiwi_Travel_Blog.Src.Repositories;
+namespace Kiwi_Travel_Blog.Src.Repositories.UserImpl;
 /// <summary>
 /// Repository of Article
 /// </summary>
@@ -23,7 +23,7 @@ public class UserArticleRepository : IUserArticleRepository
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<Article></returns>
-  public async Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<List<Article>> GetArticlesByCategoryId(long CategoryId)
   {
     try
     {
@@ -42,6 +42,8 @@ public class UserArticleRepository : IUserArticleRepository
       // category exists, fetch articles
       _logger.LogInformation("Fetching articles for category ID {CategoryId}", category.Id);
       var articles = await _context.Articles
+          .Include(a => a.Images)
+          .Include(a => a.Comments)
           .Where(a => a.CategoryId == CategoryId)
           .ToListAsync<Article>();
       return articles;

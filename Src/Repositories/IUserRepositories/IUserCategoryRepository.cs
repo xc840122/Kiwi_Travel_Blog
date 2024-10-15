@@ -1,7 +1,7 @@
 using System;
 using Kiwi_Travel_Blog.Data.Entities;
 
-namespace Kiwi_Travel_Blog.Interface.IServices;
+namespace Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 /// <summary>
 /// User interface of category repository
 /// </summary>
@@ -11,5 +11,5 @@ public interface IUserCategoryRepository
   /// Get all categories
   /// </summary>
   /// <returns></returns>
-  public Task<IEnumerable<Category>> GetAllCategories();
+  public Task<List<Category>> GetAllCategories();
 }

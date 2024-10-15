@@ -2,16 +2,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
-using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 
-namespace Kiwi_Travel_Blog.Src.Controllers;
+namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 
 /// <summary>
 /// article controllers of user
 /// </summary>
-[Authorize]
+// [Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class ArticleController : AbstractBaseController
@@ -31,14 +31,14 @@ public class ArticleController : AbstractBaseController
     /// <returns>list of article dto</returns>
     [ModelStateVerification]
     [HttpGet("{CategoryId}")]
-    public async Task<IActionResult> GetArticlesByCategoryId(long CategoryId)
+    public async Task<IActionResult> GetArticlesByCategoryId([FromRoute] long categoryId)
     {
         try
         {
-            var articles = await _articleBusiness.GetArticlesByCategoryId(CategoryId);
+            var articles = await _articleBusiness.GetArticlesByCategoryId(categoryId);
             if (articles != null)
             {
-                return Ok(CreateResponse<IEnumerable<Article>>(ServiceCode.GetArticlesSuccessfully,
+                return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
                 MessageConstants.GettingArticlesSuccessful, articles));
             }
             else
@@ -51,7 +51,7 @@ public class ArticleController : AbstractBaseController
         catch (Exception ex)
         {
             // Log the exception
-            _logger.LogError(ex, "Error retrieving articles for category ID {CategoryId}", CategoryId);
+            _logger.LogError(ex, "Error retrieving articles for category ID {categoryId}", categoryId);
             throw;
         }
     }
