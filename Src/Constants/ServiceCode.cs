@@ -10,18 +10,20 @@ public enum ServiceCode
   RegistrationSuccessful = 11001,
   RegistrationFailed = 11002,
   // 2xxx login relavant
-  LoginSuccessful = 12001,
+  LoginSuccessfully = 12001,
   UserNotExist = 12002,
   PasswordNotCorrect = 12003,
   // 3xxx category relavant
-  GettingAllCategoriesSuccessful = 13001,
+  GettAllCategoriesSuccessfully = 13001,
   NoCategoriesFound = 13002,
   // 4xxx article relavant
-  GettingArticleSuccessful = 14001,
+  GetArticlesSuccessfully = 14001,
   NoArticlesFound = 14002,
+  AddArticleSuccessfully = 14003,
+  NullArticle = 14004,
 
   // Code for admin
   // 3xxx category relavant
-  AddCategorySuccessfully = 23001,
+  AddingCategorySuccessful = 23001,
   NullCategory = 23002,
 }

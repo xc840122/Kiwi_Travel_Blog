@@ -11,18 +11,21 @@ namespace Kiwi_Travel_Blog.Src.Controllers;
 /// category controllers of user
 /// </summary>
 [Authorize]
-[Route("api/[controller]")]
+[Route("api/user/[controller]")]
 [ApiController]
-public class UserCategoryController : AbstractBaseController
+public class CategoryController : AbstractBaseController
 {
-    private readonly ILogger<UserCategoryController> _logger;
+    private readonly ILogger<CategoryController> _logger;
     private readonly IUserCategoryBusiness _categoryBusiness;
-    public UserCategoryController(ILogger<UserCategoryController> logger, IUserCategoryBusiness categoryBusiness)
+    public CategoryController(ILogger<CategoryController> logger, IUserCategoryBusiness categoryBusiness)
     {
         _logger = logger;
         _categoryBusiness = categoryBusiness;
     }
-
+    /// <summary>
+    /// Get all categories
+    /// </summary>
+    /// <returns></returns>
     [ModelStateVerification]
     [HttpGet("all")]
     public async Task<IActionResult> GetAllCategories()
@@ -32,8 +35,8 @@ public class UserCategoryController : AbstractBaseController
         _logger.LogInformation("========GetAllCategories called========");
         if (categories != null)
         {
-            return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettingAllCategoriesSuccessful,
-            MessageConstants.GettingAllCategoriesSuccessful, categories));
+            return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
+            MessageConstants.GetAllCategoriesSuccessfully, categories));
         }
         else
         {

@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
-    public class AdminCategoriesController : AbstractBaseController
+    public class CategoryController : AbstractBaseController
     {
         private readonly IAdminCategoryBusiness _categoryBusiness;
-        private readonly ILogger<AdminCategoriesController> _logger;
+        private readonly ILogger<CategoryController> _logger;
 
-        public AdminCategoriesController(IAdminCategoryBusiness categoryBusiness, ILogger<AdminCategoriesController> logger)
+        public CategoryController(IAdminCategoryBusiness categoryBusiness, ILogger<CategoryController> logger)
         {
             _categoryBusiness = categoryBusiness;
             _logger = logger;
@@ -37,7 +37,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
                 _logger.LogInformation($"Add category for name {categoryDto.Name}");
                 await _categoryBusiness.AddCategory(categoryDto);
 
-                return Ok(CreateResponse(ServiceCode.AddCategorySuccessfully, MessageConstants.AddCategorySuccessfully));
+                return Ok(CreateResponse(ServiceCode.AddArticleSuccessfully, MessageConstants.AddCategorySuccessfully));
             }
             catch (Exception ex)
             {
