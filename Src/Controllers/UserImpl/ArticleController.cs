@@ -27,10 +27,10 @@ public class ArticleController : AbstractBaseController
     /// <summary>
     /// api to get articles by categoryId
     /// </summary>
-    /// <param name="CategoryId"></param>
+    /// <param name="categoryId"></param>
     /// <returns>list of article dto</returns>
     [ModelStateVerification]
-    [HttpGet("{CategoryId}")]
+    [HttpGet("{categoryId}")]
     public async Task<IActionResult> GetArticlesByCategoryId([FromRoute] long categoryId)
     {
         try
