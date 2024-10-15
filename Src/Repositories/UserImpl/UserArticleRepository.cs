@@ -42,7 +42,7 @@ public class UserArticleRepository : IUserArticleRepository
       // category exists, fetch articles
       _logger.LogInformation("Fetching articles for category ID {CategoryId}", category.Id);
       var articles = await _context.Articles
-          .Where(a => a.Category.Id == category.Id)
+          .Where(a => a.CategoryId == CategoryId)
           .ToListAsync<Article>();
       return articles;
     }
@@ -57,6 +57,35 @@ public class UserArticleRepository : IUserArticleRepository
       // Handle any other exceptions
       _logger.LogError(ex, "An error occurred while fetching articles for category ID {CategoryId}.", CategoryId);
       throw; // Rethrow the exception after logging
+    }
+  }
+  /// <summary>
+  /// Insert article into database
+  /// </summary>
+  /// <param name="article"></param>
+  /// <returns></returns>
+  /// <exception cref="NotImplementedException"></exception>
+  public async Task InsertArticle(Article article)
+  {
+    try
+    {
+      // verify if article exists
+      if (article == null)
+      {
+        _logger.LogWarning($"Article cannot be null");
+        throw new ArgumentNullException("Article cannot be null");
+      }
+
+      // insert article into database
+      await _context.Articles.AddAsync(article);
+      await _context.SaveChangesAsync();
+
+      _logger.LogInformation($"Category with {article.Id} inserted successfully");
+    }
+    catch (Exception ex)
+    {
+      _logger.LogError(ex, $"An error occurred while inserting category for ID {article.Id}");
+      throw;
     }
   }
 }
