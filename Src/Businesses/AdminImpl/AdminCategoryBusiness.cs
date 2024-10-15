@@ -31,6 +31,10 @@ public class AdminCategoryBusiness : IAdminCategoryBusiness
       {
         throw new ArgumentNullException(nameof(categoryDto), "Category cannot be null");
       }
+
+      // TODO: logic to check duplicated category name
+      // TODO: logic to check upper category
+
       var category = new Category
       {
         Name = categoryDto.Name,
