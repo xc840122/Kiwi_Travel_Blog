@@ -67,11 +67,22 @@ public class ArticleController : AbstractBaseController
     {
         try
         {
+            // Check nullable
             if (articleDto == null)
             {
                 _logger.LogWarning("Article cannot be null");
                 return BadRequest(CreateResponse(ServiceCode.NullArticle, MessageConstants.NullArticle));
             }
+
+            // Set author(username)
+            articleDto.Author = HttpContext.Items["UserName"]?.ToString() ?? string.Empty;
+            // Check non-nullable username
+            if (string.IsNullOrEmpty(articleDto.Author))
+            {
+                _logger.LogWarning("Username cannot be null");
+                return BadRequest(CreateResponse(ServiceCode.NullUserName, MessageConstants.NullUserName));
+            }
+
             // Call business method to add article
             await _articleBusiness.AddArticle(articleDto);
             _logger.LogInformation($"Add an article for name {articleDto.Name}");
