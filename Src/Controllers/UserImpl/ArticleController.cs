@@ -36,9 +36,9 @@ public class ArticleController : AbstractBaseController
         try
         {
             var articles = await _articleBusiness.GetArticlesByCategoryId(CategoryId);
-            if (articles.Count > 0)
+            if (articles != null)
             {
-                return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
+                return Ok(CreateResponse<IEnumerable<Article>>(ServiceCode.GetArticlesSuccessfully,
                 MessageConstants.GettingArticlesSuccessful, articles));
             }
             else

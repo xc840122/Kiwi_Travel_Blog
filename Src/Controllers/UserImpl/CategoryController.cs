@@ -35,7 +35,7 @@ public class CategoryController : AbstractBaseController
         _logger.LogInformation("========GetAllCategories called========");
         if (categories != null)
         {
-            return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
+            return Ok(CreateResponse<IEnumerable<CategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
             MessageConstants.GetAllCategoriesSuccessfully, categories));
         }
         else
