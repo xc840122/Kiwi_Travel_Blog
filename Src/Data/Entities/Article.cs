@@ -12,7 +12,6 @@ public class Article : BaseEntity
   public long Id { get; set; }
   public required string Name { get; set; }
   public required string Text { get; set; }
-  public required string CoverImage { get; set; }
   public required string Author { get; set; }
   public long LikeNums { get; set; } //for future expansion
   public long FavoriteNums { get; set; } //for future expansion

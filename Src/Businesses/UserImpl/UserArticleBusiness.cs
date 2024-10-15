@@ -1,6 +1,6 @@
 using System;
 using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
-using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Services.IServices;
@@ -22,24 +22,14 @@ public class UserArticleBusiness : IUserArticleBusiness
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
-  public async Task<List<ArticleDto>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<List<Article>> GetArticlesByCategoryId(long CategoryId)
   {
     try
     {
       // articles from repository
       var aritcles = await _articleRepository.GetArticlesByCategoryId(CategoryId);
 
-      // map to ArticleDto
-      var articleDtos = aritcles.Select(a => new ArticleDto
-      {
-        Id = a.Id,
-        Name = a.Name,
-        CoverImage = a.CoverImage,
-        Author = a.Author,
-        LikeNums = a.LikeNums
-      }).ToList();
-
-      return articleDtos;
+      return aritcles;
     }
     catch (Exception ex)
     {

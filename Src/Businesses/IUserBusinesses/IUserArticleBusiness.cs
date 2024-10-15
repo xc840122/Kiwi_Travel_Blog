@@ -1,5 +1,5 @@
 using System;
-using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
 /// <summary>
@@ -12,5 +12,5 @@ public interface IUserArticleBusiness
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns></returns>
-  public Task<List<ArticleDto>> GetArticlesByCategoryId(long CategoryId);
+  public Task<List<Article>> GetArticlesByCategoryId(long CategoryId);
 }
