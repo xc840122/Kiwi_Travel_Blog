@@ -8,6 +8,6 @@ public class ArticleDto
   public required string Name { get; set; }
   public required string Author { get; set; }
   public required string Text { get; set; }
-  public required string CategoryId { get; set; } //for future expansion
+  public required long CategoryId { get; set; } //for future expansion
   public required List<Image> Images { get; set; }
 }
