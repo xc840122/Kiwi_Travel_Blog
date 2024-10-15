@@ -55,6 +55,7 @@ public class ArticleController : AbstractBaseController
             throw;
         }
     }
+
     /// <summary>
     /// Interface to add an article
     /// </summary>

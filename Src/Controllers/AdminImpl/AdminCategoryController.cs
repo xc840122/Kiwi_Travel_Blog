@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
-    public class AdminCategoriesController : AbstractBaseController
+    public class CategoriesController : AbstractBaseController
     {
         private readonly IAdminCategoryBusiness _categoryBusiness;
-        private readonly ILogger<AdminCategoriesController> _logger;
+        private readonly ILogger<CategoriesController> _logger;
 
-        public AdminCategoriesController(IAdminCategoryBusiness categoryBusiness, ILogger<AdminCategoriesController> logger)
+        public CategoriesController(IAdminCategoryBusiness categoryBusiness, ILogger<CategoriesController> logger)
         {
             _categoryBusiness = categoryBusiness;
             _logger = logger;
