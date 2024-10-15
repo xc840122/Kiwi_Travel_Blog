@@ -63,7 +63,7 @@ public class UserArticleBusiness : IUserArticleBusiness
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
-  public async Task<List<Article>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId)
   {
     try
     {

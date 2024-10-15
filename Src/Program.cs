@@ -2,9 +2,6 @@ using NLog;
 using NLog.Web;
 using Kiwi_Travel_Blog.Src.Middlewares;
 using Kiwi_Travel_Blog.Src.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 // Early init of NLog to allow startup and exception logging, before host is built
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
