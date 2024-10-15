@@ -1,6 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
 using Kiwi_Travel_Blog.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;

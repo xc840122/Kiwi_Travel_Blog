@@ -28,4 +28,7 @@ public enum ServiceCode
   // 3xxx category relavant
   AddingCategorySuccessful = 23001,
   NullCategory = 23002,
+
+  // Common
+  InternalServerError = 31001
 }

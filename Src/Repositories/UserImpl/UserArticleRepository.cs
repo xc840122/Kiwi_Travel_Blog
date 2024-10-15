@@ -44,7 +44,6 @@ public class UserArticleRepository : IUserArticleRepository
       var articles = await _context.Articles
           .Include(a => a.Images)
           .Include(a => a.Comments)
-          .Include(a => a.Category)
           .Where(a => a.CategoryId == categoryId)
           .ToListAsync();
       return articles;

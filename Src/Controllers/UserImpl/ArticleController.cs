@@ -36,24 +36,24 @@ public class ArticleController : AbstractBaseController
         try
         {
             var articles = await _articleBusiness.GetArticlesByCategoryId(categoryId);
-            if (articles != null)
+            if (articles != null && articles.Any())
             {
-                articles.ForEach(item => System.Console.WriteLine($"{item.Author},{item.CategoryId},{item.CreateTime}"));
                 return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
-                MessageConstants.GettingArticlesSuccessful, articles));
+                    MessageConstants.GettingArticlesSuccessful, articles));
             }
             else
             {
                 _logger.LogWarning("Articles are not found");
                 return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
-                MessageConstants.NotFoundData));
+                    MessageConstants.NotFoundData));
             }
         }
         catch (Exception ex)
         {
             // Log the exception
             _logger.LogError(ex, "Error retrieving articles for category ID {categoryId}", categoryId);
-            throw;
+            return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
+                MessageConstants.FailedGettingArticles));
         }
     }
 
