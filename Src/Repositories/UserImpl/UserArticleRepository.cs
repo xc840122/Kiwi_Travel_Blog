@@ -23,7 +23,7 @@ public class UserArticleRepository : IUserArticleRepository
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<Article></returns>
-  public async Task<List<Article>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId)
   {
     try
     {

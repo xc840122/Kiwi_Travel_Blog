@@ -11,5 +11,5 @@ public interface IUserCategoryRepository
   /// Get all categories
   /// </summary>
   /// <returns></returns>
-  public Task<List<Category>> GetAllCategories();
+  public Task<IEnumerable<Category>> GetAllCategories();
 }

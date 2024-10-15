@@ -22,7 +22,7 @@ public class UserCategoryRepository : IUserCategoryRepository
   /// Get all categories from database
   /// </summary>
   /// <returns></returns>
-  public async Task<List<Category>> GetAllCategories()
+  public async Task<IEnumerable<Category>> GetAllCategories()
   {
     try
     {
