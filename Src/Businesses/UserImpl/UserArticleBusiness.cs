@@ -80,6 +80,7 @@ public class UserArticleBusiness : IUserArticleBusiness
         _logger.LogWarning("Articles result cannot be null");
         throw new NullReferenceException("Articles result cannot be null");
       }
+
       // Convert Article to UserGettingArticleDto
       var userGettingArticleDtos = aritcles.Select(article => new UserGettingArticleDto
       {
@@ -87,7 +88,9 @@ public class UserArticleBusiness : IUserArticleBusiness
         Name = article.Name,
         Author = article.Author,
         LikeNums = article.LikeNums,
-        // CoverImage = new UserGettingImageDto { Url = article.CoverImage.Url }
+        CoverImage = article.Images
+        .Select(img => new UserGettingImageDto { Id = img.Id, Url = img.Url })
+        .ToList()[0] // Convet to cover Image (UserGettingImageDto)
       }).ToList();
       return userGettingArticleDtos;
 
