@@ -16,6 +16,7 @@ public class Article : BaseEntity
   public string? Location { get; set; }  //for future expansion
   public required long CategoryId { get; set; }
   public Category? Category { get; set; }
+  public required Image CoverImage { get; set; }
   public required List<Image> Images { get; set; }
   public List<Comment>? Comments { get; set; }
 }
