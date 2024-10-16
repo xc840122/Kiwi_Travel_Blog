@@ -1,19 +1,12 @@
-/// <summary>
-/// Base controller to handle unified logic
-/// </summary>
-/// <remarks>
-/// 1. insert the request id
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 09/10/2024
-/// </author>
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Constants;
 using Kiwi_Travel_Blog.Src.Models;
 
 namespace Kiwi_Travel_Blog.Src.Controllers
 {
+    /// <summary>
+    /// Abstract class for common method
+    /// </summary>
     public abstract class AbstractBaseController : ControllerBase
     {
         // Get the RequestID from the HttpContext set by the middleware (add new one if null)

@@ -26,6 +26,7 @@ public class MessageConstants
   // Common
   public const string NotFoundData = "Not found data";
   public const string NotConfigureKey = "Not configure key";
+  public const string FailedGettingArticles = "Failed getting articles";
 
   // Messages for admin
   // Category

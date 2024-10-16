@@ -1,7 +1,7 @@
 using System;
-using Kiwi_Travel_Blog.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 
-namespace Kiwi_Travel_Blog.Interface;
+namespace Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 /// <summary>
 /// Business logic interface of category
 /// </summary>
@@ -11,5 +11,5 @@ public interface IUserCategoryBusiness
   /// get all categories
   /// </summary>
   /// <returns></returns>
-  public Task<IEnumerable<Category>> GetAllCategories();
+  public Task<List<Category>> GetAllCategories();
 }

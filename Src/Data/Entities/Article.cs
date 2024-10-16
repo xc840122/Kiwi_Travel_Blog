@@ -1,7 +1,5 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
-using Kiwi_Travel_Blog.Data.Entities;
+using System.Text.Json.Serialization;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>

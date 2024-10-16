@@ -1,10 +1,10 @@
 using System;
 using Kiwi_Travel_Blog.Data;
-using Kiwi_Travel_Blog.Data.Entities;
-using Kiwi_Travel_Blog.Interface.IServices;
+using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kiwi_Travel_Blog.Src.Repositories;
+namespace Kiwi_Travel_Blog.Src.Repositories.UserImpl;
 /// <summary>
 /// repositories of category
 /// </summary>
@@ -22,7 +22,7 @@ public class UserCategoryRepository : IUserCategoryRepository
   /// Get all categories from database
   /// </summary>
   /// <returns></returns>
-  public async Task<IEnumerable<Category>> GetAllCategories()
+  public async Task<List<Category>> GetAllCategories()
   {
     try
     {

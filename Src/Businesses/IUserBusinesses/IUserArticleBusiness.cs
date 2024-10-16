@@ -2,7 +2,7 @@ using System;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Dtos;
 
-namespace Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
+namespace Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 /// <summary>
 /// interface of article business
 /// </summary>
@@ -13,7 +13,7 @@ public interface IUserArticleBusiness
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns></returns>
-  public Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId);
+  public Task<List<Article>> GetArticlesByCategoryId(long CategoryId);
 
   public Task AddArticle(ArticleDto articleDto);
 }

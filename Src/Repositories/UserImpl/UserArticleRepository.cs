@@ -4,7 +4,7 @@ using Kiwi_Travel_Blog.Data;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
-namespace Kiwi_Travel_Blog.Src.Repositories;
+namespace Kiwi_Travel_Blog.Src.Repositories.UserImpl;
 /// <summary>
 /// Repository of Article
 /// </summary>
@@ -21,41 +21,43 @@ public class UserArticleRepository : IUserArticleRepository
   /// <summary>
   /// async medhod to fetch article data from db
   /// </summary>
-  /// <param name="CategoryId"></param>
+  /// <param name="categoryId"></param>
   /// <returns>List<Article></returns>
-  public async Task<IEnumerable<Article>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<List<Article>> GetArticlesByCategoryId(long categoryId)
   {
     try
     {
       // try to fetch category
       var category = await _context.Categories
-          .Where(c => c.Id == CategoryId)
+          .Where(c => c.Id == categoryId)
           .SingleOrDefaultAsync();
 
       // Verify if category exists
       if (category == null)
       {
-        _logger.LogWarning("Category with ID {CategoryId} not found.", CategoryId);
+        _logger.LogWarning("Category with ID {CategoryId} not found.", categoryId);
         return new List<Article>(); // Return empty list if category not found
       }
 
       // category exists, fetch articles
       _logger.LogInformation("Fetching articles for category ID {CategoryId}", category.Id);
       var articles = await _context.Articles
-          .Where(a => a.CategoryId == CategoryId)
-          .ToListAsync<Article>();
+          .Include(a => a.Images)
+          .Include(a => a.Comments)
+          .Where(a => a.CategoryId == categoryId)
+          .ToListAsync();
       return articles;
     }
     catch (InvalidOperationException ex)
     {
       // Handle case when more than one category is returned unexpectedly
-      _logger.LogError(ex, "Multiple categories found for ID {CategoryId}.", CategoryId);
+      _logger.LogError(ex, "Multiple categories found for ID {categoryId}.", categoryId);
       throw;
     }
     catch (Exception ex)
     {
       // Handle any other exceptions
-      _logger.LogError(ex, "An error occurred while fetching articles for category ID {CategoryId}.", CategoryId);
+      _logger.LogError(ex, "An error occurred while fetching articles for category ID {categoryId}.", categoryId);
       throw; // Rethrow the exception after logging
     }
   }

@@ -2,16 +2,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Businesses.IArticleBusiness;
-using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 
-namespace Kiwi_Travel_Blog.Src.Controllers;
+namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 
 /// <summary>
 /// article controllers of user
 /// </summary>
-[Authorize]
+// [Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class ArticleController : AbstractBaseController
@@ -27,32 +27,33 @@ public class ArticleController : AbstractBaseController
     /// <summary>
     /// api to get articles by categoryId
     /// </summary>
-    /// <param name="CategoryId"></param>
+    /// <param name="categoryId"></param>
     /// <returns>list of article dto</returns>
     [ModelStateVerification]
-    [HttpGet("{CategoryId}")]
-    public async Task<IActionResult> GetArticlesByCategoryId(long CategoryId)
+    [HttpGet("{categoryId}")]
+    public async Task<IActionResult> GetArticlesByCategoryId([FromRoute] long categoryId)
     {
         try
         {
-            var articles = await _articleBusiness.GetArticlesByCategoryId(CategoryId);
-            if (articles != null)
+            var articles = await _articleBusiness.GetArticlesByCategoryId(categoryId);
+            if (articles != null && articles.Any())
             {
-                return Ok(CreateResponse<IEnumerable<Article>>(ServiceCode.GetArticlesSuccessfully,
-                MessageConstants.GettingArticlesSuccessful, articles));
+                return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
+                    MessageConstants.GettingArticlesSuccessful, articles));
             }
             else
             {
                 _logger.LogWarning("Articles are not found");
                 return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
-                MessageConstants.NotFoundData));
+                    MessageConstants.NotFoundData));
             }
         }
         catch (Exception ex)
         {
             // Log the exception
-            _logger.LogError(ex, "Error retrieving articles for category ID {CategoryId}", CategoryId);
-            throw;
+            _logger.LogError(ex, "Error retrieving articles for category ID {categoryId}", categoryId);
+            return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
+                MessageConstants.FailedGettingArticles));
         }
     }
 

@@ -1,5 +1,5 @@
 using System;
-using Kiwi_Travel_Blog.Data.Entities;
+using System.Text.Json.Serialization;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
@@ -10,6 +10,7 @@ public class Comment : BaseEntity
   public long Id { get; set; }
   public required string Review { get; set; }
   public required string Reviewer { get; set; }
+  public required long ArticleId { get; set; }
   public required Article Article { get; set; }
   public string? LikeNum { get; set; }
   public string? Location { get; set; }

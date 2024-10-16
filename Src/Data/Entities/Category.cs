@@ -1,17 +1,10 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using Kiwi_Travel_Blog.Src.Data.Entities;
+using System.Text.Json.Serialization;
 
-namespace Kiwi_Travel_Blog.Data.Entities;
+namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
-/// The Category class represents a category of contents in the system.
+/// Category entity
 /// </summary>
-/// <remarks>
-/// The Category class is used to represent a category of contents in the system.
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 06/10/2024
-/// </author>
 public class Category : BaseEntity
 {
   public long Id { get; set; }
@@ -19,5 +12,5 @@ public class Category : BaseEntity
   public required string Description { get; set; }
   public long UpperCategoryId { get; set; }
   public int Position { get; set; } = 0;
-  public List<Article>? Articles { get; set; }
+  public List<Article>? Articles { get; set; } //exclude from serialization to prevent cycling reference
 }

@@ -18,6 +18,11 @@ public static class ControllerConfigurationExtension
     services.AddControllers(options =>
         {
           options.Filters.Add<ModelStateVerificationAttribute>(); // register the attribute
+        })
+        .AddJsonOptions(options =>
+        {
+          options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+          options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull; // Prevent reference loops
         });
 
     return services;
