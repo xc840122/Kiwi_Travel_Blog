@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
@@ -15,6 +16,8 @@ public class Article : BaseEntity
   public string? Location { get; set; }  //for future expansion
   public required long CategoryId { get; set; }
   public Category? Category { get; set; }
+  [JsonIgnore]
   public required List<Image> Images { get; set; }
+  [JsonIgnore]
   public List<Comment>? Comments { get; set; }
 }

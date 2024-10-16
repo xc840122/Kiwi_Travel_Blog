@@ -1,5 +1,4 @@
 using System;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using Kiwi_Travel_Blog.Src.Attributes;
 
@@ -23,8 +22,7 @@ public static class ControllerConfigurationExtension
         })
         .AddJsonOptions(options =>
         {
-          options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; // Adjust as necessary
-          options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+          options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // Prevent reference loops
         });
 
     return services;

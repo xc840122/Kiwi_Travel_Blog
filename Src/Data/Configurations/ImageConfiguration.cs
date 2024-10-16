@@ -12,5 +12,7 @@ public class ImageConfiguration : IEntityTypeConfiguration<Image>
   public void Configure(EntityTypeBuilder<Image> builder)
   {
     builder.ToTable("T_Images");
+    // builder.Property(i => i.ArticleId).IsRequired();
+    // builder.HasOne<Article>(i => i.Article).WithMany(a => a.Images).HasForeignKey(i => i.ArticleId);
   }
 }

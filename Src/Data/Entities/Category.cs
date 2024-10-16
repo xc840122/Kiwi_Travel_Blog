@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
@@ -11,5 +12,6 @@ public class Category : BaseEntity
   public required string Description { get; set; }
   public long UpperCategoryId { get; set; }
   public int Position { get; set; } = 0;
-  public List<Article>? Articles { get; set; }
+  [JsonIgnore]
+  public List<Article>? Articles { get; set; } //exclude from serialization to prevent cycling reference
 }
