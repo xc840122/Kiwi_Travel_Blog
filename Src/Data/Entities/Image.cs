@@ -7,6 +7,6 @@ public class Image : BaseEntity
 {
   public long Id { get; set; }
   public required string Url { get; set; }
-  public required long ArticleId { get; set; }
+  public long ArticleId { get; set; }
   public Article? Article { get; set; }
 }

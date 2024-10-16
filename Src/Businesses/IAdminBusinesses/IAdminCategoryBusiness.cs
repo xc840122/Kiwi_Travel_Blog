@@ -1,5 +1,5 @@
 using System;
-using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.DTOs.AdminDtos.AdminCreationDtos;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.IAdminBusinesses;
 /// <summary>
@@ -12,5 +12,5 @@ public interface IAdminCategoryBusiness
   /// </summary>
   /// <param name="categoryDto"></param>
   /// <returns></returns>
-  public Task AddCategory(CategoryDto categoryDto);
+  public Task AddCategory(AdminCategoryCreationDto categoryDto);
 }

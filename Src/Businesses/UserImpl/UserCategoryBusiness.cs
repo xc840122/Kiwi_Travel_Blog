@@ -1,7 +1,7 @@
 using System;
-using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
+using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserGettingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.UserImpl;
 /// <summary>
@@ -20,15 +20,25 @@ public class UserCategoryBusiness : IUserCategoryBusiness
   /// user API to get all categories
   /// </summary>
   /// <returns></returns>
-  public async Task<List<Category>> GetAllCategories()
+  public async Task<List<UserGettingCategoryDto>> GetAllCategories()
   {
-    // get categories from repository layer
+    // Get categories from repository layer
     var categories = await _categoryRepository.GetAllCategories();
     if (categories == null)
     {
       _logger.LogWarning("Categories cannot be null");
       throw new NullReferenceException("Categories cannot be null");
     }
-    return categories;
+
+    // Convert List<Category> to List<UserGettingCategoryDto>
+    var userGettingCategoryDtos = categories.Select(categoryItem => new UserGettingCategoryDto
+    {
+      Id = categoryItem.Id,
+      Name = categoryItem.Name,
+      UpperCategoryId = categoryItem.UpperCategoryId,
+      Position = categoryItem.Position
+    }).ToList();
+
+    return userGettingCategoryDtos;
   }
 }

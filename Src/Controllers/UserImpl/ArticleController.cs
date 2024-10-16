@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
+using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserCreatingDtos;
+using Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 
 /// <summary>
 /// article controllers of user
 /// </summary>
-// [Authorize]
+[Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class ArticleController : AbstractBaseController
@@ -30,15 +31,15 @@ public class ArticleController : AbstractBaseController
     /// <param name="categoryId"></param>
     /// <returns>list of article dto</returns>
     [ModelStateVerification]
-    [HttpGet("{categoryId}")]
-    public async Task<IActionResult> GetArticlesByCategoryId([FromRoute] long categoryId)
+    [HttpGet()]
+    public async Task<IActionResult> GetArticlesByCategoryId([FromQuery] long categoryId)
     {
         try
         {
             var articles = await _articleBusiness.GetArticlesByCategoryId(categoryId);
             if (articles != null && articles.Any())
             {
-                return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
+                return Ok(CreateResponse<List<UserGettingArticleDto>>(ServiceCode.GetArticlesSuccessfully,
                     MessageConstants.GettingArticlesSuccessful, articles));
             }
             else
@@ -64,7 +65,7 @@ public class ArticleController : AbstractBaseController
     /// <returns></returns>
     [ModelStateVerification]
     [HttpPost]
-    public async Task<IActionResult> AddArticle([FromBody] ArticleDto articleDto)
+    public async Task<IActionResult> AddArticle([FromBody] UserCreatingArticleDto articleDto)
     {
         try
         {

@@ -1,7 +1,7 @@
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Businesses.IAdminBusinesses;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.DTOs.AdminDtos.AdminCreationDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
@@ -20,7 +20,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers.AdminImpl
         }
         [ModelStateVerification]
         [HttpPost]
-        public async Task<IActionResult> AddCategory([FromBody] CategoryDto categoryDto)
+        public async Task<IActionResult> AddCategory([FromBody] AdminCategoryCreationDto categoryDto)
         {
             try
             {

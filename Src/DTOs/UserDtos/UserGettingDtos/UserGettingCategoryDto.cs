@@ -1,15 +1,13 @@
 using System;
-using System.Text.Json.Serialization;
 
-namespace Kiwi_Travel_Blog.Src.Data.Entities;
+namespace Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserGettingDtos;
 /// <summary>
-/// Category entity
+/// Response model, avoid cycling reference coz Efcore navigation
 /// </summary>
-public class Category : BaseEntity
+public class UserGettingCategoryDto
 {
   public long Id { get; set; }
   public required string Name { get; set; }
-  public required string Description { get; set; }
   public long UpperCategoryId { get; set; }
   public int Position { get; set; } = 0;
 }
