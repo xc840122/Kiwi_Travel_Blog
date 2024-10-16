@@ -4,6 +4,7 @@ using Kiwi_Travel_Blog.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241016004924_ChangeNavigationToArticle")]
+    partial class ChangeNavigationToArticle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,9 +67,7 @@ namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Article_Name");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("T_Articles", (string)null);
                 });
@@ -123,8 +124,8 @@ namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("LikeNum")
-                        .HasColumnType("bigint");
+                    b.Property<string>("LikeNum")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -176,6 +177,17 @@ namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
                     b.ToTable("T_Images", (string)null);
                 });
 
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Article", b =>
+                {
+                    b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.Category", "Category")
+                        .WithMany("Articles")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Comment", b =>
                 {
                     b.HasOne("Kiwi_Travel_Blog.Src.Data.Entities.Article", "Article")
@@ -203,6 +215,11 @@ namespace Kiwi_Travel_Blog.Src.Data.Migrations.App
                     b.Navigation("Comments");
 
                     b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("Kiwi_Travel_Blog.Src.Data.Entities.Category", b =>
+                {
+                    b.Navigation("Articles");
                 });
 #pragma warning restore 612, 618
         }

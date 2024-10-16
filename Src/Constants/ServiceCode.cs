@@ -21,9 +21,14 @@ public enum ServiceCode
   NoArticlesFound = 14002,
   AddArticleSuccessfully = 14003,
   NullArticle = 14004,
+  // 5xxx user relavant
+  NullUserName = 15001,
 
   // Code for admin
   // 3xxx category relavant
   AddingCategorySuccessful = 23001,
   NullCategory = 23002,
+
+  // Common
+  InternalServerError = 31001
 }

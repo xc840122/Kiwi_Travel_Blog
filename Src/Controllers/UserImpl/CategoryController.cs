@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Dtos;
-using Kiwi_Travel_Blog.Interface;
+using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
+using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserGettingDtos;
 
-namespace Kiwi_Travel_Blog.Src.Controllers;
+namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 /// <summary>
 /// category controllers of user
 /// </summary>
@@ -30,19 +30,28 @@ public class CategoryController : AbstractBaseController
     [HttpGet("all")]
     public async Task<IActionResult> GetAllCategories()
     {
-        var categories = await _categoryBusiness.GetAllCategories();
-        // log the request information
-        _logger.LogInformation("========GetAllCategories called========");
-        if (categories != null)
+        try
         {
-            return Ok(CreateResponse<List<CategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
-            MessageConstants.GetAllCategoriesSuccessfully, categories));
+            var categories = await _categoryBusiness.GetAllCategories();
+            // log the request information
+            _logger.LogInformation("========GetAllCategories called========");
+            if (categories != null)
+            {
+                return Ok(CreateResponse<List<UserGettingCategoryDto>>(ServiceCode.GettAllCategoriesSuccessfully,
+                MessageConstants.GetAllCategoriesSuccessfully, categories));
+            }
+            else
+            {
+                _logger.LogWarning("Categories are not found");
+                return NotFound(CreateResponse(ServiceCode.NoCategoriesFound,
+                MessageConstants.NotFoundData));
+            }
         }
-        else
+        catch (Exception ex)
         {
-            _logger.LogWarning("Categories are not found");
-            return NotFound(CreateResponse(ServiceCode.NoCategoriesFound,
-            MessageConstants.NotFoundData));
+            // Log the exception
+            _logger.LogError(ex, "Error retrieving all caterories");
+            throw;
         }
     }
 }

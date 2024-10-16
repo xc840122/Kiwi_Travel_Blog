@@ -1,6 +1,6 @@
 using System;
 using Kiwi_Travel_Blog.Data;
-using Kiwi_Travel_Blog.Data.Entities;
+using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Repositories.IAdminRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Repositories.AdminImpl;
