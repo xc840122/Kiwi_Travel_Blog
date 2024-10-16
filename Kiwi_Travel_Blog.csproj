@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="client-app/src/styles/" />
     <Folder Include="Src/DTOs/AdminDtos/AdminGettingDtos/" />
   </ItemGroup>
 </Project>
