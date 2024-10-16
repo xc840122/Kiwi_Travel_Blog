@@ -40,7 +40,6 @@ public class UserArticleBusiness : IUserArticleBusiness
         Url = imageDto.Url,
         ArticleId = imageDto.ArticleId
       }).ToList();
-      var coverImage = images[0];
 
       // Convert articleDto to article
       var article = new Article
@@ -50,7 +49,6 @@ public class UserArticleBusiness : IUserArticleBusiness
         Author = articleDto.Author,
         Location = articleDto.Location,
         CategoryId = articleDto.CategoryId,
-        CoverImage = coverImage,
         Images = images
       };
       // add article
@@ -89,7 +87,7 @@ public class UserArticleBusiness : IUserArticleBusiness
         Name = article.Name,
         Author = article.Author,
         LikeNums = article.LikeNums,
-        CoverImage = new UserGettingImageDto { Url = article.CoverImage.Url }
+        // CoverImage = new UserGettingImageDto { Url = article.CoverImage.Url }
       }).ToList();
       return userGettingArticleDtos;
 

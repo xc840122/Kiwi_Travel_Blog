@@ -13,7 +13,7 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
   {
     builder.ToTable("T_Comments");
     builder.Property(c => c.Review).HasMaxLength(500).IsRequired();
-    // builder.Property(c => c.ArticleId).IsRequired();
-    // builder.HasOne<Article>(c => c.Article).WithMany(a => a.Comments).HasForeignKey(c => c.ArticleId);
+    builder.Property(c => c.ArticleId).IsRequired();
+    builder.HasOne(c => c.Article).WithMany(a => a.Comments).HasForeignKey(c => c.ArticleId);
   }
 }

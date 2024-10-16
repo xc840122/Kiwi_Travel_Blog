@@ -12,5 +12,5 @@ public class UserGettingArticleDto : BaseEntity
   public required string Name { get; set; }
   public required string Author { get; set; }
   public required long LikeNums { get; set; } //for future expansion
-  public required UserGettingImageDto CoverImage { get; set; }
+  // public required UserGettingImageDto CoverImage { get; set; }
 }

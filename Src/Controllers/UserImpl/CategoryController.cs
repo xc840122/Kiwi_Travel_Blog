@@ -10,7 +10,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 /// <summary>
 /// category controllers of user
 /// </summary>
-// [Authorize]
+[Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class CategoryController : AbstractBaseController

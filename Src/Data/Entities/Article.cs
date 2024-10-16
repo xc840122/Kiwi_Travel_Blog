@@ -15,8 +15,7 @@ public class Article : BaseEntity
   public long FavoriteNums { get; set; } //for future expansion
   public required string? Location { get; set; }  //for future expansion
   public required long CategoryId { get; set; }
-  public Category? Category { get; set; }
-  public required Image CoverImage { get; set; }
+  // public required Image CoverImage { get; set; } //While setting navigation, it causes duplicated foreign keys
   public required List<Image> Images { get; set; }
   public List<Comment>? Comments { get; set; }
 }

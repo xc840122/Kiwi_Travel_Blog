@@ -16,8 +16,8 @@ public class ArticleConfiguration : IEntityTypeConfiguration<Article>
     builder.Property(e => e.Text).HasMaxLength(5000).IsRequired();
     builder.Property(e => e.Author).IsRequired();
     builder.Property(e => e.CategoryId).IsRequired();
-    builder.HasOne(a => a.Category).WithMany(c => c.Articles).HasForeignKey(a => a.CategoryId);
-    builder.HasMany(a => a.Images).WithOne(i => i.Article).HasForeignKey(i => i.ArticleId).IsRequired();
-    builder.HasMany(a => a.Comments).WithOne(c => c.Article).HasForeignKey(c => c.ArticleId).IsRequired();
+
+    // Add index, unique
+    builder.HasIndex(e => e.Name).IsUnique().HasDatabaseName("IX_Article_Name");
   }
 }

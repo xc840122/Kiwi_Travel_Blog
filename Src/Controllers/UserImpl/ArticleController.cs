@@ -12,7 +12,7 @@ namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 /// <summary>
 /// article controllers of user
 /// </summary>
-// [Authorize]
+[Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class ArticleController : AbstractBaseController
@@ -31,8 +31,8 @@ public class ArticleController : AbstractBaseController
     /// <param name="categoryId"></param>
     /// <returns>list of article dto</returns>
     [ModelStateVerification]
-    [HttpGet("{categoryId}")]
-    public async Task<IActionResult> GetArticlesByCategoryId([FromRoute] long categoryId)
+    [HttpGet()]
+    public async Task<IActionResult> GetArticlesByCategoryId([FromQuery] long categoryId)
     {
         try
         {
