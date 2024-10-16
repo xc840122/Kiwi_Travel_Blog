@@ -11,7 +11,7 @@ public class Comment : BaseEntity
   public required string Review { get; set; }
   public required string Reviewer { get; set; }
   public required long ArticleId { get; set; }
-  public required Article Article { get; set; } //exclude from serialization (API response)
+  public required Article Article { get; set; }
   public string? LikeNum { get; set; }
   public string? Location { get; set; }
 }

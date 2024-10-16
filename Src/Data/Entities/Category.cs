@@ -12,6 +12,5 @@ public class Category : BaseEntity
   public required string Description { get; set; }
   public long UpperCategoryId { get; set; }
   public int Position { get; set; } = 0;
-  [JsonIgnore]
   public List<Article>? Articles { get; set; } //exclude from serialization to prevent cycling reference
 }
