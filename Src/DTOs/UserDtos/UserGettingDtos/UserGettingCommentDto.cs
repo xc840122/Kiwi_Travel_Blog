@@ -2,7 +2,7 @@ using System;
 
 namespace Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 /// <summary>
-/// Model for getting comments
+/// Response model, avoid cycling reference coz Efcore navigation
 /// </summary>
 public class UserGettingCommentDto
 {

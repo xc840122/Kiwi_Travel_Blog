@@ -1,5 +1,5 @@
 using System;
-using Kiwi_Travel_Blog.Src.Data.Entities;
+using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserGettingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 /// <summary>
@@ -11,5 +11,5 @@ public interface IUserCategoryBusiness
   /// get all categories
   /// </summary>
   /// <returns></returns>
-  public Task<List<Category>> GetAllCategories();
+  public Task<List<UserGettingCategoryDto>> GetAllCategories();
 }
