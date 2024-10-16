@@ -1,19 +1,11 @@
-/// <summary>
-/// managing the interaction between your application and the database
-/// </summary>
-/// <remarks>
-/// managing the interaction between your application and the database
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 06/10/2024
-/// </author>
 using System;
 using Microsoft.EntityFrameworkCore;
-using Kiwi_Travel_Blog.Data.Entities;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Data;
-
+/// <summary>
+/// Application database context
+/// </summary>
 public class AppDbContext : DbContext
 {
   public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }

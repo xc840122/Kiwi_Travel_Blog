@@ -1,19 +1,12 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Kiwi_Travel_Blog.Data.Entities;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 
 namespace Kiwi_Travel_Blog.Data.Configurations;
 /// <summary>
-/// Configuration of category table
+/// atabase configuration of Category
 /// </summary>
-/// <remarks>
-/// 
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 06/10/2024
-/// </author>
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
   public void Configure(EntityTypeBuilder<Category> builder)

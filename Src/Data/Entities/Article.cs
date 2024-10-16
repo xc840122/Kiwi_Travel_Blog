@@ -1,7 +1,5 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
-using Kiwi_Travel_Blog.Data.Entities;
+using System.Text.Json.Serialization;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
@@ -15,9 +13,9 @@ public class Article : BaseEntity
   public required string Author { get; set; }
   public long LikeNums { get; set; } //for future expansion
   public long FavoriteNums { get; set; } //for future expansion
-  public string? Location { get; set; }  //for future expansion
+  public required string? Location { get; set; }  //for future expansion
   public required long CategoryId { get; set; }
-  public Category? Category { get; set; }
+  // public required Image CoverImage { get; set; } //While setting navigation, it causes duplicated foreign keys
   public required List<Image> Images { get; set; }
   public List<Comment>? Comments { get; set; }
 }

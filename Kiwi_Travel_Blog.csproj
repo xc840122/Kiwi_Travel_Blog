@@ -21,4 +21,8 @@
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Src/DTOs/AdminDtos/AdminGettingDtos/" />
+  </ItemGroup>
 </Project>

@@ -1,12 +1,3 @@
-/// <summary>
-/// Unified format of response
-/// </summary>
-/// <remarks>
-/// response format for client http requests
-/// </remarks>
-/// <author>
-/// Chi Xu (Peter) -- 08/10/2024
-/// </author>
 using Kiwi_Travel_Blog.Src.Constants;
 
 namespace Kiwi_Travel_Blog.Src.Models;
@@ -19,6 +10,8 @@ namespace Kiwi_Travel_Blog.Src.Models;
 /// <param name="Message"></param>
 /// <param name="Data"></param>
 public record ApiResponseModel<TData>(string RequestID, ServiceCode Code, string Message, TData data);
+
+
 /// <summary>
 /// for response without data
 /// </summary>
