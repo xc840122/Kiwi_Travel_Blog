@@ -2,6 +2,7 @@ using System;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserCreatingDtos;
+using Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.UserImpl;
@@ -33,17 +34,24 @@ public class UserArticleBusiness : IUserArticleBusiness
         throw new NullReferenceException("Article cannot be null");
       }
 
+      // handle image relavant logic
+      var images = articleDto.Images.Select(imageDto => new Image
+      {
+        Url = imageDto.Url,
+        ArticleId = imageDto.ArticleId
+      }).ToList();
+      var coverImage = images[0];
+
       // Convert articleDto to article
       var article = new Article
       {
         Name = articleDto.Name,
         Text = articleDto.Text,
         Author = articleDto.Author,
-        LikeNums = 0,
-        FavoriteNums = 0,
-        Location = "New Zealand",
+        Location = articleDto.Location,
         CategoryId = articleDto.CategoryId,
-        Images = articleDto.Images
+        CoverImage = coverImage,
+        Images = images
       };
       // add article
       _logger.LogInformation($"Add an artile for Name {article.Name}");
@@ -63,21 +71,28 @@ public class UserArticleBusiness : IUserArticleBusiness
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns>List<ArticleDto></returns>
-  public async Task<List<Article>> GetArticlesByCategoryId(long CategoryId)
+  public async Task<List<UserGettingArticleDto>> GetArticlesByCategoryId(long CategoryId)
   {
     try
     {
-      // articles from repository
+      // Get articles from repository
       var aritcles = await _articleRepository.GetArticlesByCategoryId(CategoryId);
       if (aritcles == null)
       {
         _logger.LogWarning("Articles result cannot be null");
         throw new NullReferenceException("Articles result cannot be null");
       }
-      else
+      // Convert Article to UserGettingArticleDto
+      var userGettingArticleDtos = aritcles.Select(article => new UserGettingArticleDto
       {
-        return aritcles;
-      }
+        Id = article.Id,
+        Name = article.Name,
+        Author = article.Author,
+        LikeNums = article.LikeNums,
+        CoverImage = new UserGettingImageDto { Url = article.CoverImage.Url }
+      }).ToList();
+      return userGettingArticleDtos;
+
     }
     catch (Exception ex)
     {

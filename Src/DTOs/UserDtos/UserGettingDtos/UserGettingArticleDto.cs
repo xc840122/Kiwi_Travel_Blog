@@ -8,9 +8,9 @@ namespace Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 /// </summary>
 public class UserGettingArticleDto : BaseEntity
 {
-  public long Id { get; set; }
+  public required long Id { get; set; }
   public required string Name { get; set; }
   public required string Author { get; set; }
-  public long LikeNums { get; set; } //for future expansion
+  public required long LikeNums { get; set; } //for future expansion
   public required UserGettingImageDto CoverImage { get; set; }
 }

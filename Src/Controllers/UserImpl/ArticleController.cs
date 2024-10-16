@@ -5,6 +5,7 @@ using Kiwi_Travel_Blog.Src.Constants;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserCreatingDtos;
+using Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 
@@ -38,7 +39,7 @@ public class ArticleController : AbstractBaseController
             var articles = await _articleBusiness.GetArticlesByCategoryId(categoryId);
             if (articles != null && articles.Any())
             {
-                return Ok(CreateResponse<List<Article>>(ServiceCode.GetArticlesSuccessfully,
+                return Ok(CreateResponse<List<UserGettingArticleDto>>(ServiceCode.GetArticlesSuccessfully,
                     MessageConstants.GettingArticlesSuccessful, articles));
             }
             else
