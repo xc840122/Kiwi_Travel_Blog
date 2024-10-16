@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Kiwi_Travel_Blog.Src.Attributes;
 using Kiwi_Travel_Blog.Src.Constants;
-using Kiwi_Travel_Blog.Src.Dtos;
 using Kiwi_Travel_Blog.Src.Data.Entities;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
+using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserCreatingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 
@@ -64,7 +64,7 @@ public class ArticleController : AbstractBaseController
     /// <returns></returns>
     [ModelStateVerification]
     [HttpPost]
-    public async Task<IActionResult> AddArticle([FromBody] ArticleDto articleDto)
+    public async Task<IActionResult> AddArticle([FromBody] UserCreatingArticleDto articleDto)
     {
         try
         {

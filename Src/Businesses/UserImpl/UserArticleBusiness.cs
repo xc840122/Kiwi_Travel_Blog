@@ -1,7 +1,7 @@
 using System;
 using Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 using Kiwi_Travel_Blog.Src.Data.Entities;
-using Kiwi_Travel_Blog.Src.Dtos;
+using Kiwi_Travel_Blog.Src.Dtos.UserDtos.UserCreatingDtos;
 using Kiwi_Travel_Blog.Src.Repositories.IUserRepositories;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.UserImpl;
@@ -23,7 +23,7 @@ public class UserArticleBusiness : IUserArticleBusiness
   /// </summary>
   /// <param name="articleDto"></param>
   /// <returns></returns>
-  public Task AddArticle(ArticleDto articleDto)
+  public Task AddArticle(UserCreatingArticleDto articleDto)
   {
     try
     {
