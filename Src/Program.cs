@@ -33,6 +33,8 @@ try
     RepositoryConfigurationExtension.InjectRepositoryServices(builder.Services);
     // Utility configuration
     UtilityConfigurationExtension.InjectUtilityServices(builder.Services);
+    // Cors policy configuration
+    CorsPolicyConfigurationExtension.InjectCorsPolicyServices(builder.Services);
 
     var app = builder.Build();
 
@@ -47,6 +49,7 @@ try
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseMiddleware<UserInfoMiddleware>(); // Fetch user info from request, add to items
+    app.UseCors("AllowAll");
     app.UseAuthorization();
     app.MapControllers();
     app.Run();
