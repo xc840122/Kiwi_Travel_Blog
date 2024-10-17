@@ -1,5 +1,4 @@
 using System;
-using System.Text.Json.Serialization;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
