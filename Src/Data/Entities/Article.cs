@@ -2,7 +2,7 @@ using System;
 
 namespace Kiwi_Travel_Blog.Src.Data.Entities;
 /// <summary>
-/// Article entity
+/// Article entity for me
 /// </summary>
 public class Article : BaseEntity
 {
