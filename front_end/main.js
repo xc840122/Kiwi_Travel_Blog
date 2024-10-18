@@ -16,30 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function createHeader() {
   const header = document.createElement('header');
-  header.className = 'flex justify-between items-center p-4 bg-white shadow-sm';
   
   const title = document.createElement('h1');
-  title.className = 'text-xl font-bold';
   title.textContent = 'Discover New Zealand';
   
   const searchContainer = document.createElement('div');
-  searchContainer.className = 'flex items-center space-x-4';
-  
-  const searchWrapper = document.createElement('div');
-  searchWrapper.className = 'relative';
+  searchContainer.className = 'search-container';
   
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = 'Search NZ destinations';
-  searchInput.className = 'pl-8 pr-2 py-1 border rounded-full';
   
   const searchIcon = document.createElement('span');
-  searchIcon.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400';
+  searchIcon.className = 'search-icon';
   searchIcon.innerHTML = '🔍';
   
-  searchWrapper.appendChild(searchInput);
-  searchWrapper.appendChild(searchIcon);
-  searchContainer.appendChild(searchWrapper);
+  searchContainer.appendChild(searchInput);
+  searchContainer.appendChild(searchIcon);
   
   header.appendChild(title);
   header.appendChild(searchContainer);
@@ -49,27 +42,27 @@ function createHeader() {
 
 function createAuthForms() {
   const container = document.createElement('div');
-  container.className = 'flex justify-center space-x-4 my-4';
+  container.className = 'auth-forms-container';
 
   const registerForm = document.createElement('form');
   registerForm.id = 'registerForm';
-  registerForm.className = 'bg-white p-4 rounded shadow';
+  registerForm.className = 'auth-form';
   registerForm.innerHTML = `
-    <h2 class="text-lg font-bold mb-2">Register</h2>
-    <input type="text" name="userName" placeholder="Username" required class="block w-full mb-2 p-2 border rounded">
-    <input type="email" name="email" placeholder="Email" required class="block w-full mb-2 p-2 border rounded">
-    <input type="password" name="password" placeholder="Password" required class="block w-full mb-2 p-2 border rounded">
-    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Register</button>
+    <h2>Register</h2>
+    <input type="text" name="userName" placeholder="Username" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
   `;
 
   const loginForm = document.createElement('form');
   loginForm.id = 'loginForm';
-  loginForm.className = 'bg-white p-4 rounded shadow';
+  loginForm.className = 'auth-form';
   loginForm.innerHTML = `
-    <h2 class="text-lg font-bold mb-2">Login</h2>
-    <input type="text" name="userName" placeholder="Username" required class="block w-full mb-2 p-2 border rounded">
-    <input type="password" name="password" placeholder="Password" required class="block w-full mb-2 p-2 border rounded">
-    <button type="submit" class="w-full bg-green-500 text-white p-2 rounded">Login</button>
+    <h2>Login</h2>
+    <input type="text" name="userName" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
   `;
 
   container.appendChild(registerForm);
@@ -163,7 +156,6 @@ function updateNavBar(categories) {
   nav.innerHTML = '';
   categories.forEach(category => {
     const button = document.createElement('button');
-    button.className = 'text-sm whitespace-nowrap';
     button.textContent = category.name;
     button.onclick = () => fetchArticles(category.id);
     nav.appendChild(button);
@@ -196,7 +188,7 @@ async function fetchArticles(categoryId) {
 }
 
 function updateTravelGrid(articles) {
-  const grid = document.querySelector('.grid');
+  const grid = document.querySelector('.travel-grid');
   grid.innerHTML = '';
   articles.forEach(article => {
     grid.appendChild(createTravelCard(article));
@@ -205,32 +197,28 @@ function updateTravelGrid(articles) {
 
 function createNavBar() {
   const nav = document.createElement('nav');
-  nav.className = 'flex space-x-4 p-4 bg-gray-100 overflow-x-auto';
   return nav;
 }
 
 function createTravelCard(data) {
   const card = document.createElement('div');
-  card.className = 'bg-white rounded-lg overflow-hidden shadow-md';
+  card.className = 'travel-card';
   
   const image = document.createElement('img');
   image.src = data.images && data.images.length > 0 ? data.images[0].url : "/api/placeholder/400/300";
   image.alt = data.name;
-  image.className = 'w-full h-40 object-cover';
   
   const content = document.createElement('div');
-  content.className = 'p-4';
+  content.className = 'travel-card-content';
   
   const title = document.createElement('h3');
-  title.className = 'font-semibold text-sm mb-1';
   title.textContent = data.name;
   
   const author = document.createElement('p');
-  author.className = 'text-xs text-gray-500 mb-2';
+  author.className = 'author';
   author.textContent = `By ${data.author}`;
   
   const excerpt = document.createElement('p');
-  excerpt.className = 'text-sm';
   excerpt.textContent = data.text.substring(0, 100) + '...';
   
   content.appendChild(title);
@@ -245,6 +233,6 @@ function createTravelCard(data) {
 
 function createTravelGrid() {
   const grid = document.createElement('div');
-  grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4';
+  grid.className = 'travel-grid';
   return grid;
 }
