@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* Responsive columns */
+  gap: 10px;
+  /* Space between items */
+  padding: 20px;
+  /* Padding around the grid */
+}
+
+.grid-item {
+  overflow: hidden;
+  /* Hide overflow to crop the image */
+  border-radius: 8px;
+  /* Rounded corners */
+}
+
+.grid-item img {
+  width: 100%;
+  /* Image takes full width */
+  height: 200px;
+  /* Fixed height */
+  object-fit: cover;
+  /* Crop image to cover */
+}

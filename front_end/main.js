@@ -10,33 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
   app.appendChild(createTravelGrid());
 
   // Event listeners for auth forms
-  document.getElementById('registerForm').addEventListener('submit', handleRegister);
-  document.getElementById('loginForm').addEventListener('submit', handleLogin);
+  // document.getElementById('registerForm').addEventListener('submit', handleRegister);
+  // document.getElementById('loginForm').addEventListener('submit', handleLogin);
 });
 
 function createHeader() {
   const header = document.createElement('header');
-  
+
   const title = document.createElement('h1');
-  title.textContent = 'Discover New Zealand';
-  
+  title.textContent = 'Nature of Aotearoa';
+
   const searchContainer = document.createElement('div');
   searchContainer.className = 'search-container';
-  
+
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = 'Search NZ destinations';
-  
+
   const searchIcon = document.createElement('span');
   searchIcon.className = 'search-icon';
   searchIcon.innerHTML = '🔍';
-  
+
   searchContainer.appendChild(searchInput);
   searchContainer.appendChild(searchIcon);
-  
+
   header.appendChild(title);
   header.appendChild(searchContainer);
-  
+
   return header;
 }
 
@@ -203,31 +203,31 @@ function createNavBar() {
 function createTravelCard(data) {
   const card = document.createElement('div');
   card.className = 'travel-card';
-  
+
   const image = document.createElement('img');
   image.src = data.images && data.images.length > 0 ? data.images[0].url : "/api/placeholder/400/300";
   image.alt = data.name;
-  
+
   const content = document.createElement('div');
   content.className = 'travel-card-content';
-  
+
   const title = document.createElement('h3');
   title.textContent = data.name;
-  
+
   const author = document.createElement('p');
   author.className = 'author';
   author.textContent = `By ${data.author}`;
-  
+
   const excerpt = document.createElement('p');
   excerpt.textContent = data.text.substring(0, 100) + '...';
-  
+
   content.appendChild(title);
   content.appendChild(author);
   content.appendChild(excerpt);
-  
+
   card.appendChild(image);
   card.appendChild(content);
-  
+
   return card;
 }
 
