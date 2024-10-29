@@ -13,4 +13,6 @@ public class UserGettingArticleDetailDto
   public required string? Location { get; set; }  //for future expansion
   public required List<UserGettingImageDto> Images { get; set; }
   public List<UserGettingCommentDto>? Comments { get; set; }
+  public DateTime CreateTime { get; set; }
+  public DateTime UpdateTime { get; set; }
 }
