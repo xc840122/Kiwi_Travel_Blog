@@ -21,6 +21,7 @@ public enum ServiceCode
   NoArticlesFound = 14002,
   AddArticleSuccessfully = 14003,
   NullArticle = 14004,
+  GetArticleDetailSuccessfully = 14005,
   // 5xxx user relavant
   NullUserName = 15001,
 
