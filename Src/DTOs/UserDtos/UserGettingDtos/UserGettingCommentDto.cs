@@ -11,4 +11,6 @@ public class UserGettingCommentDto
   public required string Reviewer { get; set; }
   public long LikeNum { get; set; }
   public string? Location { get; set; }
+  public DateTime CreateTime { get; set; }
+  public DateTime UpdateTime { get; set; }
 }
