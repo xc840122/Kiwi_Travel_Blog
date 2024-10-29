@@ -12,7 +12,19 @@ public interface IUserArticleRepository
   /// </summary>
   /// <param name="CategoryId"></param>
   /// <returns></returns>
-  public Task<List<Article>> GetArticlesByCategoryId(long CategoryId);
+  public Task<List<Article>> GetArticlesByCategoryId(long categoryId);
 
+  /// <summary>
+  /// Insert new article into db
+  /// </summary>
+  /// <param name="article"></param>
+  /// <returns></returns>
   public Task InsertArticle(Article article);
+
+  /// <summary>
+  /// Get the article with request id from db
+  /// </summary>
+  /// <param name="articleId"></param>
+  /// <returns></returns>
+  public Task<Article> GetArticle(long articleId);
 }

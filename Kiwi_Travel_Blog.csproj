@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="client-app/src/styles/" />
+    <Folder Include="kwt_client/src/assets/" />
+    <Folder Include="kwt_client/src/pages/" />
     <Folder Include="Src/DTOs/AdminDtos/AdminGettingDtos/" />
   </ItemGroup>
 </Project>

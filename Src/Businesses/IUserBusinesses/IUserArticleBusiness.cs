@@ -17,5 +17,17 @@ public interface IUserArticleBusiness
   /// <returns></returns>
   public Task<List<UserGettingArticleDto>> GetArticlesByCategoryId(long CategoryId);
 
+  /// <summary>
+  /// User post an article
+  /// </summary>
+  /// <param name="articleDto"></param>
+  /// <returns></returns>
   public Task AddArticle(UserCreatingArticleDto articleDto);
+
+  /// <summary>
+  /// User get an article detail
+  /// </summary>
+  /// <param name="articleId"></param>
+  /// <returns></returns>
+  public Task<UserGettingArticleDetailDto> GetArticle(long articleId);
 }
