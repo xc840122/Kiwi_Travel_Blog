@@ -18,6 +18,7 @@ public class UserArticleRepository : IUserArticleRepository
     _context = context;
     _logger = logger;
   }
+
   /// <summary>
   /// async medhod to fetch article data from db
   /// </summary>
@@ -89,5 +90,11 @@ public class UserArticleRepository : IUserArticleRepository
       _logger.LogError(ex, $"An error occurred while inserting category for ID {article.Id}");
       throw;
     }
+  }
+
+
+  public Task<Article> GetArticle(long articleId)
+  {
+    throw new NotImplementedException();
   }
 }
