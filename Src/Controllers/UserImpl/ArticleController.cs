@@ -52,7 +52,7 @@ public class ArticleController : AbstractBaseController
             // Log the exception
             _logger.LogError(ex, "Error retrieving articles for category ID {categoryId}", categoryId);
             return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
-                MessageConstants.FailedGettingArticles));
+                MessageConstants.OperationFailed));
         }
     }
 
@@ -93,33 +93,40 @@ public class ArticleController : AbstractBaseController
         catch (Exception ex)
         {
             _logger.LogError(ex, $"Errors occurred while adding an article for name {articleDto.Name}");
-            throw;
+            return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
+                MessageConstants.OperationFailed));
         }
     }
 
+    /// <summary>
+    /// Get article detail by ID
+    /// </summary>
+    /// <param name="articleId"></param>
+    /// <returns>article</returns>
     [HttpGet("{articleId}")]
     public async Task<IActionResult> GetArticle(long articleId)
     {
         try
         {
             var article = await _articleBusiness.GetArticle(articleId);
-            // if (article != null)
-            // {
-            //     return Ok(CreateResponse<List<UserGettingArticleDto>>(ServiceCode.GetArticlesSuccessfully,
-            //         MessageConstants.GettingArticlesSuccessful, articles));
-            // }
-            // else
-            // {
-            //     _logger.LogWarning("Articles are not found");
-            //     return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
-            //         MessageConstants.NotFoundData));
-            // }
-            return Ok(article);
+            if (article != null)
+            {
+                return Ok(CreateResponse<UserGettingArticleDetailDto>(ServiceCode.GetArticleDetailSuccessfully,
+                    MessageConstants.GetArticleDetailSuccessfully, article));
+            }
+            else
+            {
+                _logger.LogWarning($"Article with ID {articleId} are not found");
+                return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
+                    MessageConstants.NotFoundData));
+            }
         }
-        catch (System.Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            // Log the exception
+            _logger.LogError(ex, $"Error retrieving article for ID {articleId}");
+            return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
+                MessageConstants.OperationFailed));
         }
     }
 }

@@ -19,12 +19,50 @@ public class UserArticleBusiness : IUserArticleBusiness
     _articleRepository = articleRepository;
     _logger = logger;
   }
+
+  /// <summary>
+  /// convert List<Article> to List<ArticleDto>
+  /// </summary>
+  /// <param name="CategoryId"></param>
+  /// <returns>List<ArticleDto></returns>
+  public async Task<List<UserGettingArticleDto>> GetArticlesByCategoryId(long categoryId)
+  {
+    try
+    {
+      // Get articles from repository
+      var articles = await _articleRepository.GetArticlesByCategoryId(categoryId);
+      if (articles == null)
+      {
+        _logger.LogWarning("Articles result cannot be null");
+        throw new NullReferenceException("Articles result cannot be null");
+      }
+
+      // Convert Article to UserGettingArticleDto
+      var userGettingArticleDtos = articles.Select(article => new UserGettingArticleDto
+      {
+        Id = article.Id,
+        Name = article.Name,
+        Author = article.Author,
+        LikeNums = article.LikeNums,
+        CoverImage = article.Images
+        .Select(img => new UserGettingImageDto { Id = img.Id, Url = img.Url })
+        .ToList()[0] // Convet to cover Image (UserGettingImageDto)
+      }).ToList();
+      return userGettingArticleDtos;
+    }
+    catch (Exception ex)
+    {
+      // Log the exception
+      _logger.LogError(ex, "Error retrieving articles for category ID {categoryId}", categoryId);
+      throw;
+    }
+  }
   /// <summary>
   /// Add an article
   /// </summary>
   /// <param name="articleDto"></param>
   /// <returns></returns>
-  public Task AddArticle(UserCreatingArticleDto articleDto)
+  public async Task AddArticle(UserCreatingArticleDto articleDto)
   {
     try
     {
@@ -53,9 +91,7 @@ public class UserArticleBusiness : IUserArticleBusiness
       };
       // add article
       _logger.LogInformation($"Add an artile for Name {article.Name}");
-      _articleRepository.InsertArticle(article);
-
-      return Task.CompletedTask;
+      await _articleRepository.InsertArticle(article);
     }
     catch (Exception ex)
     {
@@ -65,40 +101,71 @@ public class UserArticleBusiness : IUserArticleBusiness
   }
 
   /// <summary>
-  /// convert List<Article> to List<ArticleDto>
+  /// Get an Article, convert data from db to response format
   /// </summary>
-  /// <param name="CategoryId"></param>
-  /// <returns>List<ArticleDto></returns>
-  public async Task<List<UserGettingArticleDto>> GetArticlesByCategoryId(long CategoryId)
+  /// <param name="articleId"></param>
+  /// <returns></returns>
+  public async Task<UserGettingArticleDetailDto> GetArticle(long articleId)
   {
     try
     {
-      // Get articles from repository
-      var aritcles = await _articleRepository.GetArticlesByCategoryId(CategoryId);
-      if (aritcles == null)
+      // Get article from repository
+      var article = await _articleRepository.GetArticle(articleId);
+      if (article == null)
       {
-        _logger.LogWarning("Articles result cannot be null");
-        throw new NullReferenceException("Articles result cannot be null");
+        _logger.LogWarning("Article result cannot be null");
+        throw new NullReferenceException("Article result cannot be null");
       }
 
+      //Convert images to dto (In future, can add default image)
+      if (article.Images == null)
+      {
+        _logger.LogWarning("Images result cannot be null");
+        throw new NullReferenceException("Images result cannot be null");
+      }
+
+      var imageDtos = article.Images.Select(img => new UserGettingImageDto
+      {
+        Id = img.Id,
+        Url = img.Url
+      }).ToList();
+
+      // Convert comment to dto, comment can be null, means no comments
+      var commentDtos = new List<UserGettingCommentDto>();
+      if (article.Comments != null)
+      {
+        commentDtos = article.Comments.Select(c => new UserGettingCommentDto
+        {
+          Id = c.Id,
+          Review = c.Review,
+          Reviewer = c.Reviewer,
+          LikeNum = c.LikeNum,
+          Location = c.Location, //TODO: future expansion, use real Geo API
+          CreateTime = c.CreateTime,
+          UpdateTime = c.UpdateTime
+        }).ToList();
+      }
       // Convert Article to UserGettingArticleDto
-      var userGettingArticleDtos = aritcles.Select(article => new UserGettingArticleDto
+      var UserGettingArticleDetailDto = new UserGettingArticleDetailDto
       {
         Id = article.Id,
         Name = article.Name,
+        Text = article.Text,
         Author = article.Author,
         LikeNums = article.LikeNums,
-        CoverImage = article.Images
-        .Select(img => new UserGettingImageDto { Id = img.Id, Url = img.Url })
-        .ToList()[0] // Convet to cover Image (UserGettingImageDto)
-      }).ToList();
-      return userGettingArticleDtos;
-
+        FavoriteNums = article.FavoriteNums,
+        Location = article.Location,
+        Images = imageDtos,
+        Comments = commentDtos,
+        CreateTime = article.CreateTime,
+        UpdateTime = article.UpdateTime
+      };
+      return UserGettingArticleDetailDto;
     }
     catch (Exception ex)
     {
       // Log the exception
-      _logger.LogError(ex, "Error retrieving articles for category ID {CategoryId}", CategoryId);
+      _logger.LogError(ex, $"Error retrieving article for ID ${articleId}");
       throw;
     }
   }

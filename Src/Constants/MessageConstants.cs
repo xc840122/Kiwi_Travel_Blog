@@ -21,12 +21,13 @@ public class MessageConstants
   public const string GettingArticlesSuccessful = "Getting articles successful";
   public const string AddArticleSuccessfully = "Add an article successfully";
   public const string NullArticle = "Null article";
+  public const string GetArticleDetailSuccessfully = "Get Article Detail Successfully";
   // User
   public const string NullUserName = "Null username";
   // Common
   public const string NotFoundData = "Not found data";
   public const string NotConfigureKey = "Not configure key";
-  public const string FailedGettingArticles = "Failed getting articles";
+  public const string OperationFailed = "Operation Failed";
 
   // Messages for admin
   // Category
