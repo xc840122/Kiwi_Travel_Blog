@@ -92,9 +92,45 @@ public class UserArticleRepository : IUserArticleRepository
     }
   }
 
-
-  public Task<Article> GetArticle(long articleId)
+  /// <summary>
+  /// Get an article from db
+  /// </summary>
+  /// <param name="articleId"></param>
+  /// <returns></returns>
+  /// <exception cref="NotImplementedException"></exception>
+  public async Task<Article> GetArticle(long articleId)
   {
-    throw new NotImplementedException();
+    try
+    {
+      // try to query article in db
+      var article = await _context.Articles
+      .Include(a => a.Images)
+      .Include(a => a.Comments)
+      .Where(a => a.Id == articleId)
+      .SingleAsync<Article>();
+
+      // Check if article exist in db
+      if (article == null)
+      {
+        _logger.LogWarning($"Article not exist for ID {articleId}");
+        throw new KeyNotFoundException($"Article not exist for ID {articleId}");
+      }
+
+      _logger.LogInformation($"Fetching article for ID {articleId}");
+
+      return article;
+    }
+    catch (InvalidOperationException ex)
+    {
+      // Handle case when more than one category is returned unexpectedly
+      _logger.LogError(ex, $"Multiple articles found for ID {articleId}");
+      throw;
+    }
+    catch (Exception ex)
+    {
+      // Handle any other exceptions
+      _logger.LogError(ex, $"An error occurred while fetching article forID {articleId}.");
+      throw; // Rethrow the exception after logging
+    }
   }
 }

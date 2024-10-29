@@ -100,6 +100,11 @@ public class UserArticleBusiness : IUserArticleBusiness
     }
   }
 
+  /// <summary>
+  /// Get an Article, convert data from db to response format
+  /// </summary>
+  /// <param name="articleId"></param>
+  /// <returns></returns>
   public async Task<UserGettingArticleDetailDto> GetArticle(long articleId)
   {
     try
