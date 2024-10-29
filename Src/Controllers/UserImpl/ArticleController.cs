@@ -11,7 +11,6 @@ namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 /// <summary>
 /// article controllers of user
 /// </summary>
-[Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class ArticleController : AbstractBaseController
@@ -53,17 +52,18 @@ public class ArticleController : AbstractBaseController
             // Log the exception
             _logger.LogError(ex, "Error retrieving articles for category ID {categoryId}", categoryId);
             return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
-                MessageConstants.FailedGettingArticles));
+                MessageConstants.OperationFailed));
         }
     }
 
     /// <summary>
-    /// Interface to add an article
+    /// Interface to add an article, user must carry jwt token(signin) to add artile
     /// </summary>
     /// <param name="articleDto"></param>
     /// <returns></returns>
     [ModelStateVerification]
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> AddArticle([FromBody] UserCreatingArticleDto articleDto)
     {
         try
@@ -93,7 +93,40 @@ public class ArticleController : AbstractBaseController
         catch (Exception ex)
         {
             _logger.LogError(ex, $"Errors occurred while adding an article for name {articleDto.Name}");
-            throw;
+            return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
+                MessageConstants.OperationFailed));
+        }
+    }
+
+    /// <summary>
+    /// Get article detail by ID
+    /// </summary>
+    /// <param name="articleId"></param>
+    /// <returns>article</returns>
+    [HttpGet("{articleId}")]
+    public async Task<IActionResult> GetArticle(long articleId)
+    {
+        try
+        {
+            var article = await _articleBusiness.GetArticle(articleId);
+            if (article != null)
+            {
+                return Ok(CreateResponse<UserGettingArticleDetailDto>(ServiceCode.GetArticleDetailSuccessfully,
+                    MessageConstants.GetArticleDetailSuccessfully, article));
+            }
+            else
+            {
+                _logger.LogWarning($"Article with ID {articleId} are not found");
+                return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
+                    MessageConstants.NotFoundData));
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log the exception
+            _logger.LogError(ex, $"Error retrieving article for ID {articleId}");
+            return StatusCode(500, CreateResponse(ServiceCode.InternalServerError,
+                MessageConstants.OperationFailed));
         }
     }
 }
