@@ -2,11 +2,11 @@
  * This component manages state for selectedCategoryId and include CategoryList and ArticleList.
  */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CategoryList from './CategoryList';
 import ArticleList from './ArticleList';
-import { Link } from 'react-router-dom';
 
-function Articles() {
+function Articles({ isAuthenticated }) {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
   const handleCategorySelect = (categoryId) => {
@@ -24,6 +24,13 @@ function Articles() {
           <Link to="/register" className="btn btn-outline-light mx-2">Sign Up</Link>
         </div>
       </div>
+
+      {/* Post Article Button for Authenticated Users */}
+      {isAuthenticated && (
+        <div className="text-center mb-4">
+          <Link to="/post-article" className="btn btn-success">Post Article</Link>
+        </div>
+      )}
 
       {/* Category and Article List */}
       <div className="container">
@@ -46,21 +53,3 @@ function Articles() {
 }
 
 export default Articles;
-
-// function Articles() {
-//   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-
-//   const handleCategorySelect = (categoryId) => {
-//     setSelectedCategoryId(categoryId);
-//   };
-
-//   return (
-//     <div className="articles-container">
-//       <h2>Welcome to Kiwi Travel Blog</h2>
-//       <CategoryList onCategorySelect={handleCategorySelect} />
-//       {selectedCategoryId && <ArticleList categoryId={selectedCategoryId} />}
-//     </div>
-//   );
-// }
-
-// export default Articles;

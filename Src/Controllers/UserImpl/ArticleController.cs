@@ -57,12 +57,13 @@ public class ArticleController : AbstractBaseController
     }
 
     /// <summary>
-    /// Interface to add an article
+    /// Interface to add an article, user must carry jwt token(signin) to add artile
     /// </summary>
     /// <param name="articleDto"></param>
     /// <returns></returns>
     [ModelStateVerification]
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> AddArticle([FromBody] UserCreatingArticleDto articleDto)
     {
         try
@@ -92,6 +93,32 @@ public class ArticleController : AbstractBaseController
         catch (Exception ex)
         {
             _logger.LogError(ex, $"Errors occurred while adding an article for name {articleDto.Name}");
+            throw;
+        }
+    }
+
+    [HttpGet("{articleId}")]
+    public async Task<IActionResult> GetArticle(long articleId)
+    {
+        try
+        {
+            var article = await _articleBusiness.GetArticle(articleId);
+            // if (article != null)
+            // {
+            //     return Ok(CreateResponse<List<UserGettingArticleDto>>(ServiceCode.GetArticlesSuccessfully,
+            //         MessageConstants.GettingArticlesSuccessful, articles));
+            // }
+            // else
+            // {
+            //     _logger.LogWarning("Articles are not found");
+            //     return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
+            //         MessageConstants.NotFoundData));
+            // }
+            return Ok(article);
+        }
+        catch (System.Exception)
+        {
+
             throw;
         }
     }

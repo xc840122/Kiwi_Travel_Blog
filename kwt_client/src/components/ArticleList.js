@@ -22,7 +22,7 @@ function ArticleList({ categoryId }) {
         {articles.length > 0 ? (
           articles.map(article => (
             <div key={article.id} className="col-md-4 mb-4">
-              <Link to={`/article/${article.id}`} className="text-decoration-none text-dark">
+              <Link to={`/user/article/${article.id}`} className="text-decoration-none text-dark">
                 <div className="card h-100">
                   <img
                     src={article.coverImage.url}
