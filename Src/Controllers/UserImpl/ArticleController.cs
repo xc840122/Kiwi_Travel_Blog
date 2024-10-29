@@ -11,7 +11,6 @@ namespace Kiwi_Travel_Blog.Src.Controllers.UserImpl;
 /// <summary>
 /// article controllers of user
 /// </summary>
-[Authorize]
 [Route("api/user/[controller]")]
 [ApiController]
 public class ArticleController : AbstractBaseController
