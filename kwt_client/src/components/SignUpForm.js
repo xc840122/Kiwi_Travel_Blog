@@ -37,7 +37,32 @@ function SignUpForm() {
       }
 
       setSuccess(true);
-      setTimeout(() => navigate('/login'), 2000); // Redirect to login after success message
+      // Continue to login
+      try {
+        const response = await fetch('http://localhost:5082/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'accept': '*/*'
+          },
+          body: JSON.stringify({
+            userName: username,
+            password: password
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Login failed. Please check your credentials.');
+        }
+
+        const data = await response.json();
+        localStorage.setItem('token', data.data); // Save token locally
+        navigate('/'); // Redirect to home on success
+      } catch (err) {
+        setError(err.message);
+      }
+
+      setTimeout(() => navigate('/'), 2000); // Redirect to main page after success message
 
     } catch (err) {
       setUsername('')
