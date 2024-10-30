@@ -85,10 +85,15 @@ public class ArticleController : AbstractBaseController
             }
 
             // Call business method to add article
-            await _articleBusiness.AddArticle(articleDto);
-            _logger.LogInformation($"Add an article for name {articleDto.Name}");
+            var articleId = await _articleBusiness.AddArticle(articleDto);
+            if (articleId == -1)
+            {
+                _logger.LogWarning($"Get article failed after adding {articleDto.Name}");
+                return BadRequest(CreateResponse(ServiceCode.GetArticleFailed, MessageConstants.GetArticleFailed));
+            }
 
-            return Ok(CreateResponse(ServiceCode.AddArticleSuccessfully, MessageConstants.AddArticleSuccessfully));
+            return Ok(CreateResponse<long>(ServiceCode.AddArticleSuccessfully,
+            MessageConstants.AddArticleSuccessfully, articleId));
         }
         catch (Exception ex)
         {

@@ -19,7 +19,7 @@ public interface IUserArticleRepository
   /// </summary>
   /// <param name="article"></param>
   /// <returns></returns>
-  public Task InsertArticle(Article article);
+  public Task<bool> InsertArticle(Article article);
 
   /// <summary>
   /// Get the article with request id from db
@@ -27,4 +27,11 @@ public interface IUserArticleRepository
   /// <param name="articleId"></param>
   /// <returns></returns>
   public Task<Article> GetArticle(long articleId);
+
+  /// <summary>
+  /// Get the artciel by article name
+  /// </summary>
+  /// <param name="articleName"></param>
+  /// <returns></returns>
+  public Task<long> GetArticle(string articleName);
 }

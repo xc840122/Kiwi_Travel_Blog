@@ -22,6 +22,7 @@ public class MessageConstants
   public const string AddArticleSuccessfully = "Add an article successfully";
   public const string NullArticle = "Null article";
   public const string GetArticleDetailSuccessfully = "Get Article Detail Successfully";
+  public const string GetArticleFailed = "Get Article Failed";
   // User
   public const string NullUserName = "Null username";
   // Common
