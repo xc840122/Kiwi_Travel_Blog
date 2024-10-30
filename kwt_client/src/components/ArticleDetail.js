@@ -3,11 +3,14 @@
  * */
 import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';  // Import useNavigate
 import { Carousel, Button, Form, ListGroup } from 'react-bootstrap';
+import defaultAvatar from '../assets/default_avatar_min.png';
+import '../styles/ArticleDetail.css';
 
 function ArticleDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();  // Initialize navigate function
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState('');
@@ -46,44 +49,55 @@ function ArticleDetail() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="text-center">{article.title}</h2>
-      <p className="text-muted text-center">{article.description}</p>
+    <div className="article-detail container mt-4">
 
-      {/* Carousel */}
-      <Carousel className="mb-4">
+      {/* Return Button */}
+      <Button variant="outline-secondary" onClick={() => navigate(-1)} className="mb-3 return-button">
+        &larr; Back
+      </Button>
+
+      <h2 className="text-center mb-3">{article.name}</h2>
+
+      <Carousel className="mb-4" interval={3000} indicators={true}>
         {article.images?.map((image, index) => (
           <Carousel.Item key={index}>
             <img
               className="d-block w-100"
               src={image.url}
               alt={`Slide ${index + 1}`}
-              style={{ maxHeight: '400px', objectFit: 'cover' }}
             />
           </Carousel.Item>
         ))}
       </Carousel>
 
-      {/* Article Details */}
-      <div className="mb-4">
-        <p><strong>Author:</strong> {article.author?.name}</p>
-        <p><strong>Location:</strong> New Zealand</p>
-        <p><strong>Created:</strong> {new Date(article.createdAt).toLocaleDateString()}</p>
-        <p><strong>Last Updated:</strong> {new Date(article.updatedAt).toLocaleDateString()}</p>
-        <div className="d-flex justify-content-around my-3">
-          <Button variant="outline-primary">
-            Favourites: {article.favourites || 0}
-          </Button>
-          <Button variant="outline-success">
-            Likes: {article.likes || 0}
-          </Button>
-          <Button variant="outline-info">Share</Button>
+      {/* Article Meta Section */}
+      <div className="article-meta">
+        <div className="d-flex align-items-center">
+          <img src={defaultAvatar} alt="author" className="rounded-circle me-2" />
+          <div>
+            <p>{article.author || "Unknown Author"}</p>
+            <small>Location: {article.location}</small>
+          </div>
+        </div>
+        <div className="text-end">
+          <small>Created: {new Date(article.createTime).toLocaleDateString()}</small><br />
+          <small>Modified: {new Date(article.updateTime).toLocaleDateString()}</small>
         </div>
       </div>
 
-      {/* Comments Section */}
+      {/* Article Content */}
+      <div className="article-content">
+        {article.text}
+      </div>
+
+      <div className="interaction-buttons">
+        <Button variant="outline-danger">Favourites: {article.favourites || 0}</Button>
+        <Button variant="outline-success">Likes: {article.likes || 0}</Button>
+        <Button variant="outline-primary">Share</Button>
+      </div>
+
       <h4>Comments</h4>
-      <ListGroup className="mb-4">
+      <ListGroup className="comments-section mb-4">
         {comments.length > 0 ? comments.map((comment, index) => (
           <ListGroup.Item key={index} className="border mb-2">
             <p><strong>{comment.user?.name || 'Anonymous'}</strong> - {new Date(comment.createdAt).toLocaleDateString()}</p>
@@ -98,7 +112,6 @@ function ArticleDetail() {
         )}
       </ListGroup>
 
-      {/* Comment Form */}
       <Form onSubmit={handleCommentSubmit}>
         <Form.Group controlId="commentText">
           <Form.Control

@@ -29,7 +29,6 @@ function CategoryList({ onCategorySelect }) {
 
   return (
     <div className="container my-4">
-      <h3 className="text-center mb-4">Explore Categories</h3>
       <div className="d-flex justify-content-center flex-wrap gap-2">
         {categories.map(category => (
           <button
