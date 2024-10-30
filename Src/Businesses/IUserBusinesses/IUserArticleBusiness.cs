@@ -6,7 +6,7 @@ using Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 /// <summary>
-/// interface of article business
+/// Interface of article business
 /// </summary>
 public interface IUserArticleBusiness
 {
