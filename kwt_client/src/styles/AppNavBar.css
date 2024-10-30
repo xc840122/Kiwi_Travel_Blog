@@ -1,0 +1,97 @@
+/* AppNavBar.css */
+.app-navbar {
+  background: linear-gradient(90deg, #4e8cff, #6a11cb);
+  /* Modern gradient color */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
+}
+
+.app-navbar.fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+.app-navbar:hover {
+  background: linear-gradient(90deg, #4e8cff, #5c24cf);
+}
+
+/* Branding */
+.brand-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Centered Search Bar */
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  border-radius: 30px;
+  padding: 8px 20px;
+  width: 300px;
+  max-width: 100%;
+  border: none;
+  transition: box-shadow 0.2s ease;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.search-bar::placeholder {
+  color: #ddd;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  outline: none;
+}
+
+/* Profile Avatar */
+.navbar-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.profile-dropdown:hover .navbar-avatar {
+  transform: scale(1.1);
+}
+
+/* Buttons */
+.fancy-button,
+.post-article-button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fancy-button {
+  background-color: #fff;
+  color: #333;
+}
+
+.fancy-button:hover {
+  background-color: #4e8cff;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(78, 140, 255, 0.3);
+}
+
+.post-article-button {
+  background-color: #6a11cb;
+  color: #fff;
+}
+
+.post-article-button:hover {
+  background-color: #5c24cf;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(108, 23, 207, 0.3);
+}

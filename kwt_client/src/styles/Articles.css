@@ -1,0 +1,102 @@
+/* Hero Section */
+.hero-section {
+  background-image: url("../assets/auckland.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  /* Dark overlay for readability */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 50px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.hero-buttons .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+/* Sticky Sidebar */
+.sticky-sidebar {
+  position: relative;
+  top: 24px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Masonry Layout for Articles */
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.article-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.article-card:hover {
+  transform: scale(1.02);
+}
+
+.article-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.article-card .card-body {
+  padding: 15px;
+}
+
+.article-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.article-card p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+}
