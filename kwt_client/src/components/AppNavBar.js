@@ -3,20 +3,32 @@
  */
 // AppNavbar.js
 // AppNavbar.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Button, Dropdown, Form } from 'react-bootstrap';
 import defaultAvatar from '../assets/default_avatar_min.png';
+import AlertBubble from './AlertBubble';
 import '../styles/AppNavBar.css';
 
 function AppNavbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const isAuthenticated = Boolean(token);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
+  };
+
+  const handlePostClick = () => {
+    if (!isAuthenticated) {
+      setShowAlert(true); // Show alert if not authenticated
+      setTimeout(() => setShowAlert(false), 3000); // Hide alert after 3 seconds
+      // navigate('/login'); // Redirect to login if not authenticated
+    } else {
+      navigate('/post-article'); // Navigate to post-article if authenticated
+    }
   };
 
   return (
@@ -38,14 +50,13 @@ function AppNavbar() {
         <Nav className="ms-auto d-flex align-items-center">
           <Nav.Item>
             <Button
-              as={Link}
-              to={isAuthenticated ? "/post-article" : "#"}
               variant="primary"
-              onClick={() => !isAuthenticated && navigate('/login')}
+              onClick={handlePostClick}
               className="post-article-button"
             >
               Post Article
             </Button>
+            {showAlert && <AlertBubble message="Please sign in before posting" />}
           </Nav.Item>
           {isAuthenticated ? (
             <Dropdown align="end" className="ms-3">
@@ -69,7 +80,7 @@ function AppNavbar() {
           )}
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
+    </Navbar >
   );
 }
 

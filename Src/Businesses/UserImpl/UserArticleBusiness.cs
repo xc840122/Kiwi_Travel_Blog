@@ -76,7 +76,6 @@ public class UserArticleBusiness : IUserArticleBusiness
       var images = articleDto.Images.Select(imageDto => new Image
       {
         Url = imageDto.Url,
-        ArticleId = imageDto.ArticleId
       }).ToList();
 
       // Convert articleDto to article
