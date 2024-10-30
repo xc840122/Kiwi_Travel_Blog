@@ -85,10 +85,9 @@ const PostArticle = () => {
       );
 
       // After successful submission, fetch and show the new article
-      const articleId = response.data.id;
-      const articleResponse = await api.get(`/user/article/${articleId}`);
+      const articleId = response.data.data;
+      await api.get(`/user/article/${articleId}`);
 
-      console.log('Posted article:', articleResponse.data);
       navigate(`/article/${articleId}`);
     } catch (error) {
       console.error('Error posting article:', error);
