@@ -12,7 +12,7 @@ public class ArticleConfiguration : IEntityTypeConfiguration<Article>
   public void Configure(EntityTypeBuilder<Article> builder)
   {
     builder.ToTable("T_Articles");
-    builder.Property(e => e.Name).HasMaxLength(50).IsRequired();
+    builder.Property(e => e.Name).HasMaxLength(200).IsRequired();
     builder.Property(e => e.Text).HasMaxLength(5000).IsRequired();
     builder.Property(e => e.Author).IsRequired();
     builder.Property(e => e.CategoryId).IsRequired();
