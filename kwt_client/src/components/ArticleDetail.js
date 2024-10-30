@@ -91,8 +91,8 @@ function ArticleDetail() {
       </div>
 
       <div className="interaction-buttons">
-        <Button variant="outline-danger">Favourites: {article.favourites || 0}</Button>
-        <Button variant="outline-success">Likes: {article.likes || 0}</Button>
+        <Button variant="outline-danger">Favourites: {article.favoriteNums || 0}</Button>
+        <Button variant="outline-success">Likes: {article.likeNums || 0}</Button>
         <Button variant="outline-primary">Share</Button>
       </div>
 
