@@ -1,25 +1,44 @@
-/**
- * This component will provide fields for the article title, text, category, 
- * and any optional images. It will send a POST request to the backend to save the article.
- */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import '../styles/PostArticle.css';
 import { Button, Form, Alert } from 'react-bootstrap';
+import { AiOutlineClose } from 'react-icons/ai';
+/**
+ * 
+ * This component will provide fields for the article title, text, category, 
+ * and any optional images. It will send a POST request to the backend to save the article.
+ * @returns 
+ */
 
-function PostArticle() {
+const PostArticle = () => {
   const navigate = useNavigate();
   const [articleData, setArticleData] = useState({
     name: '',
     text: '',
     author: '',
-    location: '',
+    location: 'Auckland, New Zealand',
     categoryId: '',
     images: []
   });
   const [imageFiles, setImageFiles] = useState([]);
   const [error, setError] = useState('');
+  const [categories, setCategories] = useState([]); // State to store categories
+
+  // Fetch categories on component mount
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get('/user/Category/all');
+        setCategories(response.data.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        setError('Failed to load categories. Please try again.');
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -27,7 +46,7 @@ function PostArticle() {
   };
 
   // Handle image upload
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const files = Array.from(e.target.files);
     setImageFiles(files);
     const imagePreviews = files.map((file) => ({
@@ -36,40 +55,40 @@ function PostArticle() {
     setArticleData({ ...articleData, images: imagePreviews });
   };
 
+  // Handle image removal
+  const handleRemoveImage = (index) => {
+    const updatedFiles = [...imageFiles];
+    updatedFiles.splice(index, 1);
+    setImageFiles(updatedFiles);
+
+    const updatedImages = [...articleData.images];
+    updatedImages.splice(index, 1);
+    setArticleData({ ...articleData, images: updatedImages });
+  };
+
   // Submit the article
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     if (!token) {
       setError('You must be signed in to post an article.');
-      navigate('/login');
+      // navigate('/login');
       return;
     }
 
     try {
-      // Step 1: Upload images first, get URLs from backend
-      const imageUrls = [];
-      for (const file of imageFiles) {
-        const formData = new FormData();
-        formData.append('file', file);
-        const imageResponse = await api.post('/path-to-upload-image-api', formData, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        imageUrls.push({ url: imageResponse.data.url });
-      }
-
-      // Step 2: Submit article with images
-      const response = await api.post(
-        '/user/article',
+      // POST article data
+      const response = await api.post('/user/article',
         {
           ...articleData,
-          images: imageUrls
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
+        }
       );
 
-      // Redirect after successful submission
-      navigate(`/article/${response.data.id}`);
+      // After successful submission, fetch and show the new article
+      const articleId = response.data.data;
+      await api.get(`/user/article/${articleId}`);
+
+      navigate(`/article/${articleId}`);
     } catch (error) {
       console.error('Error posting article:', error);
       setError('Failed to post article. Please try again.');
@@ -79,9 +98,9 @@ function PostArticle() {
   return (
     <div className="post-article container mt-5">
       <h2 className="text-center mb-4">Post a New Article</h2>
-
       {error && <Alert variant="danger">{error}</Alert>}
 
+      {/* Title, Text, Location, Images, Category fields */}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="name" className="mb-3">
           <Form.Label>Title</Form.Label>
@@ -94,7 +113,6 @@ function PostArticle() {
             required
           />
         </Form.Group>
-
         <Form.Group controlId="text" className="mb-3">
           <Form.Label>Content</Form.Label>
           <Form.Control
@@ -107,40 +125,22 @@ function PostArticle() {
             required
           />
         </Form.Group>
-
-        <Form.Group controlId="author" className="mb-3">
-          <Form.Label>Author</Form.Label>
-          <Form.Control
-            type="text"
-            name="author"
-            placeholder="Author's name"
-            value={articleData.author}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="location" className="mb-3">
-          <Form.Label>Location</Form.Label>
-          <Form.Control
-            type="text"
-            name="location"
-            placeholder="Location"
-            value={articleData.location}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
         <Form.Group controlId="categoryId" className="mb-3">
-          <Form.Label>Category ID</Form.Label>
+          <Form.Label>Category</Form.Label>
           <Form.Control
-            type="number"
+            as="select"
             name="categoryId"
-            placeholder="Category ID"
             value={articleData.categoryId}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Select a category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </Form.Control>
         </Form.Group>
 
         <Form.Group controlId="images" className="mb-4">
@@ -153,17 +153,25 @@ function PostArticle() {
           />
           <div className="image-previews mt-3">
             {articleData.images.map((img, index) => (
-              <img key={index} src={img.url} alt="Preview" className="preview-img" />
+              < div key={index} className="image-preview-container" >
+                <img src={img.url} alt="Preview" className="preview-img" />
+                <button
+                  type="button"
+                  className="remove-image-btn"
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  <AiOutlineClose />
+                </button>
+              </div>
             ))}
           </div>
         </Form.Group>
-
         <Button type="submit" variant="primary" className="w-100">
           Submit Article
         </Button>
       </Form>
-    </div>
+    </div >
   );
-}
+};
 
 export default PostArticle;

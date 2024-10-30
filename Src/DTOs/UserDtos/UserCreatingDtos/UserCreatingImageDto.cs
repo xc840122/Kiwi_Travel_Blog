@@ -6,5 +6,4 @@ namespace Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserCreatingDtos;
 public class UserCreatingImageDto
 {
   public required string Url { get; set; }
-  public required long ArticleId { get; set; }
 }
