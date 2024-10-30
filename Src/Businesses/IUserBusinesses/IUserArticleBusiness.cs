@@ -22,7 +22,7 @@ public interface IUserArticleBusiness
   /// </summary>
   /// <param name="articleDto"></param>
   /// <returns></returns>
-  public Task AddArticle(UserCreatingArticleDto articleDto);
+  public Task<long> AddArticle(UserCreatingArticleDto articleDto);
 
   /// <summary>
   /// User get an article detail

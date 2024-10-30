@@ -1,122 +1,177 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../utils/api';
+import '../styles/PostArticle.css';
+import { Button, Form, Alert } from 'react-bootstrap';
+import { AiOutlineClose } from 'react-icons/ai';
 /**
+ * 
  * This component will provide fields for the article title, text, category, 
  * and any optional images. It will send a POST request to the backend to save the article.
+ * @returns 
  */
-import React, { useState, useEffect } from 'react';
-import api from '../utils/api';
 
-function PostArticle() {
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const [category, setCategory] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [images, setImages] = useState([]);
+const PostArticle = () => {
+  const navigate = useNavigate();
+  const [articleData, setArticleData] = useState({
+    name: '',
+    text: '',
+    author: '',
+    location: 'Auckland, New Zealand',
+    categoryId: '',
+    images: []
+  });
+  const [imageFiles, setImageFiles] = useState([]);
+  const [error, setError] = useState('');
+  const [categories, setCategories] = useState([]); // State to store categories
 
-  // Fetch categories for selection
+  // Fetch categories on component mount
   useEffect(() => {
-    api.get('/user/category/all')
-      .then(response => setCategories(response.data))
-      .catch(error => console.error('Error fetching categories:', error));
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get('/user/Category/all');
+        setCategories(response.data.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        setError('Failed to load categories. Please try again.');
+      }
+    };
+
+    fetchCategories();
   }, []);
 
+  // Handle form input changes
+  const handleChange = (e) => {
+    setArticleData({ ...articleData, [e.target.name]: e.target.value });
+  };
+
+  // Handle image upload
+  const handleImageUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    setImageFiles(files);
+    const imagePreviews = files.map((file) => ({
+      url: URL.createObjectURL(file)
+    }));
+    setArticleData({ ...articleData, images: imagePreviews });
+  };
+
+  // Handle image removal
+  const handleRemoveImage = (index) => {
+    const updatedFiles = [...imageFiles];
+    updatedFiles.splice(index, 1);
+    setImageFiles(updatedFiles);
+
+    const updatedImages = [...articleData.images];
+    updatedImages.splice(index, 1);
+    setArticleData({ ...articleData, images: updatedImages });
+  };
+
+  // Submit the article
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError('You must be signed in to post an article.');
+      // navigate('/login');
+      return;
+    }
+
     try {
-      const response = await api.post('/user/article', {
-        title,
-        text,
-        categoryId: category,
-        images: images.map((url) => ({ url }))  // Array of image URLs
-      });
-      console.info('Article posted successfully:', response.data);
-      // Clear the form fields after successful submission
-      setTitle('');
-      setText('');
-      setCategory('');
-      setImages([]);
+      // POST article data
+      const response = await api.post('/user/article',
+        {
+          ...articleData,
+        }
+      );
+
+      // After successful submission, fetch and show the new article
+      const articleId = response.data.data;
+      await api.get(`/user/article/${articleId}`);
+
+      navigate(`/article/${articleId}`);
     } catch (error) {
       console.error('Error posting article:', error);
+      setError('Failed to post article. Please try again.');
     }
   };
 
   return (
-    <div className="container">
-      <h2>Post a New Article</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="post-article container mt-5">
+      <h2 className="text-center mb-4">Post a New Article</h2>
+      {error && <Alert variant="danger">{error}</Alert>}
 
-        {/* Article Title */}
-        <div className="form-group">
-          <label>Title</label>
-          <input
+      {/* Title, Text, Location, Images, Category fields */}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="name" className="mb-3">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            name="name"
+            placeholder="Enter article title"
+            value={articleData.name}
+            onChange={handleChange}
             required
           />
-        </div>
-
-        {/* Article Text */}
-        <div className="form-group">
-          <label>Content</label>
-          <textarea
-            className="form-control"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows="5"
+        </Form.Group>
+        <Form.Group controlId="text" className="mb-3">
+          <Form.Label>Content</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="text"
+            rows={4}
+            placeholder="Write your article content here..."
+            value={articleData.text}
+            onChange={handleChange}
             required
           />
-        </div>
-
-        {/* Category Selection */}
-        <div className="form-group">
-          <label>Category</label>
-          <select
-            className="form-control"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+        </Form.Group>
+        <Form.Group controlId="categoryId" className="mb-3">
+          <Form.Label>Category</Form.Label>
+          <Form.Control
+            as="select"
+            name="categoryId"
+            value={articleData.categoryId}
+            onChange={handleChange}
             required
           >
             <option value="">Select a category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
               </option>
             ))}
-          </select>
-        </div>
+          </Form.Control>
+        </Form.Group>
 
-        {/* Image URLs */}
-        <div className="form-group">
-          <label>Image URLs (optional)</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Add an image URL and press Enter"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && e.target.value) {
-                setImages([...images, e.target.value]);
-                e.target.value = '';
-                e.preventDefault();
-              }
-            }}
+        <Form.Group controlId="images" className="mb-4">
+          <Form.Label>Upload Images</Form.Label>
+          <Form.Control
+            type="file"
+            multiple
+            onChange={handleImageUpload}
+            accept="image/*"
           />
-          <div>
-            {images.map((url, index) => (
-              <div key={index} className="badge badge-secondary m-1">
-                {url}
+          <div className="image-previews mt-3">
+            {articleData.images.map((img, index) => (
+              < div key={index} className="image-preview-container" >
+                <img src={img.url} alt="Preview" className="preview-img" />
+                <button
+                  type="button"
+                  className="remove-image-btn"
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  <AiOutlineClose />
+                </button>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Submit Button */}
-        <button type="submit" className="btn btn-primary">
+        </Form.Group>
+        <Button type="submit" variant="primary" className="w-100">
           Submit Article
-        </button>
-      </form>
-    </div>
+        </Button>
+      </Form>
+    </div >
   );
-}
+};
 
 export default PostArticle;

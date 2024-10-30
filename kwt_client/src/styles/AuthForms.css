@@ -1,0 +1,39 @@
+/* Auth Form Container */
+.auth-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  color: #333;
+}
+
+/* Form Heading */
+.auth-form h2 {
+  font-weight: bold;
+  color: #ff5a5f;
+}
+
+/* Input Fields */
+.auth-form .form-control {
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Fancy Submit Button */
+/* .fancy-button {
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ff5a5f, #ff7f50);
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(255, 90, 95, 0.2);
+}
+
+.fancy-button:hover {
+  background: linear-gradient(45deg, #ff7f50, #ff5a5f);
+  box-shadow: 0px 6px 15px rgba(255, 90, 95, 0.3);
+} */

@@ -22,6 +22,7 @@ public enum ServiceCode
   AddArticleSuccessfully = 14003,
   NullArticle = 14004,
   GetArticleDetailSuccessfully = 14005,
+  GetArticleFailed = 14006,
   // 5xxx user relavant
   NullUserName = 15001,
 
