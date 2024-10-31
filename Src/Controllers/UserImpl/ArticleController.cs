@@ -43,8 +43,8 @@ public class ArticleController : AbstractBaseController
             else
             {
                 _logger.LogWarning("Articles are not found");
-                return NotFound(CreateResponse(ServiceCode.NoArticlesFound,
-                    MessageConstants.NotFoundData));
+                return Ok(CreateResponse<List<UserGettingArticleDto>>(ServiceCode.GetArticlesSuccessfully,
+                    MessageConstants.GettingArticlesSuccessful, new List<UserGettingArticleDto>()));
             }
         }
         catch (Exception ex)

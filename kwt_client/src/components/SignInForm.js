@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/AuthForms.css';
 
 function SignInForm() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function SignInForm() {
           'accept': '*/*'
         },
         body: JSON.stringify({
-          userName: email,
+          userName: username,
           password: password
         })
       });
@@ -46,12 +46,12 @@ function SignInForm() {
       <h2 className="text-center mb-4">Sign In</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleLogin}>
-        <Form.Group controlId="email" className="mb-3">
+        <Form.Group controlId="username" className="mb-3">
           <Form.Control
             type="text"
             placeholder="Username"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="password" className="mb-3">
