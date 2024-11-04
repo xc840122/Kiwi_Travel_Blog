@@ -25,7 +25,7 @@ This a demo project for learning purpose and still ongoing of new features. Welc
 
 - **Frontend:** React, JavaScript, HTML, CSS, Bootstrap, Ant Design
 - **Backend:** .NET Core, C#
-- **Database:** MySQL
+- **Database:** AzureSqlEdge (Compatible with SQL Server)
 - **Version Control:** Git
 - **Project Management:** Jira
 
@@ -44,8 +44,8 @@ To get a local copy of the project up and running, follow these steps:
 
 3. **Set up the backend:**
   - Open the solution in Visual Studio or your preferred IDE.
-	- Restore the required NuGet packages.
-	- Update the connection string in the appsettings.json file to point to your SQLServer database.
+  - Restore the required NuGet packages.
+  - Update the connection string in the appsettings.json file to point to your SQLServer database.
 
 4. Set up the frontend:**
 - Navigate to the client directory:
@@ -63,7 +63,7 @@ To get a local copy of the project up and running, follow these steps:
    
 ## Usage
 
-After starting the application, navigate to http://localhost:3000 in your web browser. Register for a new account or log in to access the features of the travel blog.
+After starting the application, navigate to web site in your web browser. Register for a new account or log in to access the features of the travel blog.
 
 License
 
