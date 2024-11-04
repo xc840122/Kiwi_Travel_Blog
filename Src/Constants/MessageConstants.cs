@@ -25,6 +25,9 @@ public class MessageConstants
   public const string GetArticleFailed = "Get Article Failed";
   // User
   public const string NullUserName = "Null username";
+  // Comment
+  public const string AddCommentSuccessfully = "Add Comment Successfully";
+  public const string AddCommentFailed = "Add Comment Failed";
   // Common
   public const string NotFoundData = "Not found data";
   public const string NotConfigureKey = "Not configure key";
