@@ -62,7 +62,7 @@ public class UserArticleBusiness : IUserArticleBusiness
   /// </summary>
   /// <param name="articleDto"></param>
   /// <returns></returns>
-  public async Task AddArticle(UserCreatingArticleDto articleDto)
+  public async Task<long> AddArticle(UserCreatingArticleDto articleDto)
   {
     try
     {
@@ -76,7 +76,6 @@ public class UserArticleBusiness : IUserArticleBusiness
       var images = articleDto.Images.Select(imageDto => new Image
       {
         Url = imageDto.Url,
-        ArticleId = imageDto.ArticleId
       }).ToList();
 
       // Convert articleDto to article
@@ -91,7 +90,15 @@ public class UserArticleBusiness : IUserArticleBusiness
       };
       // add article
       _logger.LogInformation($"Add an artile for Name {article.Name}");
-      await _articleRepository.InsertArticle(article);
+      var addArticleResult = await _articleRepository.InsertArticle(article);
+
+      // return article object if add successfully
+      if (!addArticleResult)
+      {
+        _logger.LogWarning($"Failed to an artile for Name {article.Name}");
+        return -1;
+      }
+      return await _articleRepository.GetArticle(articleDto.Name);
     }
     catch (Exception ex)
     {

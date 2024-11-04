@@ -6,7 +6,7 @@ using Kiwi_Travel_Blog.Src.DTOs.UserDtos.UserGettingDtos;
 
 namespace Kiwi_Travel_Blog.Src.Businesses.IUserBusinesses;
 /// <summary>
-/// interface of article business
+/// Interface of article business
 /// </summary>
 public interface IUserArticleBusiness
 {
@@ -22,7 +22,7 @@ public interface IUserArticleBusiness
   /// </summary>
   /// <param name="articleDto"></param>
   /// <returns></returns>
-  public Task AddArticle(UserCreatingArticleDto articleDto);
+  public Task<long> AddArticle(UserCreatingArticleDto articleDto);
 
   /// <summary>
   /// User get an article detail

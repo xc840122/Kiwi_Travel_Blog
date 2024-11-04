@@ -1,0 +1,16 @@
+/* Global background for body and root */
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* Ocean breeze */
+  /* background: linear-gradient(135deg, #a2cfd6 0%, #5082a7 100%); */
+  /* Sonset glow */
+  /* background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); */
+  /* Mountain Mist */
+  /* background: linear-gradient(135deg, #d3eaf2 0%, #99c4c8 100%); */
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  color: #333;
+}

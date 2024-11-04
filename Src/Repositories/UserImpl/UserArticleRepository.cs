@@ -68,7 +68,7 @@ public class UserArticleRepository : IUserArticleRepository
   /// <param name="article"></param>
   /// <returns></returns>
   /// <exception cref="NotImplementedException"></exception>
-  public async Task InsertArticle(Article article)
+  public async Task<bool> InsertArticle(Article article)
   {
     try
     {
@@ -76,6 +76,7 @@ public class UserArticleRepository : IUserArticleRepository
       if (article == null)
       {
         _logger.LogWarning($"Article cannot be null");
+        return false;
         throw new ArgumentNullException("Article cannot be null");
       }
 
@@ -83,11 +84,13 @@ public class UserArticleRepository : IUserArticleRepository
       await _context.Articles.AddAsync(article);
       await _context.SaveChangesAsync();
 
-      _logger.LogInformation($"Category with {article.Id} inserted successfully");
+      _logger.LogInformation($"Category with {article.Name} inserted successfully");
+      return true;
     }
     catch (Exception ex)
     {
-      _logger.LogError(ex, $"An error occurred while inserting category for ID {article.Id}");
+      _logger.LogError(ex, $"An error occurred while inserting category for ID {article.Name}");
+      return false;
       throw;
     }
   }
@@ -130,6 +133,48 @@ public class UserArticleRepository : IUserArticleRepository
     {
       // Handle any other exceptions
       _logger.LogError(ex, $"An error occurred while fetching article forID {articleId}.");
+      throw; // Rethrow the exception after logging
+    }
+  }
+
+  /// <summary>
+  /// Get an article from db, method overloading
+  /// </summary>
+  /// <param name="articleName"></param>
+  /// <returns></returns>
+  /// <exception cref="NotImplementedException"></exception>
+  public async Task<long> GetArticle(string articleName)
+  {
+    try
+    {
+      // try to query article in db
+      var article = await _context.Articles
+      .Include(a => a.Images)
+      .Include(a => a.Comments)
+      .Where(a => a.Name == articleName)
+      .SingleAsync<Article>();
+
+      // Check if article exist in db
+      if (article == null)
+      {
+        _logger.LogWarning($"Article not exist for Name {articleName}");
+        throw new KeyNotFoundException($"Article not exist for Name {articleName}");
+      }
+
+      _logger.LogInformation($"Fetching article for Name {articleName}");
+
+      return article.Id;
+    }
+    catch (InvalidOperationException ex)
+    {
+      // Handle case when more than one category is returned unexpectedly
+      _logger.LogError(ex, $"Multiple articles found for Name {articleName}");
+      throw;
+    }
+    catch (Exception ex)
+    {
+      // Handle any other exceptions
+      _logger.LogError(ex, $"An error occurred while fetching article forID {articleName}.");
       throw; // Rethrow the exception after logging
     }
   }
