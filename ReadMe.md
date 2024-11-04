@@ -25,7 +25,7 @@ This a demo project for learning purpose and still ongoing of new features. Welc
 
 - **Frontend:** React, JavaScript, HTML, CSS, Bootstrap, Ant Design
 - **Backend:** .NET Core, C#
-- **Database:** AzureSqlEdge (SqlServer)
+- **Database:** AzureSqlEdge (Compatible with SQL Server)
 - **Version Control:** Git
 - **Project Management:** Jira
 
@@ -63,7 +63,7 @@ To get a local copy of the project up and running, follow these steps:
    
 ## Usage
 
-After starting the application, navigate to the web page in your web browser. Register for a new account or log in to access the features of the travel blog.
+After starting the application, navigate to web site in your web browser. Register for a new account or log in to access the features of the travel blog.
 
 License
 
